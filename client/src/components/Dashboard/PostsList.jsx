@@ -34,7 +34,7 @@ class PostsList extends Component {
 
   closePopover = e => {
     this.setState({
-      isOpen: e.currentTarget
+      isOpen: null
     });
   };
 
