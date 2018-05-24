@@ -24,6 +24,8 @@ class PostsList extends Component {
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const previousPage = currentPage - 1;
+    const nextPage = currentPage + 1;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
     const postsList = currentPosts.map(post => {
@@ -72,7 +74,7 @@ class PostsList extends Component {
           </thead>
           <tbody>{postsList}</tbody>
         </table>
-        {pageNumbers.length === 1 ? null : (
+        {pageNumbers.length === 0 ? null : (
           <ul className="page-numbers">{renderPageNumbers}</ul>
         )}
       </div>
