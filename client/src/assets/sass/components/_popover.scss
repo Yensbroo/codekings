@@ -1,0 +1,35 @@
+.ck-popover {
+  border-radius: 3px;
+  box-shadow: none;
+  .ck-popover__wrapper {
+    width: 90%;
+    margin: auto;
+    p {
+      font-size: 13px;
+    }
+    .ck-popover__btn {
+      float: right;
+      button {
+        height: 25px;
+        background: none;
+        color: $ck-orange;
+        border: 1px solid $ck-orange;
+        font-size: 12px;
+        font-weight: lighter;
+        margin-right: 10px;
+      }
+      button:hover {
+        background: $ck-orange;
+        color: white;
+      }
+    }
+  }
+  .ck-popover:after {
+    border-width: 30px;
+    margin-top: -30px;
+  }
+  .ck-popover:before {
+    border-width: 36px;
+    margin-top: -36px;
+  }
+}
