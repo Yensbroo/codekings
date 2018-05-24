@@ -92,7 +92,6 @@ exports.update_user = (req, res, next) => {
       bcrypt.hash(newPassword, salt, (err, hash) => {
         if(err) throw err;
         newPassword = hash;
-        console.log(newPassword);
         bcrypt.compare(oldPassword, user.password).then(isMatch => {
           if(isMatch) {
             User.findOneAndUpdate({
@@ -100,7 +99,7 @@ exports.update_user = (req, res, next) => {
             },
             {
               $currentDate: {
-                created_at: true
+                updated_at: true
               },
               $set: {
                 password: newPassword,
