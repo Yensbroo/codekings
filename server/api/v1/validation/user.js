@@ -5,18 +5,37 @@ module.exports = function validateUserInput(data) {
   let errors = {};
 
   data.email = !isEmpty(data.email) ? data.email : "";
-  data.password = !isEmpty(data.password) ? data.password : "";
+  data.oldPassword = !isEmpty(data.oldPassword) ? data.oldPassword : "";
+  data.newPassword = !isEmpty(data.newPassword) ? data.newPassword : "";
+  data.newPassword2 = !isEmpty(data.newPassword2) ? data.newPassword2 : "";
 
-  if (!Validator.isEmail(data.email)) {
-    errors.email = "Email is invalid";
-  }
 
   if (Validator.isEmpty(data.email)) {
     errors.email = "Email is required";
   }
 
-  if (Validator.isEmpty(data.password)) {
-    errors.password = "Password is required";
+  if (!Validator.isEmail(data.email)) {
+    errors.email = "Email is invalid";
+  }
+
+  if (Validator.isEmpty(data.oldPassword)) {
+    errors.oldPassword = "Password is required";
+  }
+
+  if (Validator.equals(data.oldPassword, data.newPassword)) {
+    errors.newPassword = "Your new password can not be the same as your old password";
+  }
+
+  if (!Validator.isLength(data.newPassword, { min: 6, max: 30 })) {
+    errors.newPassword = "Password must be at least 6 characters long";
+  }
+
+  if (Validator.isEmpty(data.newPassword2)) {
+    errors.newPassword2 = "You have to confirm your password";
+  }
+
+  if (!Validator.equals(data.newPassword, data.newPassword2)) {
+    errors.newPassword2 = "Passwords must match";
   }
 
   return {

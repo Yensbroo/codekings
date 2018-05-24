@@ -52,6 +52,7 @@ exports.create_or_update_profile = (req, res) => {
   if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
   if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
+
   Profile.findOne({
     user: req.user.id
   }).then(profile => {
