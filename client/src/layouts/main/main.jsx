@@ -17,6 +17,7 @@ import PostForm from "../../components/Posts/PostForm";
 import Post from "../../components/Posts/Post";
 import ProfileSettings from "../../components/Dashboard/ProfileSettings";
 import UserSettings from "../../components/Dashboard/UserSettings";
+import UserPosts from "../../components/Dashboard/UserPosts";
 
 class Main extends Component {
   render() {
@@ -40,6 +41,9 @@ class Main extends Component {
             path="/user/profile"
             component={ProfileSettings}
           />
+        </Switch>
+        <Switch>
+          <PrivateRoute exact path="/user/posts" component={UserPosts} />
         </Switch>
         <Switch>
           <PrivateRoute exact path="/feed" component={Posts} />
