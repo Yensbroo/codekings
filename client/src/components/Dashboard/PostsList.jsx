@@ -30,9 +30,9 @@ class PostsList extends Component {
       if (post.user === auth.user.id) {
         return (
           <tr key={post._id}>
-            <Link to={`post/${post._id}`}>
-              <td>{post.title}</td>
-            </Link>
+            <td>
+              <Link to={`post/${post._id}`}>{post.title}</Link>
+            </td>
             <td>{post.date}</td>
             <td>actions</td>
           </tr>
@@ -41,6 +41,7 @@ class PostsList extends Component {
     });
 
     const pageNumbers = [];
+    console.log(pageNumbers);
     for (let i = 1; i <= Math.ceil(posts.length / postsPerPage); i++) {
       pageNumbers.push(i);
     }
@@ -71,7 +72,9 @@ class PostsList extends Component {
           </thead>
           <tbody>{postsList}</tbody>
         </table>
-        <ul className="page-numbers">{renderPageNumbers}</ul>
+        {pageNumbers.length === 1 ? null : (
+          <ul className="page-numbers">{renderPageNumbers}</ul>
+        )}
       </div>
     );
   }
