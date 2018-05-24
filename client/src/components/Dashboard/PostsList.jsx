@@ -40,6 +40,9 @@ class PostsList extends Component {
 
   handleDeletePost = id => {
     this.props.deletePost(id);
+    this.setState({
+      isOpen: null
+    });
   };
   render() {
     const { posts, auth } = this.props;
