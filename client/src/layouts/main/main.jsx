@@ -18,10 +18,6 @@ import Profile from "../../components/Profile/Profile";
 import Posts from "../../components/Posts/Posts";
 import PostForm from "../../components/Posts/PostForm";
 import Post from "../../components/Posts/Post";
-import PostsTest from "../../components/Posts/search/Poststest";
-import MediumEditor from "../../components/Posts/mediumtest/MediumEditor";
-import MediumOutput from "../../components/Posts/mediumtest/MediumOutput";
-// import FlashMessageList from "../../components/common/FlashMessageList";
 
 class Main extends Component {
   render() {
