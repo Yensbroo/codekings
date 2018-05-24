@@ -256,7 +256,8 @@ td .ck-action {
 
 .ck-popover {
   border-radius: 3px;
-  box-shadow: none; }
+  box-shadow: none;
+  margin-left: 10px; }
   .ck-popover .ck-popover__wrapper {
     width: 90%;
     margin: auto; }
