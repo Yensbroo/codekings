@@ -1,0 +1,100 @@
+.ck-profile__header {
+  background: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px 6px 0 0;
+  .ck-profile__avatar {
+    margin-top: 20px;
+    img {
+      border-radius: 100px;
+      width: 150px;
+    }
+  }
+  .ck-profile__name {
+    h2 {
+      color: white;
+    }
+  }
+  .ck-profile__socials {
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 30px;
+      padding: 5px;
+    }
+    a:hover {
+      color: $ck-orange;
+    }
+  }
+}
+
+.ck-profile__bio-container,
+.ck-github {
+  border-radius: 3px;
+  border: 1px solid $ck-border;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+}
+
+.ck-profile__bio-container {
+  background: white;
+  .ck-profile__bio-wrapper {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    .ck-profile__bio,
+    .ck-profile__skills {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    .ck-profile__bio {
+      width: 80%;
+    }
+    .ck-profile__skills {
+      width: 20%;
+      margin-left: 40px;
+      ul {
+        list-style: none;
+        padding: 0
+      }
+      li {
+        font-size: 20px;
+        padding: 10px 0 10px 10px;
+        border-bottom: 1px solid $ck-border;
+        i {
+          margin-right: 20px;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+.ck-github {
+  background: white;
+  min-height: 200px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  .ck-profile__github-wrapper {
+    width: 90%;
+    margin: 30px;
+  }
+  h2 {
+    a {
+      color: $ck-orange;
+    }
+  }
+  .stats {
+    border: 1px solid $ck-border;
+    border-radius: 3px;
+    float: left;
+    margin-right: 20px;
+    span {
+      padding: 20px;
+    }
+    i {
+      background: $ck-border;
+      padding: 10px;
+    }
+  }
+}

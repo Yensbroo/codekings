@@ -1,0 +1,64 @@
+.ck-post__card {
+  background: white;
+  margin-bottom: 30px;
+  min-height: 310px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 4px 4px 5px -1px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 4px 4px 5px -1px rgba(0, 0, 0, 0.08);
+  box-shadow: 4px 4px 5px -1px rgba(0, 0, 0, 0.08);
+  .ck-post__image {
+    img {
+      width: 100%;
+      border-radius: 0 0 90px 90px;
+    }
+    .ck-post__actions {
+      display: none;
+      .ck-post__favorite,
+      .ck-post__likes {
+        position: absolute;
+        top: 10px;
+      }
+      i {
+        color: $ck-orange;
+        font-size: 20px;
+      }
+      .ck-post__favorite {
+        left: 26px;
+      }
+      .ck-post__likes {
+        right: 26px;
+        span {
+          padding: 0 5px;
+          color: $ck-orange;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .ck-post__image:hover .ck-post__actions {
+    display: inline;
+  }
+  .ck-post__info {
+    margin-top: 10px;
+    padding: 0 10px;
+  }
+  span {
+    align-self: flex-end;
+  }
+  .ck-post__title {
+    white-space: nowrap;
+    margin-bottom: 40px;
+    a {
+      display: block;
+      overflow: hidden;
+      color: $ck-orange;
+      font-weight: bolder;
+      text-overflow: ellipsis;
+    }
+  }
+  .ck-post__author {
+    margin-bottom: 10px;
+  }
+}

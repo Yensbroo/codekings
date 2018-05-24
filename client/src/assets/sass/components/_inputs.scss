@@ -1,0 +1,102 @@
+input,
+textarea {
+  width: 100%;
+  border: 1px solid $ck-black;
+  border-radius: 2px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+input {
+  height: 50px;
+  margin-bottom: 5px;
+  transition: padding 0.2s;
+}
+
+input:focus,
+textarea:focus {
+  outline: 0;
+}
+
+input:focus {
+  padding: 20px;
+}
+
+textarea {
+  resize: none;
+  height: 300px;
+  padding-top: 10px;
+}
+
+label {
+  display: block;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+.ck-header__search {
+  input {
+    margin-bottom: 0;
+    border-radius: 2px 0 0 2px;
+  }
+}
+
+.input-group__icon {
+  float: left;
+  padding: 14px 18px;
+  height: 50px;
+  background: #eae9e7;
+  color: $ck-black;
+  border-radius: 5px 0px 0 5px;
+  border: 1px solid $ck-black;
+  border-right: none;
+  font-size: 20px;
+  @media (max-width: 610px) {
+    display: none;
+  }
+}
+
+.socials {
+  width: 92%;
+  border-radius: 0 2px 2px 0;
+  border-left: none;
+  @media (max-width: 1168px) {
+    width: 91%;
+  }
+  @media (max-width: 992px) {
+    width: 89%;
+  }
+  @media (max-width: 875px) {
+    width: 88%;
+  }
+  @media (max-width: 819px) {
+    width: 87%;
+  }
+  @media (max-width: 771px) {
+    width: 86%;
+  }
+  @media (max-width: 730px) {
+    width: 85%;
+  }
+  @media (max-width: 715px) {
+    width: 85%;
+  }
+  @media (max-width: 695px) {
+    width: 84%;
+  }
+  @media (max-width: 663px) {
+    width: 82%;
+  }
+  @media (max-width: 610px) {
+    width: 100%;
+    border-left: 1px solid $ck-black;
+    border-radius: 2px;
+  }
+}
+
+.edit-profile__container {
+  .form-group,
+  .input-group {
+    margin-bottom: 15px;
+  }
+}

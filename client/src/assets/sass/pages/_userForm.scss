@@ -1,0 +1,41 @@
+.ck-user-form__container {
+  width: 50%;
+  min-height: 94vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  .ck-user-form__wrapper {
+    width: 80%;
+    height: 500px;
+  }
+  .ck-user-form__logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .ck-logo {
+    text-decoration: none;
+    color: $ck-black;
+    font-size: 40px;
+  }
+  hr {
+    margin-bottom: 40px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .login-redirect {
+    font-weight: bold;
+    text-decoration: none;
+  }
+  span {
+    a {
+      font-weight: bolder;
+      color: $ck-orange;
+    }
+  }
+}
