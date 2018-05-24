@@ -44,6 +44,19 @@ button:focus {
   margin-top: 15px;
   width: 30%; }
 
+.ck-action {
+  float: left;
+  font-size: 20px;
+  cursor: pointer; }
+  .ck-action a,
+  .ck-action i {
+    color: #2f2f2f; }
+  .ck-action a {
+    padding: 0 20px; }
+  .ck-action a:hover,
+  .ck-action i:hover {
+    color: #ff9f1c; }
+
 .spinner {
   display: flex;
   justify-content: center;
@@ -214,13 +227,21 @@ thead {
 
 th {
   text-align: left;
-  padding: 16px 16px; }
+  padding: 16px 20px; }
+
+th:last-child {
+  padding-left: 36px;
+  text-align: center; }
 
 td {
   padding: 28px 16px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
+
+td .ck-action {
+  width: 100%;
+  text-align: center; }
 
 .ck-avatar {
   border-radius: 100px; }

@@ -9,6 +9,7 @@ button {
   border-radius: 3px;
   cursor: pointer;
 }
+
 button:hover {
   background: #f08c12;
 }
@@ -34,5 +35,22 @@ button:focus {
   button {
     margin-top: 15px;
     width: 30%;
+  }
+}
+
+.ck-action {
+  float: left;
+  font-size: 20px;
+  cursor: pointer;
+  a,
+  i {
+    color: $ck-black;
+  }
+  a {
+    padding: 0 20px;
+  }
+  a:hover,
+  i:hover {
+    color: $ck-orange;
   }
 }
