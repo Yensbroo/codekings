@@ -58,7 +58,6 @@ class PostsList extends Component {
             <td>
               <Link to={`post/${post._id}`}>{post.title}</Link>
             </td>
-<<<<<<< HEAD
             <td>
               <Moment format="DD / MM / YYYY">{post.created_at}</Moment>
             </td>
@@ -96,10 +95,6 @@ class PostsList extends Component {
                 </Popover>
               </div>
             </td>
-=======
-            <td>{post.date}</td>
-            <td>actions</td>
->>>>>>> pagination
           </tr>
         );
       }
