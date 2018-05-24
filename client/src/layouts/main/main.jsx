@@ -11,13 +11,12 @@ import Footer from "../../components/Footer/Footer";
 import SignUp from "../../components/Register/register";
 import Login from "../../components/Login/login";
 import Home from "../../components/Home/Home";
-import Dashboard from "../../components/Dashboard/Dashboard";
-import EditProfile from "../../components/Dashboard/EditProfile";
-import CreateProfile from "../../components/Dashboard/CreateProfile";
 import Profile from "../../components/Profile/Profile";
 import Posts from "../../components/Posts/Posts";
 import PostForm from "../../components/Posts/PostForm";
 import Post from "../../components/Posts/Post";
+import ProfileSettings from "../../components/Dashboard/ProfileSettings";
+import UserSettings from "../../components/Dashboard/UserSettings";
 
 class Main extends Component {
   render() {
@@ -33,20 +32,13 @@ class Main extends Component {
         <Route exact path="/post/:id" component={Post} />
         <Route exact path="/profile/:id" component={Profile} />
         <Switch>
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/user/settings" component={UserSettings} />
         </Switch>
         <Switch>
           <PrivateRoute
             exact
-            path="/dashboard/create-profile"
-            component={CreateProfile}
-          />
-        </Switch>
-        <Switch>
-          <PrivateRoute
-            exact
-            path="/dashboard/edit-profile"
-            component={EditProfile}
+            path="/user/profile"
+            component={ProfileSettings}
           />
         </Switch>
         <Switch>

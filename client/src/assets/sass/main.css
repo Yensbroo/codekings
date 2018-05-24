@@ -361,14 +361,20 @@ header {
     background: white;
     min-width: 160px;
     z-index: 1;
+    border: 1px solid #e0e0e0;
     border-radius: 1px; }
     header .ck-header__user .ck-header__logout .ck-header__dropdown-content ul {
-      padding-left: 16px; }
+      padding-left: 0px;
+      margin: 0; }
     header .ck-header__user .ck-header__logout .ck-header__dropdown-content li {
-      padding: 12px 16px; }
+      padding: 0 16px; }
     header .ck-header__user .ck-header__logout .ck-header__dropdown-content a {
       color: #2f2f2f;
-      display: block; }
+      display: block;
+      padding-left: 16px; }
+    header .ck-header__user .ck-header__logout .ck-header__dropdown-content .logout {
+      background: #F5F5F5;
+      padding: 15px 0 15px 16px; }
     header .ck-header__user .ck-header__logout .ck-header__dropdown-content a:hover {
       color: #ff9f1c; }
   header .ck-header__user .ck-header__dropdown-content:after {
@@ -384,6 +390,35 @@ header {
     border-width: 9px; }
   header .ck-header__user .ck-header__logout:hover .ck-header__dropdown-content {
     display: block; }
+
+.ck-subnav {
+  position: fixed;
+  width: 100%;
+  background: #F5F5F5;
+  height: 50px;
+  margin-top: -15px;
+  border-bottom: 1px solid #e0e0e0; }
+  .ck-subnav ul {
+    display: flex;
+    height: 50px;
+    margin-top: -80px;
+    align-items: center;
+    list-style: none;
+    padding-left: 0; }
+    .ck-subnav ul li {
+      display: inline;
+      border-left: 1px solid #e0e0e0; }
+      .ck-subnav ul li a {
+        color: #2f2f2f;
+        padding: 0 20px; }
+      .ck-subnav ul li .selected {
+        color: #ff9f1c; }
+      .ck-subnav ul li a:hover {
+        color: #ff9f1c; }
+      .ck-subnav ul li a:active {
+        color: #ff9f1c; }
+    .ck-subnav ul li:last-child {
+      border-right: 1px solid #e0e0e0; }
 
 footer {
   width: 100%;
@@ -454,7 +489,8 @@ footer {
   margin: auto;
   background: white;
   border: 1px solid #e0e0e0;
-  border-radius: 0 5px 5px 0; }
+  border-radius: 0 5px 5px 0;
+  margin-top: 60px; }
   .edit-profile__container .edit-profile__header,
   .edit-profile__container .edit-profile__submit {
     display: flex; }

@@ -7,7 +7,6 @@ import { getPosts } from "../../actions/postActions";
 import Loader from "../common/Loader";
 import CreateProfile from "./CreateProfile";
 import EditProfile from "./EditProfile";
-import DashboardLinks from "./DashboardLinks";
 import PostsList from "./PostsList";
 
 class Dashboard extends Component {
