@@ -16,7 +16,8 @@ class PostsList extends Component {
       isOpen: null
     };
     this.handleClick = this.handleClick.bind(this);
-    this.openPopover = this.handleClick.bind(this);
+    this.openPopover = this.openPopover.bind(this);
+    this.closePopover = this.closePopover.bind(this);
   }
 
   handleClick(e) {
@@ -25,16 +26,24 @@ class PostsList extends Component {
     });
   }
 
-  openPopover;
+  openPopover = e => {
+    this.setState({
+      isOpen: e.currentTarget
+    });
+  };
+
+  closePopover = e => {
+    this.setState({
+      isOpen: e.currentTarget
+    });
+  };
 
   handleDeletePost = id => {
-    e.preventDefault();
-
     this.props.deletePost(id);
   };
   render() {
     const { posts, auth } = this.props;
-    const { currentPage, postsPerPage } = this.state;
+    const { currentPage, postsPerPage, isOpen } = this.state;
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -60,6 +69,28 @@ class PostsList extends Component {
                 <Tooltip title="delete" placement="top" enterDelay={300}>
                   <i onClick={this.openPopover} className="fas fa-trash " />
                 </Tooltip>
+                <Popover
+                  className="ck-popover"
+                  open={Boolean(this.state.isOpen)}
+                  anchorEl={isOpen}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right"
+                  }}
+                  onBackdropClick={this.closePopover}
+                >
+                  <div className="ck-popover__wrapper">
+                    <p>Are you sure you want to delete this post?</p>
+                    <div className="ck-popover__btn">
+                      <button
+                        onClick={this.handleDeletePost.bind(this, post._id)}
+                      >
+                        Confirm
+                      </button>
+                      <button onClick={this.closePopover}>Cancel</button>
+                    </div>
+                  </div>
+                </Popover>
               </div>
             </td>
           </tr>
