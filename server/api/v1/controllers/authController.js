@@ -119,18 +119,3 @@ exports.update_user = (req, res, next) => {
     
   })
 };
-
-// console.log(user);
-//     if(!user) {
-//       return errorHandler.handleAPIError(404, 'There is no user', next);
-//     }
-//     bcrypt.compare(oldPassword, user.password).then(isMatch => {
-//       if(isMatch) {
-//         console.log('sucess')
-//       .then(user => res.json(user))
-//       .catch(err => console.log(err));
-//       } else {
-//         errors.oldPassword = 'Your old password is incorrect';
-//         return res.status(400).json(errors);
-//       }
-//     })
