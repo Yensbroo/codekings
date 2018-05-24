@@ -47,6 +47,8 @@ class PostsList extends Component {
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const previousPage = currentPage - 1;
+    const nextPage = currentPage + 1;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
     const postsList = currentPosts.map(post => {
@@ -56,6 +58,7 @@ class PostsList extends Component {
             <td>
               <Link to={`post/${post._id}`}>{post.title}</Link>
             </td>
+<<<<<<< HEAD
             <td>
               <Moment format="DD / MM / YYYY">{post.created_at}</Moment>
             </td>
@@ -93,12 +96,17 @@ class PostsList extends Component {
                 </Popover>
               </div>
             </td>
+=======
+            <td>{post.date}</td>
+            <td>actions</td>
+>>>>>>> pagination
           </tr>
         );
       }
     });
 
     const pageNumbers = [];
+    console.log(pageNumbers);
     for (let i = 1; i <= Math.ceil(posts.length / postsPerPage); i++) {
       pageNumbers.push(i);
     }
@@ -129,7 +137,9 @@ class PostsList extends Component {
           </thead>
           <tbody>{postsList}</tbody>
         </table>
-        <ul className="page-numbers">{renderPageNumbers}</ul>
+        {pageNumbers.length === 0 ? null : (
+          <ul className="page-numbers">{renderPageNumbers}</ul>
+        )}
       </div>
     );
   }

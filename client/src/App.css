@@ -246,13 +246,24 @@ td .ck-action {
 .ck-avatar {
   border-radius: 100px; }
 
+.page-numbers {
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  display: inline-block; }
+
 .pagination {
   list-style: none;
-  padding: 5px;
+  display: inline;
+  padding: 10px;
   background: white;
   width: 28px;
   text-align: center;
   cursor: pointer; }
+
+.pagination:hover,
+.pagination:active {
+  background: #ff9f1c;
+  color: white; }
 
 .ck-popover {
   border-radius: 3px;
