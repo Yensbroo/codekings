@@ -135,7 +135,7 @@ class PostsList extends Component {
           </thead>
           <tbody>{postsList}</tbody>
         </table>
-        {pageNumbers.length === 0 ? null : (
+        {pageNumbers.length === 1 ? null : (
           <ul className="page-numbers">{renderPageNumbers}</ul>
         )}
       </div>
