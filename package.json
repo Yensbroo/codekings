@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Yensbroo/codekings#readme",
   "dependencies": {
+    "@material-ui/core": "^1.0.0",
     "acl": "^0.4.11",
     "algoliasearch": "^3.27.1",
     "babel-core": "^6.26.3",

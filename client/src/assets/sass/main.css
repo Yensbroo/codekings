@@ -233,6 +233,34 @@ td {
   text-align: center;
   cursor: pointer; }
 
+.ck-popover {
+  border-radius: 3px;
+  box-shadow: none; }
+  .ck-popover .ck-popover__wrapper {
+    width: 90%;
+    margin: auto; }
+    .ck-popover .ck-popover__wrapper p {
+      font-size: 13px; }
+    .ck-popover .ck-popover__wrapper .ck-popover__btn {
+      float: right; }
+      .ck-popover .ck-popover__wrapper .ck-popover__btn button {
+        height: 25px;
+        background: none;
+        color: #ff9f1c;
+        border: 1px solid #ff9f1c;
+        font-size: 12px;
+        font-weight: lighter;
+        margin-right: 10px; }
+      .ck-popover .ck-popover__wrapper .ck-popover__btn button:hover {
+        background: #ff9f1c;
+        color: white; }
+  .ck-popover .ck-popover:after {
+    border-width: 30px;
+    margin-top: -30px; }
+  .ck-popover .ck-popover:before {
+    border-width: 36px;
+    margin-top: -36px; }
+
 header {
   width: 100%;
   height: 65px;
