@@ -53,23 +53,22 @@ header {
       li {
         display: inline;
       }
+    }
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    .ck-header__login {
       a {
-        color: white;
-        text-decoration: none;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 2px;
       }
-      .ck-header__login {
-        li {
-          cursor: pointer;
-          padding: 15px;
-          border-radius: 2px;
-        }
-        li:first-child {
-          border: 1px solid white;
-          margin-right: 10px;
-        }
-        li:nth-child(2) {
-          background: #e28413;
-        }
+      a:first-child {
+        margin-right: 10px;
+      }
+      a:nth-child(2) {
+        background: #e28413;
       }
     }
     .ck-header__logout {

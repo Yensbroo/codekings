@@ -277,18 +277,17 @@ header {
     list-style: none; }
     header .ck-header__user ul li {
       display: inline; }
-    header .ck-header__user ul a {
-      color: white;
-      text-decoration: none; }
-    header .ck-header__user ul .ck-header__login li {
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 2px; }
-    header .ck-header__user ul .ck-header__login li:first-child {
-      border: 1px solid white;
-      margin-right: 10px; }
-    header .ck-header__user ul .ck-header__login li:nth-child(2) {
-      background: #e28413; }
+  header .ck-header__user a {
+    color: white;
+    text-decoration: none; }
+  header .ck-header__user .ck-header__login a {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 2px; }
+  header .ck-header__user .ck-header__login a:first-child {
+    margin-right: 10px; }
+  header .ck-header__user .ck-header__login a:nth-child(2) {
+    background: #e28413; }
   header .ck-header__user .ck-header__logout .ck-header__dropbtn img {
     width: 46px;
     border-radius: 37px;

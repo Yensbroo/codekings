@@ -53,14 +53,8 @@ class Navbar extends Component {
     const guestLinks = (
       <div className="ck-header__user">
         <div className="ck-header__login">
-          <ul>
-            <li>
-              <Link to="/signup">Sign Up</Link>
-            </li>
-            <li>
-              <Link to="/login">Log In</Link>
-            </li>
-          </ul>
+          <Link to="/login">Log In</Link>
+          <Link to="/signup">Sign Up</Link>
         </div>
       </div>
     );
