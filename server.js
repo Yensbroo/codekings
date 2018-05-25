@@ -1,9 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors');
-const acl = require('acl');
+let acl = require('acl');
 const bodyParser = require("body-parser");
 const passport = require("passport");
+
 
 const routes = require("./server/routes");
 
@@ -22,6 +23,9 @@ const db = require("./server/config/keys").mongoURI;
 mongoose.connect(db)
         .then(() => console.log('MongoDB connected'))
         .catch(err => console.log(err))
+mongoose.connection.on('connected', (err) => {
+        require('./server/config/authorization').init();
+})
 
 
 app.use(passport.initialize());

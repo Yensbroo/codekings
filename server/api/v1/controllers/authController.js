@@ -5,6 +5,7 @@ const keys = require("../../../config/keys");
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 const validateUserInput = require('../validation/user');
+const errorHandler = require('../utilities/errorHandler');
 
 exports.user_create = (req, res, next) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -22,9 +23,15 @@ exports.user_create = (req, res, next) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if(err) throw err;
           newUser.password = hash;
-          newUser.save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
+          let acl = require('../../../config/authorization').getAcl();
+          newUser.save((err, user) => {
+            if(err) return errorHandler.handleAPIError(500, 'The user can not be registered', next);
+            acl.addUserRoles(user._id, user.role, (err) =>{
+              console.log(err);
+            })
+            res.json(user)
+          })
+            
         })    
       })
     }

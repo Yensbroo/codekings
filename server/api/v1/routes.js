@@ -4,6 +4,7 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 //const acl = require('../../config/authorization').getAcl();
 require("../../config/passport")(passport);
+
 /**
  * Controllers
  */
