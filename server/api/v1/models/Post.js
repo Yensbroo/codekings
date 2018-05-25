@@ -22,6 +22,9 @@ const PostSchema = new Schema({
   name: {
     type: String,
   },
+  tutorialId: {
+    type: String,
+  },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'categories'

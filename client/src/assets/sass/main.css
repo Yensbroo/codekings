@@ -708,6 +708,9 @@ footer {
       background: #e0e0e0;
       padding: 10px; }
 
+.ais-Hits-item {
+  display: inline-block; }
+
 html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar; }
