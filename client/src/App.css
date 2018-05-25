@@ -66,17 +66,25 @@ button:focus {
   height: 78vh; }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   border: 1px solid #2f2f2f;
   border-radius: 2px;
   padding-left: 10px;
   font-size: 14px; }
 
+input,
+select {
+  height: 50px; }
+
 input {
-  height: 50px;
   margin-bottom: 5px;
   transition: padding 0.2s; }
+
+select {
+  background: white;
+  margin: 15px 0; }
 
 input:focus,
 textarea:focus {
@@ -481,13 +489,15 @@ footer {
 .ck-editor {
   background: white;
   min-height: 100vh;
-  border: 1px solid #e0e0e0; }
+  border: 1px solid #e0e0e0;
+  padding-top: 20px; }
   .ck-editor .ck-editor__wrapper {
     width: 90%;
-    margin: 0 auto; }
+    margin: auto; }
     .ck-editor .ck-editor__wrapper .ck-editor__body-wrapper {
       border: 1px solid #2f2f2f;
-      height: 588px; }
+      height: 588px;
+      margin-bottom: 20px; }
     .ck-editor .ck-editor__wrapper .ck-editor__body-toolbar {
       border-bottom: 1px solid #2f2f2f;
       z-index: 1; }

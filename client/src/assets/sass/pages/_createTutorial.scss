@@ -2,12 +2,14 @@
   background: white;
   min-height: 100vh;
   border: 1px solid #e0e0e0;
+  padding-top: 20px;
   .ck-editor__wrapper {
     width: 90%;
-    margin: 0 auto;
+    margin: auto;
     .ck-editor__body-wrapper {
       border: 1px solid $ck-black;
-      height: 588px
+      height: 588px;
+      margin-bottom: 20px;
     }
     .ck-editor__body-toolbar {
       border-bottom: 1px solid $ck-black;

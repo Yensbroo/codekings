@@ -30,7 +30,7 @@ class PostForm extends Component {
     const body = convertFromRaw(content);
     this.state = {
       title: "",
-      category: "",
+      categories: "",
       body,
       errors: {}
     };
@@ -61,10 +61,12 @@ class PostForm extends Component {
 
     const { user } = this.props.auth;
 
+    console.log(this.refs);
+
     const newPost = {
       title: this.state.title,
       body: this.state.body,
-      // category: this.state.category,
+      category: this.refs.form.categories.value,
       name: user.name,
       avatar: user.avatar
     };
@@ -82,11 +84,13 @@ class PostForm extends Component {
   render() {
     const { errors, body } = this.state;
     const { categories } = this.props.category;
+    console.log(this.state.categories);
     return (
       <div className="container">
         <div className="ck-editor">
           <div className="ck-editor__wrapper">
-            <form onSubmit={this.onSubmit}>
+            <h2>Create your tutorial</h2>
+            <form ref="form" onSubmit={this.onSubmit}>
               <div className="ck-editor__title">
                 <TextFieldGroup
                   label="Title"
@@ -97,6 +101,7 @@ class PostForm extends Component {
                   error={errors.title}
                 />
               </div>
+              <CategoriesList categories={categories} name="categories" />
               <div className="ck-editor__categories" />
               <div className="ck-editor__body">
                 <label>Tutorial content</label>
