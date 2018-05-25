@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connectHits } from "react-instantsearch/connectors";
+import { connectInfiniteHits } from "react-instantsearch/connectors";
 import PostCard from "./PostCard";
 
 /*const PostFeed = props => {
@@ -11,7 +11,7 @@ import PostCard from "./PostCard";
   return <div>{items}</div>;
 };*/
 
-const PostFeed = connectHits(({ hits }) => (
+const PostFeed = connectInfiniteHits(({ hits }) => (
   <div className="row">
     {hits.map(hit => <PostCard key={hit.objectID} hit={hit} />)}
   </div>
