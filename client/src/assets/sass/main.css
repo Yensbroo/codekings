@@ -95,6 +95,21 @@ label {
   padding-bottom: 5px;
   font-weight: bold; }
 
+.search-label {
+  position: relative; }
+
+.ais-SearchBox-input {
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 40px;
+  font-size: 20px;
+  padding-left: 10px;
+  margin-bottom: 30px; }
+
+.ais-SearchBox-submit,
+.ais-SearchBox-reset {
+  display: none; }
+
 .ck-header__search input {
   margin-bottom: 0;
   border-radius: 2px 0 0 2px; }
@@ -707,9 +722,6 @@ footer {
     .ck-github .stats i {
       background: #e0e0e0;
       padding: 10px; }
-
-.ais-Hits-item {
-  display: inline-block; }
 
 html {
   box-sizing: border-box;

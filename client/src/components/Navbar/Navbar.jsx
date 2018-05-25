@@ -66,16 +66,6 @@ class Navbar extends Component {
               <h2>Codekings</h2>
             </Link>
           </div>
-          <div className="ck-header__search">
-            <input
-              type="text"
-              className="ck-search__input"
-              placeholder="Search for tutorials"
-            />
-            <button type="button" className="ck-search__button">
-              <i className="material-icons ck-search__icon">search</i>
-            </button>
-          </div>
           {isAuthenticated ? authLinks : guestLinks}
         </div>
       </header>
