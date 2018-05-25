@@ -78,6 +78,10 @@ input {
   margin-bottom: 5px;
   transition: padding 0.2s; }
 
+input:disabled {
+  background: #F5F5F5;
+  color: #c4c4c4; }
+
 input:focus,
 textarea:focus {
   outline: 0; }

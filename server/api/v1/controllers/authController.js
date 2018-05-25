@@ -49,7 +49,7 @@ exports.user_login = (req, res) => {
 
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        const payload = { id: user.id, name: user.name, avatar: user.avatar };
+        const payload = { id: user.id, name: user.name, avatar: user.avatar, email: user.email };
 
         jwt.sign(
           payload,

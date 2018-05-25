@@ -37,6 +37,11 @@ export const loginUser = userData => dispatch => {
     );
 };
 
+// export const changePassword = userData => dispatch => {
+//   axios
+//     .post('/api/v1/user')
+// }
+
 export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,

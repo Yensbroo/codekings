@@ -6,28 +6,19 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import TextAreaGroup from "../common/TextAreaGroup";
 import InputGroup from "../common/InputGroup";
-import { createProfile } from "../../actions/profileActions";
-import { getCurrentProfile } from "../../actions/profileActions";
+import {} from "../../actions/profileActions";
+import {} from "../../actions/profileActions";
 import isEmpty from "../../validation/is-empty";
 import Subnav from "../Navbar/SubNav";
 
-class CreateProfile extends Component {
+class UserSettings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      handle: "",
-      company: "",
-      avatar: "",
-      website: "",
-      location: "",
-      skills: "",
-      githubUsername: "",
-      twitter: "",
-      facebook: "",
-      linkedin: "",
-      youtube: "",
-      instagram: "",
-      bio: "",
+      email: "",
+      oldPassword: "",
+      newPassword: "",
+      newPassword2: "",
       errors: {}
     };
 
@@ -35,6 +26,12 @@ class CreateProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const { user } = this.props.auth;
+    this.setState({
+      email: user.email
+    });
+  }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -42,6 +39,15 @@ class CreateProfile extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+
+    if (nextProps.auth) {
+      const user = nextProps.auth;
+      user.email = !isEmpty(user.email) ? user.email : "";
+
+      this.setState({
+        email: user.email
+      });
     }
   }
 
@@ -64,11 +70,14 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
 
-    this.props.createProfile(profileData, this.props.history);
+    this.props.UserSettings(profileData, this.props.history);
   }
 
   render() {
+    const { user } = this.props.auth;
     const { errors } = this.state;
+
+    console.log(user);
 
     return (
       <div>
@@ -84,117 +93,37 @@ class CreateProfile extends Component {
                 <div className="edit-profile__wrapper">
                   <div className="edit-profile__form">
                     <TextFieldGroup
-                      label="Handle*"
-                      placeholder="Handle"
-                      name="handle"
-                      value={this.state.handle}
+                      label="Email"
+                      placeholder="Email"
+                      name="Email"
+                      value={this.state.email}
                       onChange={this.onChange}
-                      error={errors.handle}
-                      info="A unique handle for your profile URL"
+                      error={errors.Email}
+                      disabled="disabled"
                     />
                     <TextFieldGroup
-                      label="Avatar"
-                      placeholder="Avatar"
-                      name="avatar"
-                      value={this.state.avatar}
+                      label="old password"
+                      placeholder="Old password"
+                      name="oldPassword"
+                      value={this.state.oldPassword}
                       onChange={this.onChange}
-                      error={errors.avatar}
-                      info="You can upload your avatar to "
+                      error={errors.oldPassword}
                     />
                     <TextFieldGroup
-                      label="Company"
-                      placeholder="Company"
-                      name="company"
-                      value={this.state.company}
+                      label="new password"
+                      placeholder="New password"
+                      name="newPassword"
+                      value={this.state.newPassword}
                       onChange={this.onChange}
-                      info="Tell us where you work!"
+                      error={errors.newPassword}
                     />
                     <TextFieldGroup
-                      label="Website"
-                      placeholder="Website"
-                      name="website"
-                      value={this.state.website}
-                      error={errors.website}
+                      label="repeat new password"
+                      placeholder="Repeat new password"
+                      name="newPassword2"
+                      value={this.state.newPassword2}
                       onChange={this.onChange}
-                    />
-                    <TextFieldGroup
-                      label="Location"
-                      placeholder="Location"
-                      name="location"
-                      value={this.state.location}
-                      onChange={this.onChange}
-                    />
-                    <TextFieldGroup
-                      label="Skills*"
-                      placeholder="Skills"
-                      name="skills"
-                      value={this.state.skills}
-                      onChange={this.onChange}
-                      error={errors.skills}
-                      info="Please use comma seperated values (eg. HTML, CSS, Javascript)"
-                    />
-                    <TextFieldGroup
-                      label="Github username"
-                      placeholder="Github username"
-                      name="githubUsername"
-                      value={this.state.githubUsername}
-                      onChange={this.onChange}
-                      info="Include your username, this is necessary if you want to show your latest github repos"
-                    />
-                    <TextAreaGroup
-                      label="Bio"
-                      name="bio"
-                      placeholder="Tell something about yourself!"
-                      value={this.state.bio}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                </div>
-                <hr />
-                <div className="edit-profile__header">
-                  <h1>Social media links</h1>
-                </div>
-                <div className="edit-profile__wrapper">
-                  <div className="edit-profile__form">
-                    <InputGroup
-                      placeholder="Facebook Profile URL"
-                      name="facebook"
-                      icon="fab fa-facebook-square"
-                      value={this.state.facebook}
-                      onChange={this.onChange}
-                      error={errors.facebook}
-                    />
-                    <InputGroup
-                      placeholder="Twitter Profile URL"
-                      name="twitter"
-                      icon="fab fa-twitter-square"
-                      value={this.state.twitter}
-                      onChange={this.onChange}
-                      error={errors.twitter}
-                    />
-                    <InputGroup
-                      placeholder="LinkedIn Profile URL"
-                      name="linkedin"
-                      icon="fab fa-linkedin"
-                      value={this.state.linkedin}
-                      onChange={this.onChange}
-                      error={errors.linkedin}
-                    />
-                    <InputGroup
-                      placeholder="Instagram Profile URL"
-                      name="instagram"
-                      icon="fab fa-instagram"
-                      value={this.state.instagram}
-                      onChange={this.onChange}
-                      error={errors.instagram}
-                    />
-                    <InputGroup
-                      placeholder="Youtube Profile URL"
-                      name="youtube"
-                      icon="fab fa-youtube-square"
-                      value={this.state.youtube}
-                      onChange={this.onChange}
-                      error={errors.youtube}
+                      error={errors.newPassword2}
                     />
                   </div>
                 </div>
@@ -213,18 +142,14 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.PropTypes = {
-  createProfile: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+UserSettings.PropTypes = {
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
-  errors: state.errors
+  auth: state.auth
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
-  withRouter(CreateProfile)
+export default connect(mapStateToProps, { UserSettings })(
+  withRouter(UserSettings)
 );
