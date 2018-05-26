@@ -40,15 +40,6 @@ class UserSettings extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-
-    if (nextProps.auth) {
-      const user = nextProps.auth;
-      user.email = !isEmpty(user.email) ? user.email : "";
-
-      this.setState({
-        email: user.email
-      });
-    }
   }
 
   onSubmit(e) {
