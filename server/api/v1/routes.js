@@ -18,11 +18,18 @@ const categoryController = require('./controllers/categoryController');
 // Users
 router.post("/signup", authController.user_create);
 router.post("/login", authController.user_login);
+<<<<<<< HEAD
 router.post(
   "/user",
   passport.authenticate("jwt", { session: false }),
   authController.update_user
 );
+=======
+router.post("/user",
+   passport.authenticate("jwt", { session: false }),
+   authController.update_user
+ );
+>>>>>>> change_password
 
 //profile
 router.get(

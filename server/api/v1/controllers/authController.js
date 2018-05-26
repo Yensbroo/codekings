@@ -5,6 +5,7 @@ const keys = require("../../../config/keys");
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 const validateUserInput = require('../validation/user');
+const errorHandler = require('../utilities/errorHandler');
 
 exports.user_create = (req, res, next) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -70,31 +71,50 @@ exports.user_login = (req, res) => {
   });
 };
 
-// exports.update_user = (req, res) => {
-//   const {
-//     errors,
-//     isValid
-//   } = validateUserInput(req.body);
+exports.update_user = (req, res, next) => {
 
-//   if (!isValid) {
-//     return res.status(400).json(errors);
-//   }
+  const { errors, isValid} = validateUserInput(req.body);
 
-//   const userFields = {};
-//   userFields.user = req.user.id;
-//   if (req.body.email) userFields.email = req.body.email;
-//   if (req.body.password) userFields.password = req.body.password;
- 
-//   User.findOne({
-//     user: req.user.id
-//   }).then(user => {
-//       //Update
-//       User.findOneAndUpdate({
-//         user: req.user.id
-//       }, {
-//         $set: userFields
-//       }, {
-//         new: true
-//       }).then(user => res.json(user));
-//   });
-// };
+  if(!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  const userFields = {}
+  const oldPassword = req.body.oldPassword;
+  let newPassword = req.body.newPassword;
+  const newPassword2 = req.body.newPassword2;
+  
+  
+  User.findOne({
+    _id: req.user.id
+  }).then(user => {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newPassword, salt, (err, hash) => {
+        if(err) throw err;
+        newPassword = hash;
+        bcrypt.compare(oldPassword, user.password).then(isMatch => {
+          if(isMatch) {
+            User.findOneAndUpdate({
+              _id: req.user.id
+            },
+            {
+              $currentDate: {
+                updated_at: true
+              },
+              $set: {
+                password: newPassword,
+              }, 
+            },
+           {
+              new: true
+            }
+          ).then(user => res.json(user));
+          } else {
+            return errorHandler.handleAPIError(400, 'Your old password is not correct', next)
+          }
+        })
+      })    
+    })
+    
+  })
+};
