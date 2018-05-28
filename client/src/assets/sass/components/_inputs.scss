@@ -1,5 +1,6 @@
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   border: 1px solid $ck-black;
   border-radius: 2px;
@@ -7,8 +8,12 @@ textarea {
   font-size: 14px;
 }
 
-input {
+input,
+select {
   height: 50px;
+}
+
+input {
   margin-bottom: 5px;
   transition: padding 0.2s;
 }
@@ -16,6 +21,11 @@ input {
 input:disabled {
   background: #F5F5F5;
   color: rgb(196, 196, 196);
+}
+
+select {
+  background: white;
+  margin: 15px 0;
 }
 
 input:focus,
