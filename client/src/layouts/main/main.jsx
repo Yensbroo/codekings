@@ -18,6 +18,7 @@ import Post from "../../components/Posts/Post";
 import ProfileSettings from "../../components/Dashboard/ProfileSettings";
 import UserSettings from "../../components/Dashboard/UserSettings";
 import UserPosts from "../../components/Dashboard/UserPosts";
+import UserFavorites from "../../components/Favorites/Favorites";
 
 class Main extends Component {
   render() {
@@ -32,6 +33,9 @@ class Main extends Component {
         <Route exact path="/" component={Posts} />
         <Route exact path="/post/:id" component={Post} />
         <Route exact path="/profile/:id" component={Profile} />
+        <Switch>
+          <PrivateRoute exact path="/favorites" component={UserFavorites} />
+        </Switch>
         <Switch>
           <PrivateRoute exact path="/user/settings" component={UserSettings} />
         </Switch>
