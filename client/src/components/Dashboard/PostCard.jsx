@@ -6,8 +6,9 @@ import { connect } from "react-redux";
 class PostCard extends Component {
   render() {
     const { posts } = this.props;
+    console.log(posts);
 
-    const postsList = posts.map(post => {
+    const postsList = posts.map(post => (
       <div
         key={post._id}
         className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12"
@@ -37,12 +38,14 @@ class PostCard extends Component {
             </div>
           </div>
         </div>
-      </div>;
-    });
+      </div>
+    ));
 
     return (
-      <div className="container">
-        <div className="row">{postsList}</div>
+      <div className="ck-user__posts">
+        <div className="container">
+          <div className="row">{postsList}</div>
+        </div>
       </div>
     );
   }

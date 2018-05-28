@@ -11,13 +11,18 @@ class UserPosts extends Component {
   }
   render() {
     const { posts } = this.props.post;
+    // console.log(posts);
     let dashboardContent;
-    console.log(posts);
+    if (posts === null) {
+      dashboardContent = <h1>No posts</h1>;
+    } else {
+      dashboardContent = <PostCard posts={posts} />;
+    }
 
     return (
       <div>
         <Subnav />
-        <PostCard posts={posts} />
+        <div>{dashboardContent}</div>
       </div>
     );
   }

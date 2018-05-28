@@ -8,13 +8,9 @@ class PostTable extends Component {
   render() {
     const { posts, auth } = this.props;
     const postsList = posts.map(post => {
-      return <PostCard key={post._id} />;
+      return <PostCard key={post._id} post={post} />;
     });
-    return (
-      <div>
-        <PostCard />
-      </div>
-    );
+    return <div>{postsList}</div>;
   }
 }
 
