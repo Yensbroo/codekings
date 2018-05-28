@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const acl = require('acl');
 const bodyParser = require("body-parser");
-const passport = require("passport");
+const auth = require('./server/config/passport')();
 
 const routes = require("./server/routes");
 
@@ -24,7 +24,7 @@ mongoose.connect(db)
         .catch(err => console.log(err))
 
 
-app.use(passport.initialize());
+app.use(auth.initialize());
 
 //Routes
 app.use("", routes);

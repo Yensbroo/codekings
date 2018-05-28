@@ -32,15 +32,32 @@ module.exports = function() {
   const fbStrategy = new FBTokenStrategy ({
     clientID: keys.facebook.appId,
     clientSecret: keys.facebook.appSecret,
-    callbackURL: keys.facebook.callbackURL
   },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function() {
-      console.log(profile);
-      User.upsertFbUser(accessToken, refreshToken, profile, function(err, user) {
-        return done(err, user);
-      });
-    });
+  (accessToken, refreshToken, profile, done) => {
+      User.findOne({
+        'email': profile.emails[0].value
+      }).then(user2 => {
+        if(user2) {
+          user2.facebookProvider.id = profile.id;
+          user2.facebookProvider.token = accessToken;
+          user2.save(function(err3, savedUser) {
+            return cb(err3, savedUser);
+          })
+        } else {
+          var newUser = new User({
+            email: profile.emails[0].value,
+            name: profile.name,
+            facebookProvider: {
+              id: profile.id,
+              token: accessToken
+            }
+          });
+          newUser.save(function(err3, savedUser) {
+            return cb(err3, savedUser);
+          })
+      }
+      })
+      .catch(err => console.log(err));
   });
   passport.use(fbStrategy);
 
@@ -53,6 +70,9 @@ module.exports = function() {
   })
 
   return {
+    initialize: function() {
+      return passport.initialize()
+    },
     authenticateJwt: function() {
       return passport.authenticate('jwt', {session: false})
     },

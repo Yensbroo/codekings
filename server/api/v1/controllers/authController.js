@@ -82,9 +82,9 @@ exports.facebook_login = (req, res) => {
       });
     }
 
-    const payload = {
-      id: user.id
-    };
+    payload = {
+      id: user.id, name: user.name, avatar: user.avatar
+    }
 
     jwt.sign(
       payload,
@@ -93,7 +93,7 @@ exports.facebook_login = (req, res) => {
       (err, token) => {
         res.json({
           succes: true,
-          token: "Bearer" + token,
+          token: "Bearer " + token,
           strategy: 'facebook'
         });
       }

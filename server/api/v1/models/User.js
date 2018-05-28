@@ -3,7 +3,7 @@ const mongoolia = require('mongoolia').default;
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
-const UserSchema = new Schema({
+const UserSchema =  mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -67,6 +67,7 @@ UserSchema.statics.upsertFbUser = function(accessToken, refreshToken, profile, c
       } else {
         var newUser = new User({
           email: profile.emails[0].value,
+          name: profile.name,
           facebookProvider: {
             id: profile.id,
             token: accessToken

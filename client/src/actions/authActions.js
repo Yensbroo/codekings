@@ -20,7 +20,7 @@ export const loginUser = userData => dispatch => {
     .post("/api/v1/login", userData)
     .then(res => {
       const { token } = res.data;
-
+      console.log(token)
       localStorage.setItem("jwtToken", token);
 
       setAuthToken(token);
@@ -41,6 +41,7 @@ export const fbLoginUser = (accessToken) => dispatch => {
   axios
     .post("/api/v1/facebook", accessToken)
     .then(res => {
+      console.log(res);
       const { token } = res.data;
       console.log(token)
 
