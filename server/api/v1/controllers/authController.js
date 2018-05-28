@@ -1,3 +1,4 @@
+const passport = require('passport');
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -31,8 +32,9 @@ exports.user_create = (req, res, next) => {
   });
 };
 
-exports.user_login = (req, res) => {
-  const { errors, isValid } = validateLoginInput(req.body);
+exports.user_login = (req, res, next) => {
+  passport.authenticate('jwt', {session: false}, (err, user, info) => {
+    const { errors, isValid } = validateLoginInput(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
@@ -68,6 +70,7 @@ exports.user_login = (req, res) => {
       }
     });
   });
+  })(req, res, next);
 };
 
 // exports.update_user = (req, res) => {
