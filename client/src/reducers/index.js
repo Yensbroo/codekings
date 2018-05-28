@@ -5,6 +5,7 @@ import profileReducer from "./profileReducer";
 import postReducer from './postReducer';
 import categoryReducer from './categoryReducer';
 import flashReducer from './flashReducer';
+import favoriteReducer from './favoriteReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   profile: profileReducer,
   post: postReducer,
   category: categoryReducer,
-  flash: flashReducer
+  flash: flashReducer,
+  favorite: favoriteReducer
 });

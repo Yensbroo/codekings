@@ -10,9 +10,9 @@ class UserFavorites extends Component {
     this.props.getFavorites();
   }
   render() {
-    const { favorites } = this.props.favorites;
-    let dashboardContent;
+    const { favorites } = this.props.favorite;
     console.log(favorites);
+    let dashboardContent;
 
     return (
       <div>
@@ -24,11 +24,11 @@ class UserFavorites extends Component {
 
 UserFavorites.propTypes = {
   getFavorites: PropTypes.func.isRequired,
-  favorites: PropTypes.object.isRequired
+  favorite: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  favorites: state.favorites
+  favorite: state.favorite
 });
 
 export default connect(mapStateToProps, { getFavorites })(UserFavorites);

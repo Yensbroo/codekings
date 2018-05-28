@@ -5,14 +5,17 @@ export const getFavorites = () => dispatch => {
   axios
     .get('/api/v1/favorites')
     .then(res => 
-      dispatch({
-        type: GET_FAVORITES,
-        payload: res.data
-    }))
+      {console.log(res);
+        dispatch({
+          type: GET_FAVORITES,
+          payload: res.data
+      })
+      }
+      )
     .catch(err => 
       dispatch({
         type: GET_FAVORITES,
         payload: null
       })
     )
-}
+};
