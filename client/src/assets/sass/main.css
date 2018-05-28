@@ -79,7 +79,7 @@ select {
   height: 50px; }
 
 input {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   transition: padding 0.2s; }
 
 input:disabled {
@@ -88,7 +88,7 @@ input:disabled {
 
 select {
   background: white;
-  margin: 15px 0; }
+  margin-bottom: 15px; }
 
 input:focus,
 textarea:focus {

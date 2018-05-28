@@ -101,7 +101,11 @@ class PostForm extends Component {
                   error={errors.title}
                 />
               </div>
-              <CategoriesList categories={categories} name="categories" />
+              <CategoriesList
+                categories={categories}
+                name="categories"
+                label="Category"
+              />
               <div className="ck-editor__categories" />
               <div className="ck-editor__body">
                 <label>Tutorial content</label>
