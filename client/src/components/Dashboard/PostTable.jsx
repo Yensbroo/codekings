@@ -8,9 +8,7 @@ class PostTable extends Component {
   render() {
     const { posts, auth } = this.props;
     const postsList = posts.map(post => {
-      if (post.user === auth.user.id) {
-        return <PostCard />;
-      }
+      return <PostCard key={post._id} />;
     });
     return (
       <div>

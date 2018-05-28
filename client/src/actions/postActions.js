@@ -42,6 +42,22 @@ export const getPosts = () => dispatch => {
         payload: null
     }))
 };
+
+export const getUserPosts = () => dispatch => {
+  dispatch(setPostLoading());
+
+  axios.get('/api/v1/posts/user')
+      .then(res => 
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data
+      }))
+      .catch(err => 
+        dispatch({
+          type: GET_POSTS,
+          payload: null
+        }))
+}
 export const getPost = (id) => dispatch => {
   dispatch(setPostLoading());
 

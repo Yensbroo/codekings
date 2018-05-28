@@ -33,7 +33,7 @@ class Post extends Component {
                 <h1>{post.title}</h1>
                 <div className="ck-post-detail__date">
                   <span>Posted: </span>
-                  <Moment fromNow>{post.date}</Moment>
+                  <Moment fromNow>{post.created_at}</Moment>
                 </div>
               </div>
             </div>

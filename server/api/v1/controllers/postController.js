@@ -31,6 +31,14 @@ exports.get_post_by_id = (req, res) => {
     );
 };
 
+exports.get_posts_by_user = (req, res) => {
+  Post.find({user: req.user._id})
+    .then(posts => res.json(posts))
+    .catch(err => 
+      res.status(404).json({nopostsfound: "You have no posts yet"})
+    )
+}
+
 
 exports.create_post = (req, res, next) => {
   const { errors, isValid } = validatePostInput(req.body);
