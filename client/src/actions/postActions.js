@@ -12,7 +12,7 @@ import {
 export const addPost = (postData, id, history) => dispatch => {
   axios
     .post('/api/v1/posts', postData)
-    .then(res => 
+    .then(res =>
       dispatch({
         type: ADD_POST,
         payload: res.data
@@ -78,15 +78,13 @@ export const deletePost = (id) => dispatch => {
 }
 
 export const addComment = (postId, commentData) => dispatch => {
-  var self = this;
   axios
     .post(`/api/v1/post/comment/${postId}`, commentData)
     .then(res => 
-      {dispatch({
+      dispatch({
         type: GET_POST,
         payload: res.data
-      });
-    }
+      })
     )
     .catch(err => 
       dispatch({

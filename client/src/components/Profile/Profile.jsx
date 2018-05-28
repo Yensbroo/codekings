@@ -6,15 +6,11 @@ import ProfileHeader from "./ProfileHeader";
 import ProfileGithub from "./ProfileGithub";
 import ProfileBio from "./ProfileBio";
 import Loader from "../common/Loader";
-import {
-  getProfileByHandle,
-  getProfileById
-} from "../../actions/profileActions";
+import { getProfileById } from "../../actions/profileActions";
 import ProfileAbout from "./ProfileBio";
 
 class Profile extends Component {
   componentDidMount() {
-    console.log(this.props.match.params.id);
     this.props.getProfileById(this.props.match.params.id);
   }
 
@@ -26,7 +22,6 @@ class Profile extends Component {
   render() {
     const { profile, loading } = this.props.profile;
     let profileContent;
-    // console.log(profile);
 
     if (profile === null || loading) {
       profileContent = <Loader />;

@@ -87,16 +87,23 @@ header {
         background: white;
         min-width: 160px;
         z-index: 1;
+        border: 1px solid $ck-border;
         border-radius: 1px;
         ul {
-          padding-left: 16px;
+          padding-left: 0px;
+          margin: 0;
         }
         li {
-          padding: 12px 16px;
+          padding: 0 16px;
         }
         a {
           color: $ck-black;
           display: block;
+          padding-left: 16px;
+        }
+        .logout {
+          background: #F5F5F5;
+          padding: 15px 0 15px 16px;
         }
         a:hover {
           color: $ck-orange;
@@ -119,6 +126,43 @@ header {
       .ck-header__dropdown-content {
         display: block;
       }
+    }
+  }
+}
+
+.ck-subnav {
+  position: fixed;
+  width: 100%;
+  background: #F5F5F5;
+  height: 50px;
+  margin-top: -15px;
+  border-bottom: 1px solid $ck-border;
+  ul {
+    display: flex;
+    height: 50px;
+    margin-top: -80px;
+    align-items: center;
+    list-style: none;
+    padding-left: 0;
+    li {
+      display: inline;
+      border-left: 1px solid $ck-border;
+      a {
+        color: $ck-black;
+        padding: 0 20px;
+      }
+      .selected {
+        color: $ck-orange;
+      }
+      a:hover {
+        color: $ck-orange;
+      }
+      a:active {
+        color: $ck-orange;
+      }
+    }
+    li:last-child {
+      border-right: 1px solid $ck-border;
     }
   }
 }

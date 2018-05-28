@@ -37,10 +37,14 @@ class Navbar extends Component {
           <div className="ck-header__dropdown-content">
             <ul>
               <li>
-                <Link to="/dashboard">{user.name}</Link>
+                <Link to="/user/settings">{user.name}</Link>
               </li>
               <li>
-                <Link to="" onClick={this.onLogoutClick.bind(this)}>
+                <Link
+                  to=""
+                  onClick={this.onLogoutClick.bind(this)}
+                  className="logout"
+                >
                   Log out
                 </Link>
               </li>

@@ -6,6 +6,7 @@ const keys = require("../../../config/keys");
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 const validateUserInput = require('../validation/user');
+const errorHandler = require('../utilities/errorHandler');
 
 exports.user_create = (req, res, next) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -51,7 +52,7 @@ exports.user_login = (req, res, next) => {
 
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        const payload = { id: user.id, name: user.name, avatar: user.avatar };
+        const payload = { id: user.id, name: user.name, avatar: user.avatar, email: user.email };
 
         jwt.sign(
           payload,
@@ -73,31 +74,47 @@ exports.user_login = (req, res, next) => {
   })(req, res, next);
 };
 
-// exports.update_user = (req, res) => {
-//   const {
-//     errors,
-//     isValid
-//   } = validateUserInput(req.body);
+exports.update_user = (req, res, next) => {
 
-//   if (!isValid) {
-//     return res.status(400).json(errors);
-//   }
+  const { errors, isValid} = validateUserInput(req.body);
 
-//   const userFields = {};
-//   userFields.user = req.user.id;
-//   if (req.body.email) userFields.email = req.body.email;
-//   if (req.body.password) userFields.password = req.body.password;
- 
-//   User.findOne({
-//     user: req.user.id
-//   }).then(user => {
-//       //Update
-//       User.findOneAndUpdate({
-//         user: req.user.id
-//       }, {
-//         $set: userFields
-//       }, {
-//         new: true
-//       }).then(user => res.json(user));
-//   });
-// };
+  if(!isValid) {
+    return res.status(400).json(errors);
+  }
+  const userFields = req.body;
+
+  
+  
+  User.findOne({
+    _id: req.user.id
+  }).then(user => {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(userFields.newPassword, salt, (err, hash) => {
+        if(err) throw err;
+        userFields.newPassword = hash;
+        bcrypt.compare(userFields.oldPassword, user.password).then(isMatch => {
+          if(isMatch) {
+            User.findOneAndUpdate({
+              _id: req.user.id
+            },
+            {
+              $currentDate: {
+                updated_at: true
+              },
+              $set: {
+                password: userFields.newPassword,
+              }, 
+            },
+           {
+              new: true
+            }
+          ).then(user => res.json(user));
+          } else {
+            errors.oldPassword = 'Your old password is not correct';
+            return res.status(400).json(errors)
+          }
+        })
+      })    
+    })  
+  })
+};

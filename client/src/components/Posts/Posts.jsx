@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Loading from "../common/Loader";
 import PostFeed from "./PostFeed";
 import Loader from "../common/Loader";
-import "instantsearch.css/themes/reset.css";
 import { InstantSearch, SearchBox } from "react-instantsearch/dom";
 const apiKey = require("../../config/keys").algolia.apiKey;
 const appId = require("../../config/keys").algolia.appId;

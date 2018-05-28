@@ -13,6 +13,11 @@ input {
   transition: padding 0.2s;
 }
 
+input:disabled {
+  background: #F5F5F5;
+  color: rgb(196, 196, 196);
+}
+
 input:focus,
 textarea:focus {
   outline: 0;

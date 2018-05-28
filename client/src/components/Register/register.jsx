@@ -70,7 +70,7 @@ class SignUp extends Component {
             <TextFieldGroup
               placeholder="Full name"
               name="name"
-              type="name"
+              type="text"
               value={this.state.name}
               onChange={this.onChange}
               error={errors.name}
@@ -78,7 +78,7 @@ class SignUp extends Component {
             <TextFieldGroup
               placeholder="Email"
               name="email"
-              type="email"
+              type="text"
               value={this.state.email}
               onChange={this.onChange}
               error={errors.email}
