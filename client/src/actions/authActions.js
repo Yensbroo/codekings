@@ -37,6 +37,27 @@ export const loginUser = userData => dispatch => {
     );
 };
 
+export const fbLoginUser = (accessToken) => dispatch => {
+  axios
+    .post("/api/v1/facebook", accessToken)
+    .then(res => {
+      const { token } = res.data;
+      console.log(token)
+
+      localStorage.setItem("jwtToken", token);
+
+      setAuthToken(token);
+
+      const decoded = jwt_decode(token);
+
+      dispatch(setCurrentUser(decoded));
+    })
+    .catch(err => 
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    }))
+}
 export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,

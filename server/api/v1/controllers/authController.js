@@ -1,3 +1,5 @@
+const passport = require('passport');
+
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -59,6 +61,7 @@ exports.user_login = (req, res) => {
             res.json({
               succes: true,
               token: "Bearer " + token,
+              strategy: 'local'
             });
           }
         );
@@ -67,6 +70,34 @@ exports.user_login = (req, res) => {
         return res.status(400).json(errors);
       }
     });
+  });
+};
+
+exports.facebook_login = (req, res) => {
+  passport.authenticate('facebook', {session: false}, function(err, user, info){
+    if(err) {return next(err);}
+    if(!user) {
+      return res.status(401) .json({
+        'message': 'User Not authenticated'
+      });
+    }
+
+    const payload = {
+      id: user.id
+    };
+
+    jwt.sign(
+      payload,
+      keys.secretOrKey,
+      {expiresIn: 3600},
+      (err, token) => {
+        res.json({
+          succes: true,
+          token: "Bearer" + token,
+          strategy: 'facebook'
+        });
+      }
+    );
   });
 };
 

@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const mongoose = require("mongoose");
-//const acl = require('../../config/authorization').getAcl();
-require("../../config/passport")(passport);
+const auth = require('../../config/passport')();
 /**
  * Controllers
  */
@@ -18,22 +17,23 @@ const categoryController = require('./controllers/categoryController');
 // Users
 router.post("/signup", authController.user_create);
 router.post("/login", authController.user_login);
+router.post("/facebook", authController.facebook_login);
 // router.post(
 //   "/user",
-//   passport.authenticate("jwt", { session: false }),
+//   auth.authenticateJwt(),
 //   authController.update_user
 // );
 
 //profile
 router.get(
   "/profile",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   profileController.get_current_profile
 );
 
 router.delete(
   "/profile",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   profileController.delete_current_profile
 );
 
@@ -43,7 +43,7 @@ router.get("/profile/user/:user_id", profileController.get_profile_by_id);
 
 router.post(
   "/profile",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   profileController.create_or_update_profile
 );
 //posts
@@ -53,37 +53,37 @@ router.get("/post/:id", postController.get_post_by_id);
 
 router.post(
   "/posts",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.create_post
 );
 
 router.delete(
   "/post/:id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.delete_post
 );
 
 router.post(
   "/post/like/:id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.like_post
 );
 
 router.delete(
   "/post/unlike/:id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.unlike_post
 );
 
 router.post(
   "/post/comment/:id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.make_comment
 );
 
 router.delete(
   "/post/comment/:id/:comment_id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.delete_comment
 );
 

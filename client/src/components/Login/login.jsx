@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
+import { loginUser, fbLoginUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
+import FacebookLogin from "react-facebook-login";
 import TextFieldGroup from "../common/TextFieldGroup";
-
+import config from "../../config";
 class Login extends Component {
   constructor() {
     super();
@@ -47,6 +48,10 @@ class Login extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
+  facebookResponse = response => {
+    this.props.fbLoginUser(response.accessToken);
+  };
   render() {
     const { errors } = this.state;
     return (
@@ -76,6 +81,12 @@ class Login extends Component {
               error={errors.password}
             />
             <button>Log In</button>
+            <FacebookLogin
+              appId={config.fbAppId}
+              autoLoad={false}
+              fields="name, email, picture"
+              callback={this.facebookResponse}
+            />
           </form>
           <span>
             Don't have an account yet?{" "}
@@ -91,6 +102,7 @@ class Login extends Component {
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
+  fbLoginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -100,4 +112,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser, fbLoginUser })(Login);
