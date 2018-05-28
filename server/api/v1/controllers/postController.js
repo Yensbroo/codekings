@@ -3,6 +3,11 @@ const Profile = require("../models/Profile");
 const validatePostInput = require("../validation/post");
 const validateCommentInput = require("../validation/comment");
 const errorHandler = require('../utilities/errorHandler');
+const algoliasearch = require('algoliasearch');
+const applicationId = require('../../../config/keys').algolia.applicationId;
+const apiKey = require('../../../config/keys').algolia.apiKey;
+const client = algoliasearch(applicationId, apiKey);
+const tutorialsIndex = client.initIndex('tutorials');
 
 exports.get_posts = (req, res, next) => {
     const query = Post.find();
@@ -45,7 +50,20 @@ exports.create_post = (req, res, next) => {
   console.log(newPost)
   newPost.save((err, post) => {
     if(err) return errorHandler.handleAPIError(500, 'Could not save the new post', next);
-    res.json(post);
+    Post.findOneAndUpdate({
+      _id: post._id
+    }, {
+      $set: {
+        tutorialId: post._id
+      }
+    }, {
+      new: true
+    }
+  ).then(post => {
+    tutorialsIndex.addObject(post, (err, content) => {
+      if(err) console.log(err);
+    });
+    res.json(post)});
   });
 };
 

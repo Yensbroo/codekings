@@ -1,36 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Loading from "../common/Loader";
-import { getPosts } from "../../actions/postActions";
 import PostFeed from "./PostFeed";
 import Loader from "../common/Loader";
+import "instantsearch.css/themes/reset.css";
+import { InstantSearch, SearchBox } from "react-instantsearch/dom";
+const apiKey = require("../../config/keys").algolia.apiKey;
+const appId = require("../../config/keys").algolia.appId;
 
 class Posts extends Component {
-  const;
-  componentDidMount() {
-    this.props.getPosts();
-  }
   render() {
-    const { posts, loading } = this.props.post;
-    let postContent;
-
-    if (posts === null || loading) {
-      postContent = <Loader />;
-    } else {
-      postContent = <PostFeed posts={posts} />;
-    }
-    return <div>{postContent}</div>;
+    return (
+      <InstantSearch appId={appId} apiKey={apiKey} indexName="tutorials">
+        <div className="container">
+          <label className="search-label">
+            <SearchBox />
+          </label>
+          <PostFeed />
+        </div>
+      </InstantSearch>
+    );
   }
 }
 
-Posts.propTypes = {
-  getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  post: state.post
-});
-
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default Posts;
