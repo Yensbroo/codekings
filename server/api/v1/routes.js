@@ -11,6 +11,7 @@ const authController = require("./controllers/authController");
 const profileController = require("./controllers/profileController");
 const postController = require("./controllers/postController");
 const categoryController = require('./controllers/categoryController');
+const favoriteController = require('./controllers/favoriteController');
 /**
  * routes
  */
@@ -95,6 +96,12 @@ router.delete(
 router.get('/categories', categoryController.get_categories);
 router.post('/categories', categoryController.create_category);
 
+/**
+ * Favorites
+ */
+router.get('/favorites', passport.authenticate('jwt', {session: false}), favoriteController.get_favorites);
+router.post('/favorites', passport.authenticate('jwt', {session: false}), favoriteController.add_favorite);
+router.delete('/favorites', passport.authenticate('jwt', {session: false}), favoriteController.remove_favorite);
 
 
 module.exports = router;
