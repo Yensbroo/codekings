@@ -65,7 +65,7 @@ UserSchema.statics.upsertFbUser = function(accessToken, refreshToken, profile, c
           return cb(err3, savedUser);
         })
       } else {
-        var newUser = new User({
+        const newUser = new User({
           email: profile.emails[0].value,
           name: profile.name,
           facebookProvider: {

@@ -33,8 +33,10 @@ exports.user_create = (req, res, next) => {
   });
 };
 
-exports.user_login = (req, res) => {
-  const { errors, isValid } = validateLoginInput(req.body);
+exports.user_login = (req, res, next) => {
+  console.log(req);
+  passport.authenticate('jwt', {session: false}, (err, user, info) => {
+    const { errors, isValid } = validateLoginInput(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
@@ -61,7 +63,7 @@ exports.user_login = (req, res) => {
             res.json({
               succes: true,
               token: "Bearer " + token,
-              strategy: 'local'
+              strategy: 'jwt'
             });
           }
         );
@@ -71,10 +73,12 @@ exports.user_login = (req, res) => {
       }
     });
   });
+  })(req, res, next);
 };
 
-exports.facebook_login = (req, res) => {
-  passport.authenticate('facebook', {session: false}, function(err, user, info){
+exports.facebook_login = (req, res, next) => {
+  console.log(res);
+  passport.authenticate('facebook-token', {session: false}, function(err, user, info){
     if(err) {return next(err);}
     if(!user) {
       return res.status(401) .json({
@@ -83,7 +87,7 @@ exports.facebook_login = (req, res) => {
     }
 
     payload = {
-      id: user.id, name: user.name, avatar: user.avatar
+      id: user.id
     }
 
     jwt.sign(
@@ -94,11 +98,11 @@ exports.facebook_login = (req, res) => {
         res.json({
           succes: true,
           token: "Bearer " + token,
-          strategy: 'facebook'
+          strategy: 'facebook-token'
         });
       }
     );
-  });
+  })(req, res, next);
 };
 
 // exports.update_user = (req, res) => {

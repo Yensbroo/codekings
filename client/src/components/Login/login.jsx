@@ -50,6 +50,7 @@ class Login extends Component {
   }
 
   facebookResponse = response => {
+    console.log(response);
     this.props.fbLoginUser(response.accessToken);
   };
   render() {

@@ -13,7 +13,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(cors());
+var corsOption = {
+        origin: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+        exposedHeaders: ['x-auth-token']
+    };
+
+app.use(cors(corsOption));
 
 //DB config
 const db = require("./server/config/keys").mongoURI;
