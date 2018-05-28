@@ -78,21 +78,18 @@ exports.update_user = (req, res, next) => {
   if(!isValid) {
     return res.status(400).json(errors);
   }
+  const userFields = req.body;
 
-  const userFields = {}
-  const oldPassword = req.body.oldPassword;
-  let newPassword = req.body.newPassword;
-  const newPassword2 = req.body.newPassword2;
   
   
   User.findOne({
     _id: req.user.id
   }).then(user => {
     bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newPassword, salt, (err, hash) => {
+      bcrypt.hash(userFields.newPassword, salt, (err, hash) => {
         if(err) throw err;
-        newPassword = hash;
-        bcrypt.compare(oldPassword, user.password).then(isMatch => {
+        userFields.newPassword = hash;
+        bcrypt.compare(userFields.oldPassword, user.password).then(isMatch => {
           if(isMatch) {
             User.findOneAndUpdate({
               _id: req.user.id
@@ -102,7 +99,7 @@ exports.update_user = (req, res, next) => {
                 updated_at: true
               },
               $set: {
-                password: newPassword,
+                password: userFields.newPassword,
               }, 
             },
            {
@@ -110,11 +107,11 @@ exports.update_user = (req, res, next) => {
             }
           ).then(user => res.json(user));
           } else {
-            return errorHandler.handleAPIError(400, 'Your old password is not correct', next)
+            errors.oldPassword = 'Your old password is not correct';
+            return res.status(400).json(errors)
           }
         })
       })    
-    })
-    
+    })  
   })
 };

@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import TextAreaGroup from "../common/TextAreaGroup";
 import InputGroup from "../common/InputGroup";
-import {} from "../../actions/profileActions";
-import {} from "../../actions/profileActions";
-import isEmpty from "../../validation/is-empty";
+import { changePassword } from "../../actions/authActions";
 import Subnav from "../Navbar/SubNav";
 
 class UserSettings extends Component {
@@ -45,30 +42,22 @@ class UserSettings extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const profileData = {
-      handle: this.state.handle,
-      company: this.state.company,
-      avatar: this.state.avatar,
-      website: this.state.website,
-      location: this.state.location,
-      skills: this.state.skills,
-      githubUsername: this.state.githubUsername,
-      bio: this.state.bio,
-      twitter: this.state.twitter,
-      facebook: this.state.facebook,
-      linkedin: this.state.linkedin,
-      youtube: this.state.youtube,
-      instagram: this.state.instagram
+    const { user } = this.props.auth;
+
+    const userData = {
+      oldPassword: this.state.oldPassword,
+      newPassword: this.state.newPassword,
+      newPassword2: this.state.newPassword2
     };
 
-    this.props.UserSettings(profileData, this.props.history);
+    this.props.changePassword(userData);
   }
 
   render() {
     const { user } = this.props.auth;
     const { errors } = this.state;
 
-    console.log(user);
+    console.log(this.state);
 
     return (
       <div>
@@ -86,13 +75,13 @@ class UserSettings extends Component {
                     <TextFieldGroup
                       label="Email"
                       placeholder="Email"
-                      name="Email"
+                      name="email"
                       value={this.state.email}
                       onChange={this.onChange}
-                      error={errors.Email}
                       disabled="disabled"
                     />
                     <TextFieldGroup
+                      type="password"
                       label="old password"
                       placeholder="Old password"
                       name="oldPassword"
@@ -101,6 +90,7 @@ class UserSettings extends Component {
                       error={errors.oldPassword}
                     />
                     <TextFieldGroup
+                      type="password"
                       label="new password"
                       placeholder="New password"
                       name="newPassword"
@@ -109,6 +99,7 @@ class UserSettings extends Component {
                       error={errors.newPassword}
                     />
                     <TextFieldGroup
+                      type="password"
                       label="repeat new password"
                       placeholder="Repeat new password"
                       name="newPassword2"
@@ -134,13 +125,14 @@ class UserSettings extends Component {
 }
 
 UserSettings.PropTypes = {
-  auth: PropTypes.object.isRequired
+  changePassword: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
-export default connect(mapStateToProps, { UserSettings })(
-  withRouter(UserSettings)
-);
+export default connect(mapStateToProps, { changePassword })(UserSettings);

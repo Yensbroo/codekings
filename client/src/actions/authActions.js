@@ -37,10 +37,16 @@ export const loginUser = userData => dispatch => {
     );
 };
 
-// export const changePassword = userData => dispatch => {
-//   axios
-//     .post('/api/v1/user')
-// }
+export const changePassword = userData => dispatch => {
+  axios
+    .post('/api/v1/user', userData)
+    .then(res => console.log(res))
+    .catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    }))
+}
 
 export const setCurrentUser = decoded => {
   return {
