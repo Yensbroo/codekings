@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const acl = require('acl');
 const bodyParser = require("body-parser");
-const passport = require("passport");
+const auth = require('./server/config/passport')();
 
 const routes = require("./server/routes");
 
@@ -13,7 +13,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(cors());
+var corsOption = {
+        origin: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+        exposedHeaders: ['x-auth-token']
+    };
+
+app.use(cors(corsOption));
 
 //DB config
 const db = require("./server/config/keys").mongoURI;
@@ -24,7 +31,7 @@ mongoose.connect(db)
         .catch(err => console.log(err))
 
 
-app.use(passport.initialize());
+app.use(auth.initialize());
 
 //Routes
 app.use("", routes);

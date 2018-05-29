@@ -62,6 +62,7 @@ exports.user_login = (req, res, next) => {
             res.json({
               succes: true,
               token: "Bearer " + token,
+              strategy: 'jwt'
             });
           }
         );
@@ -71,6 +72,39 @@ exports.user_login = (req, res, next) => {
       }
     });
   });
+  })(req, res, next);
+};
+
+exports.facebook_login = (req, res, next) => {
+  //console.log(res);
+  passport.authenticate('facebook-token', {session: false}, function(err, user, info){
+    console.log(user);
+    console.log(err);
+    console.log(info);
+
+    if(err) {return next(err);}
+    if(!user) {
+      return res.status(401) .json({
+        'message': 'User Not authenticated'
+      });
+    }
+
+    payload = {
+      id: user.id, name: user.name, avatar: user.avatar, email: user.email
+    }
+
+    jwt.sign(
+      payload,
+      keys.secretOrKey,
+      {expiresIn: 3600},
+      (err, token) => {
+        res.json({
+          succes: true,
+          token: "Bearer " + token,
+          strategy: 'facebook-token'
+        });
+      }
+    );
   })(req, res, next);
 };
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from 'qs';
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
@@ -20,7 +21,6 @@ export const loginUser = userData => dispatch => {
     .post("/api/v1/login", userData)
     .then(res => {
       const { token } = res.data;
-
       localStorage.setItem("jwtToken", token);
 
       setAuthToken(token);
@@ -37,15 +37,38 @@ export const loginUser = userData => dispatch => {
     );
 };
 
+export const fbLoginUser = (accessToken) => dispatch => {
+  const data = { 'access_token': accessToken};
+  const JsonData = qs.stringify(data);
+  axios
+    .post("/api/v1/facebook", JsonData)
+    .then(res => {
+      const { token } = res.data;
+
+      localStorage.setItem("jwtToken", token);
+
+      setAuthToken(token);
+
+      const decoded = jwt_decode(token);
+
+      dispatch(setCurrentUser(decoded));
+    })
+    .catch(err => 
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    }))
+}
+
 export const changePassword = userData => dispatch => {
   axios
     .post('/api/v1/user', userData)
     .then(res => console.log(res))
     .catch(err =>
-    dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data
-    }))
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      }))
 }
 
 export const setCurrentUser = decoded => {

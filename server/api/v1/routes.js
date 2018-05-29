@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const mongoose = require("mongoose");
-//const acl = require('../../config/authorization').getAcl();
-require("../../config/passport")(passport);
+const auth = require('../../config/passport')();
 /**
  * Controllers
  */
@@ -24,17 +23,19 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   authController.update_user
 );
+router.post("/facebook", authController.facebook_login);
+
 
 //profile
 router.get(
   "/profile",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   profileController.get_current_profile
 );
 
 router.delete(
   "/profile",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   profileController.delete_current_profile
 );
 
@@ -44,7 +45,7 @@ router.get("/profile/user/:user_id", profileController.get_profile_by_id);
 
 router.post(
   "/profile",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   profileController.create_or_update_profile
 );
 //posts
@@ -55,37 +56,37 @@ router.get("/posts/user", passport.authenticate('jwt', {session: false}), postCo
 
 router.post(
   "/posts",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.create_post
 );
 
 router.delete(
   "/post/:id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.delete_post
 );
 
 router.post(
   "/post/like/:id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.like_post
 );
 
 router.delete(
   "/post/unlike/:id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.unlike_post
 );
 
 router.post(
   "/post/comment/:id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.make_comment
 );
 
 router.delete(
   "/post/comment/:id/:comment_id",
-  passport.authenticate("jwt", { session: false }),
+  auth.authenticateJwt(),
   postController.delete_comment
 );
 
