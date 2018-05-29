@@ -19,7 +19,6 @@ module.exports = function() {
   const jwtStrategy = new JwtStrategy(opts, (jwt_payload, next) => {
     User.findById(jwt_payload.id)
       .then(user => {
-        console.log(user);
         if (user) {
           return next(null, user);
         }
@@ -32,11 +31,11 @@ module.exports = function() {
   const fbStrategy = new FBTokenStrategy ({
     clientID: keys.facebook.appId,
     clientSecret: keys.facebook.appSecret,
+    profileFields: ['id', 'name', 'emails', 'displayName']
   },
   (accessToken, refreshToken, profile, done) => {
     process.nextTick(function() {
       User.upsertFbUser(accessToken, refreshToken, profile, function(err, user) {
-        console.log(profile);
         return done(err, user);
       });
     })

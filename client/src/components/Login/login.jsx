@@ -50,7 +50,6 @@ class Login extends Component {
   }
 
   facebookResponse = response => {
-    console.log(response);
     this.props.fbLoginUser(response.accessToken);
   };
   render() {
@@ -84,6 +83,8 @@ class Login extends Component {
             <button>Log In</button>
             <FacebookLogin
               appId={config.fbAppId}
+              icon="fa-facebook-square"
+              cssClass="ck-facebook"
               autoLoad={false}
               fields="name, email, picture"
               callback={this.facebookResponse}

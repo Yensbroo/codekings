@@ -67,7 +67,8 @@ UserSchema.statics.upsertFbUser = function(accessToken, refreshToken, profile, c
       } else {
         const newUser = new User({
           email: profile.emails[0].value,
-          name: profile.name,
+          name: profile.displayName,
+          avatar: profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg',
           facebookProvider: {
             id: profile.id,
             token: accessToken

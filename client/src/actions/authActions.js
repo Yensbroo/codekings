@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from 'qs';
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
@@ -37,12 +38,12 @@ export const loginUser = userData => dispatch => {
 };
 
 export const fbLoginUser = (accessToken) => dispatch => {
+  const data = { 'access_token': accessToken};
+  const JsonData = qs.stringify(data);
   axios
-    .post("/api/v1/facebook", accessToken)
+    .post("/api/v1/facebook", JsonData)
     .then(res => {
-      console.log(res);
       const { token } = res.data;
-      console.log(token)
 
       localStorage.setItem("jwtToken", token);
 

@@ -34,7 +34,6 @@ exports.user_create = (req, res, next) => {
 };
 
 exports.user_login = (req, res, next) => {
-  console.log(req);
   passport.authenticate('jwt', {session: false}, (err, user, info) => {
     const { errors, isValid } = validateLoginInput(req.body);
 
@@ -77,8 +76,12 @@ exports.user_login = (req, res, next) => {
 };
 
 exports.facebook_login = (req, res, next) => {
-  console.log(res);
+  //console.log(res);
   passport.authenticate('facebook-token', {session: false}, function(err, user, info){
+    console.log(user);
+    console.log(err);
+    console.log(info);
+
     if(err) {return next(err);}
     if(!user) {
       return res.status(401) .json({
@@ -87,7 +90,7 @@ exports.facebook_login = (req, res, next) => {
     }
 
     payload = {
-      id: user.id
+      id: user.id, name: user.name, avatar: user.avatar, email: user.email
     }
 
     jwt.sign(

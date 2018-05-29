@@ -25,7 +25,8 @@ button {
   font-size: 16px;
   border: 1px solid #f08c12;
   border-radius: 3px;
-  cursor: pointer; }
+  cursor: pointer;
+  transition: background 0.4s; }
 
 button:hover {
   background: #f08c12; }
@@ -56,6 +57,17 @@ button:focus {
   .ck-action a:hover,
   .ck-action i:hover {
     color: #ff9f1c; }
+
+.ck-facebook {
+  background: #3B5998;
+  border: 1px solid #2f4679;
+  transition: background 0.4s; }
+  .ck-facebook i {
+    padding: 10px;
+    font-size: 20px; }
+
+.ck-facebook:hover {
+  background: #2f4679; }
 
 .spinner {
   display: flex;

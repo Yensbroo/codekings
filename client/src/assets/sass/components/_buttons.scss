@@ -8,6 +8,7 @@ button {
   border: 1px solid #f08c12;
   border-radius: 3px;
   cursor: pointer;
+  transition: background 0.4s
 }
 
 button:hover {
@@ -53,4 +54,18 @@ button:focus {
   i:hover {
     color: $ck-orange;
   }
+}
+
+.ck-facebook {
+  background: #3B5998;
+  border: 1px solid rgb(47, 70, 121);
+  transition: background 0.4s;
+  i {
+    padding: 10px;
+    font-size: 20px;
+  }
+}
+
+.ck-facebook:hover {
+  background: rgb(47, 70, 121);
 }
