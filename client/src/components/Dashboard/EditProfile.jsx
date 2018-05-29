@@ -121,7 +121,7 @@ class EditProfile extends Component {
     const { errors } = this.state;
 
     return (
-      <div>
+      <div className="ck-content">
         <Subnav />
         <div className="container">
           <div className="ck-dashboard">

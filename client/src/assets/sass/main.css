@@ -415,8 +415,9 @@ header {
   width: 100%;
   background: #F5F5F5;
   height: 50px;
-  margin-top: -15px;
-  border-bottom: 1px solid #e0e0e0; }
+  top: 65px;
+  border-bottom: 1px solid #e0e0e0;
+  z-index: 2; }
   .ck-subnav ul {
     display: flex;
     height: 50px;
@@ -442,8 +443,7 @@ header {
 footer {
   width: 100%;
   height: 50px;
-  background: #2f2f2f;
-  margin-top: 50px; }
+  background: #2f2f2f; }
 
 .ck-dashboard__links {
   background: white;
@@ -764,18 +764,22 @@ footer {
       padding: 10px; }
 
 .ck-user__posts {
-  margin-top: 400px;
-  background: white; }
+  margin-top: 145px; }
 
 html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar; }
 
 body {
-  background: #f0f2ef; }
+  background: #f0f2ef;
+  height: 100vh; }
 
 .container {
   margin-top: 80px; }
+
+.ck-content {
+  min-height: 100%;
+  margin-bottom: 50px; }
 
 a {
   text-decoration: none; }

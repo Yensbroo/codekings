@@ -35,10 +35,16 @@ html {
 
 body {
   background: #f0f2ef;
+  height: 100vh;
 }
 
 .container {
   margin-top: 80px;
+}
+
+.ck-content {
+  min-height: 100%;
+  margin-bottom: 50px;
 }
 
 a {

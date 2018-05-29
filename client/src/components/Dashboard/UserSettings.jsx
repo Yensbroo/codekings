@@ -59,14 +59,13 @@ class UserSettings extends Component {
     const { errors } = this.state;
 
     return (
-      <div>
+      <div className="ck-content">
         <Subnav />
         <div className="container">
           <div className="ck-dashboard">
             <div className="edit-profile__container">
               <div className="edit-profile__header edit-profile__top-header">
-                <h1>Create profile</h1>
-                <p>Add some information about yourself.</p>
+                <h1>User settings</h1>
               </div>
               <form onSubmit={this.onSubmit}>
                 <div className="edit-profile__wrapper">

@@ -20,7 +20,7 @@ class UserPosts extends Component {
     }
 
     return (
-      <div>
+      <div className="ck-content">
         <Subnav />
         <div>{dashboardContent}</div>
       </div>

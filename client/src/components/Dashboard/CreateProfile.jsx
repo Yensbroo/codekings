@@ -71,10 +71,10 @@ class CreateProfile extends Component {
     const { errors } = this.state;
 
     return (
-      <div>
+      <div className="ck-content">
         <Subnav />
         <div className="container">
-          <div className="ck-dashboard">
+          <div className="ck-dashboard ">
             <div className="edit-profile__container">
               <div className="edit-profile__header edit-profile__top-header">
                 <h1>Create profile</h1>
