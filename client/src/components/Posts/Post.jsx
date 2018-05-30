@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+import { convertToRaw } from "draft-js";
 import { Link } from "react-router-dom";
 import Loader from "../common/Loader";
 import { getPost } from "../../actions/postActions";
@@ -18,6 +19,7 @@ class Post extends Component {
   render() {
     const { auth } = this.props.auth;
     const { post, loading } = this.props.post;
+    console.log(post.body);
 
     let postContent;
 
@@ -27,7 +29,15 @@ class Post extends Component {
       postContent = (
         <div>
           <div className="ck-post-detail__header">
-            <div className="ck-post-detail__header-image" />
+            {!post.image ? null : (
+              <figure>
+                <img
+                  src={`/uploads/${post.image}`}
+                  className="ck-post__image"
+                />
+              </figure>
+            )}
+
             <div className="container">
               <div className="ck-post-detail__title">
                 <h1>{post.title}</h1>

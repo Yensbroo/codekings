@@ -20,7 +20,7 @@ const PostCard = ({ hit }) => {
             </div>
           </div>
           <Link to={`/post/${hit._id}`}>
-            <img src={hit.header} alt="test" />
+            <img src={`/uploads/${hit.image}`} alt="test" />
           </Link>
         </div>
         <div className="ck-post__info">

@@ -1,13 +1,28 @@
 .ck-post-detail__header {
   margin-top: 65px;
   background: $ck-orange;
-  height: 200px;
+  height: 400px;
   width: 100%;
-  display: flex;
+  .container {
+    margin-top: 65px;
+  }
+  figure {
+    width: 100%;
+    height: 400px;
+    margin: 0;
+    position: relative;
+  }
+  .ck-post__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   .ck-post-detail__title {
     height: 86px;
     color: white;
     margin-top: 50px;
+    position: absolute;
+    top: 320px;
     h1 {
       overflow: hidden;
       margin-bottom: 5px;

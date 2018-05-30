@@ -8,6 +8,7 @@ const applicationId = require('../../../config/keys').algolia.applicationId;
 const apiKey = require('../../../config/keys').algolia.apiKey;
 const client = algoliasearch(applicationId, apiKey);
 const tutorialsIndex = client.initIndex('tutorials');
+const qs = require('qs');
 
 exports.get_posts = (req, res, next) => {
     const query = Post.find();
@@ -41,6 +42,8 @@ exports.get_posts_by_user = (req, res) => {
 
 
 exports.create_post = (req, res, next) => {
+
+  console.log(req.file);
   const { errors, isValid } = validatePostInput(req.body);
 
   if (!isValid) {
@@ -48,14 +51,16 @@ exports.create_post = (req, res, next) => {
   }
   
   const newPost = new Post({
+    image: req.file.filename,
     title: req.body.title,
-    body: req.body.body,
+    body: JSON.parse(req.body.body),
     name: req.body.name,
-    avatar: req.body.avatar,
+    avatar: req.b-ody.avatar,
     category: req.body.category,
     user: req.user.id,
   });
-  console.log(newPost)
+
+  console.log(newPost);
   newPost.save((err, post) => {
     if(err) return errorHandler.handleAPIError(500, 'Could not save the new post', next);
     Post.findOneAndUpdate({
@@ -147,9 +152,9 @@ exports.make_comment = (req, res) => {
   Post.findById(req.params.id)
     .then(post => {
       const newComment = {
+        image: req.file.filename,
         text: req.body.text,
-        name: req.body.name,
-        avatar: req.body.avatar,
+        body: JSON.parse(req.body.body),
         user: req.user.id
       };
 

@@ -5,6 +5,8 @@ module.exports = function validatePostInput(data) {
   let errors = {};
 
   data.title = !isEmpty(data.title) ? data.title : "";
+  data.image = !isEmpty(data.image) ? data.image : "";
+  data.category = !isEmpty(data.category) ? data.category : "";
   data.body = !isEmpty(data.body) ? data.body : "";
 
 
@@ -12,15 +14,17 @@ module.exports = function validatePostInput(data) {
     errors.title = "title is required";
   }
 
+  if (Validator.isEmpty(data.image)) {
+    errors.image = "A header is required";
+  }
 
+  if (Validator.isEmpty(data.category)) {
+    errors.category = "You have to choose a category";
+  }
 
-  // if (!Validator.isLength(data.body, { min: 10, max: 5000 })) {
-  //   errors.body = "Post must be between 10 and 5000 characters";
-  // }
-
-  // if (isEmpty(data.body)) {
-  //   errors.body = 'Content is required';
-  // }
+  if (Validator.isEmpty(data.body)) {
+    errors.body = 'Content is required';
+  }
 
   return {
     errors,

@@ -7,9 +7,8 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users",
   },
-  header: {
+  image: {
     type: String,
-    default: 'https://images.unsplash.com/photo-1502951682449-e5b93545d46e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=86dcc4a537932173561d30a24657fdc3&auto=format&fit=crop&w=966&q=80'
   },
   title: {
     type: String,

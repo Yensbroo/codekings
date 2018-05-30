@@ -72,7 +72,7 @@ exports.user_login = (req, res, next) => {
       }
     });
   });
-  })(req, res, next);
+  })(req, res, next)
 };
 
 exports.facebook_login = (req, res, next) => {

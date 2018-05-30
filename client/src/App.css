@@ -90,8 +90,8 @@ input,
 select {
   height: 50px; }
 
-input {
-  margin-bottom: 15px;
+input[type=text],
+input[type=password] {
   transition: padding 0.2s; }
 
 input:disabled {
@@ -99,15 +99,19 @@ input:disabled {
   color: #c4c4c4; }
 
 select {
-  background: white;
-  margin-bottom: 15px; }
+  background: white; }
 
 input:focus,
 textarea:focus {
   outline: 0; }
 
-input:focus {
+input[type=text]:focus,
+input[type=password]:focus {
   padding: 20px; }
+
+input[type=file] {
+  border: none;
+  margin-top: 20px; }
 
 textarea {
   resize: none;
@@ -117,6 +121,7 @@ textarea {
 label {
   display: block;
   padding-bottom: 5px;
+  margin-top: 15px;
   font-weight: bold; }
 
 .search-label {
@@ -140,7 +145,7 @@ label {
 
 .input-group__icon {
   float: left;
-  padding: 14px 18px;
+  padding: 11px 18px;
   height: 50px;
   background: #eae9e7;
   color: #2f2f2f;
@@ -195,7 +200,8 @@ label {
 
 .invalid-feedback {
   color: #e71d36;
-  font-size: 12px; }
+  font-size: 12px;
+  padding-top: 5px; }
 
 .ck-post__card {
   background: white;
@@ -436,7 +442,7 @@ header {
   background: #F5F5F5;
   height: 50px;
   border-bottom: 1px solid #e0e0e0;
-  top: 67px; }
+  top: 65px; }
   .ck-subnav ul {
     display: flex;
     height: 50px;
@@ -577,13 +583,25 @@ footer {
 .ck-post-detail__header {
   margin-top: 65px;
   background: #ff9f1c;
-  height: 200px;
-  width: 100%;
-  display: flex; }
+  height: 400px;
+  width: 100%; }
+  .ck-post-detail__header .container {
+    margin-top: 65px; }
+  .ck-post-detail__header figure {
+    width: 100%;
+    height: 400px;
+    margin: 0;
+    position: relative; }
+  .ck-post-detail__header .ck-post__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
   .ck-post-detail__header .ck-post-detail__title {
     height: 86px;
     color: white;
-    margin-top: 50px; }
+    margin-top: 50px;
+    position: absolute;
+    top: 320px; }
     .ck-post-detail__header .ck-post-detail__title h1 {
       overflow: hidden;
       margin-bottom: 5px;

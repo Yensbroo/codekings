@@ -3,6 +3,14 @@ const router = express.Router();
 const passport = require("passport");
 const mongoose = require("mongoose");
 const auth = require('../../config/passport')();
+const multer = require('multer');
+const upload = require('./utilities/multerMiddleware');
+// const upload = multer.diskStorage({
+//   dest: './public/uploads/',
+//   filename: function(req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+//   }});
+//const upload = require('./utilities/multerMiddleware');
 /**
  * Controllers
  */
@@ -55,7 +63,7 @@ router.get("/post/:id", postController.get_post_by_id);
 router.get("/posts/user", passport.authenticate('jwt', {session: false}), postController.get_posts_by_user  )
 
 router.post(
-  "/posts",
+  "/posts", upload,
   auth.authenticateJwt(),
   postController.create_post
 );

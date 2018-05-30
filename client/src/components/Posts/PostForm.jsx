@@ -8,6 +8,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import { addPost } from "../../actions/postActions";
 import { getCategories } from "../../actions/categoryActions";
 import CategoriesList from "../common/CategoriesList";
+import qs from "qs";
 
 const content = {
   entityMap: {},
@@ -30,7 +31,8 @@ class PostForm extends Component {
     const body = convertFromRaw(content);
     this.state = {
       title: "",
-      categories: "",
+      category: "",
+      postHeader: "",
       body,
       errors: {}
     };
@@ -45,9 +47,17 @@ class PostForm extends Component {
   }
 
   onChange(e) {
-    e.preventDefault();
-
-    this.setState({ [e.target.name]: e.target.value });
+    const state = this.state;
+    switch (e.target.name) {
+      case "postHeader":
+        state.postHeader = e.target.files[0];
+        break;
+      case "categories":
+        state.category = e.target.value;
+      default:
+        state[e.target.name] = e.target.value;
+    }
+    this.setState(state);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,18 +70,18 @@ class PostForm extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
+    const { title, body, postHeader, category } = this.state;
+    console.log(body);
+    let formData = new FormData();
+    const parsedBody = JSON.stringify(body);
+    formData.append("title", title);
+    formData.append("body", parsedBody);
+    formData.append("postHeader", postHeader);
+    formData.append("category", category);
+    formData.append("avatar", user.avatar);
+    formData.append("name", user.name);
 
-    console.log(this.refs);
-
-    const newPost = {
-      title: this.state.title,
-      body: this.state.body,
-      category: this.refs.form.categories.value,
-      name: user.name,
-      avatar: user.avatar
-    };
-
-    this.props.addPost(newPost);
+    this.props.addPost(formData);
     this.setState({ body: "" });
   }
 
@@ -84,7 +94,6 @@ class PostForm extends Component {
   render() {
     const { errors, body } = this.state;
     const { categories } = this.props.category;
-    console.log(this.state.categories);
     return (
       <div className="container">
         <div className="ck-editor">
@@ -100,11 +109,17 @@ class PostForm extends Component {
                   onChange={this.onChange}
                   error={errors.title}
                 />
+                <label>Upload a post header</label>
+                <input name="postHeader" type="file" onChange={this.onChange} />
+                <div className="invalid-feedback">{errors.image}</div>
               </div>
               <CategoriesList
                 categories={categories}
                 name="categories"
                 label="Category"
+                value={this.state.category}
+                onChange={this.onChange}
+                error={errors.category}
               />
               <div className="ck-editor__categories" />
               <div className="ck-editor__body">
