@@ -5,12 +5,7 @@ const mongoose = require("mongoose");
 const auth = require('../../config/passport')();
 const multer = require('multer');
 const upload = require('./utilities/multerMiddleware');
-// const upload = multer.diskStorage({
-//   dest: './public/uploads/',
-//   filename: function(req, file, cb) {
-//     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-//   }});
-//const upload = require('./utilities/multerMiddleware');
+
 /**
  * Controllers
  */
@@ -30,6 +25,12 @@ router.post(
   "/user",
   passport.authenticate("jwt", { session: false }),
   authController.update_user
+);
+router.post(
+  "/user/avatar",
+  upload,
+  passport.authenticate("jwt", { session: false }),
+  authController.update_avatar
 );
 router.post("/facebook", authController.facebook_login);
 
@@ -103,7 +104,6 @@ router.delete(
  */
 
 router.get('/categories', categoryController.get_categories);
-router.post('/categories', categoryController.create_category);
 
 /**
  * Favorites

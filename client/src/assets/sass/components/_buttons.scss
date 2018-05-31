@@ -69,3 +69,35 @@ button:focus {
 .ck-facebook:hover {
   background: rgb(47, 70, 121);
 }
+
+.ck-top {
+  width: 50px;
+  border-radius: 100px;
+  position: fixed;
+  bottom: 0;
+  right: 40px;
+}
+
+.ck-like {
+  width: 80px;
+  height: 80px;
+  border-radius: 300px;
+  border: 1px solid $ck-orange;
+  margin-right: 20px;
+  i {
+    font-size: 30px;
+  }
+}
+
+.ck-isNotLiked {
+  background: none;
+  border: 1px solid $ck-orange;
+  i {
+    color: $ck-orange;
+  }
+}
+
+.ck-isLiked {
+  background: $ck-orange;
+  border: 1px solid $ck-orange;
+}

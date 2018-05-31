@@ -32,7 +32,7 @@ class Navbar extends Component {
       <div className="ck-header__user">
         <div className="ck-header__logout">
           <a className="ck-header__dropbtn">
-            <img src={user.avatar} alt={user.name} />
+            <img src={`/uploads/${user.avatar}`} alt={user.name} />
           </a>
           <div className="ck-header__dropdown-content">
             <ul>
@@ -67,7 +67,11 @@ class Navbar extends Component {
         <div className="ck-header">
           <div className="ck-header__logo">
             <Link to="/">
-              <h2>Codekings</h2>
+              <img
+                src="/logo/codekings_logo_wit.svg"
+                className="ck-logo-image-sm"
+                alt=""
+              />
             </Link>
           </div>
           {isAuthenticated ? authLinks : guestLinks}

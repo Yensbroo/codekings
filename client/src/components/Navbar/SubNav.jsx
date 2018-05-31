@@ -12,6 +12,11 @@ const Subnav = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink activeClassName="selected" to="/user/avatar">
+              Change your avatar
+            </NavLink>
+          </li>
+          <li>
             <NavLink activeClassName="selected" to="/user/profile">
               Profile settings
             </NavLink>

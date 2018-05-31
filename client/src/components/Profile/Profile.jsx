@@ -27,12 +27,16 @@ class Profile extends Component {
       profileContent = <Loader />;
     } else {
       profileContent = (
-        <div className="container">
+        <div>
           <ProfileHeader profile={profile} />
-          <ProfileAbout profile={profile} />
-          {profile.githubUsername ? (
-            <ProfileGithub username={profile.githubUsername} />
-          ) : null}
+          <div className="container">
+            <ProfileAbout profile={profile} />
+            {profile.githubUsername ? (
+              <div className="ck-github__container">
+                <ProfileGithub username={profile.githubUsername} />
+              </div>
+            ) : null}
+          </div>
         </div>
       );
     }

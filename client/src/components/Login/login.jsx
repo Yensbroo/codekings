@@ -59,7 +59,11 @@ class Login extends Component {
         <div className="ck-user-form__wrapper">
           <div className="ck-user-form__logo">
             <Link to="/" className="ck-logo">
-              CodeKings
+              <img
+                src="/logo/codekings_logo_zwart.svg"
+                className="ck-logo-image"
+                alt=""
+              />
             </Link>
           </div>
           <hr />

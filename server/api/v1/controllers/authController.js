@@ -111,14 +111,11 @@ exports.facebook_login = (req, res, next) => {
 exports.update_user = (req, res, next) => {
 
   const { errors, isValid} = validateUserInput(req.body);
-
   if(!isValid) {
     return res.status(400).json(errors);
   }
-  const userFields = req.body;
+  const userFields = (req.body);
 
-  
-  
   User.findOne({
     _id: req.user.id
   }).then(user => {
@@ -126,29 +123,70 @@ exports.update_user = (req, res, next) => {
       bcrypt.hash(userFields.newPassword, salt, (err, hash) => {
         if(err) throw err;
         userFields.newPassword = hash;
-        bcrypt.compare(userFields.oldPassword, user.password).then(isMatch => {
-          if(isMatch) {
-            User.findOneAndUpdate({
-              _id: req.user.id
-            },
-            {
-              $currentDate: {
-                updated_at: true
+        if(user.password) {
+          bcrypt.compare(userFields.oldPassword, user.password).then(isMatch => {
+            if(isMatch) {
+              User.findOneAndUpdate({
+                _id: req.user.id
               },
-              $set: {
-                password: userFields.newPassword,
-              }, 
-            },
-           {
-              new: true
+              {
+                $currentDate: {
+                  updated_at: true
+                },
+                $set: {
+                  //avatar: userFields.avatar,
+                  password: userFields.newPassword,
+                }, 
+              },
+             {
+                new: true
+              }
+            ).then(user => res.json(user));
+            } else {
+              errors.oldPassword = 'Your old password is not correct';
+              return res.status(400).json(errors)
             }
-          ).then(user => res.json(user));
-          } else {
-            errors.oldPassword = 'Your old password is not correct';
-            return res.status(400).json(errors)
+          })
+        } else {
+          User.findOneAndUpdate({
+            _id: req.user.id
+          },
+          {
+            $currentDate: {
+              updated_at: true
+            },
+            $set: {
+              //avatar: userFields.avatar,
+              password: userFields.newPassword,
+            }, 
+          },
+         {
+            new: true
           }
-        })
+        ).then(user => res.json(user));
+        }
       })    
     })  
   })
 };
+
+exports.update_avatar = (req, res, next) => {
+
+  const avatar = req.file.filename;
+
+  User.findOneAndUpdate({
+    _id: req.user.id
+  },
+  {
+    $currentDate: {
+      updated_at: true
+    },
+    $set: {
+      avatar: avatar
+    }, 
+  },
+  {
+    new: true
+  }
+  ).then(user => res.json(user))
+}

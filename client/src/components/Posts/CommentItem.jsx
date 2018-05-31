@@ -41,7 +41,7 @@ class CommentItem extends Component {
       <div className="ck-comment">
         <div className="ck-comment__wrapper">
           <div className="ck-comment__user">
-            <img src={comment.avatar} alt="" />
+            <img src={`/uploads/${comment.avatar}`} alt="" />
             <div className="ck-comment__info">
               <Link to={`/profile/${comment.user}`}>{comment.name}</Link>
               <Moment fromNow className="commentDate">

@@ -7,7 +7,10 @@ class ProfileHeader extends Component {
     return (
       <div className="ck-profile__header">
         <div className="ck-profile__avatar">
-          <img src={profile.user.avatar} alt={profile.user.name} />
+          <img
+            src={`/uploads/${profile.user.avatar}`}
+            alt={profile.user.name}
+          />
         </div>
         <div className="ck-profile__name">
           <h2>{profile.user.name}</h2>

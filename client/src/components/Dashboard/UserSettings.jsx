@@ -12,6 +12,8 @@ class UserSettings extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      avatar: "",
+      avatarFile: "",
       email: "",
       oldPassword: "",
       newPassword: "",
@@ -27,11 +29,31 @@ class UserSettings extends Component {
     const { user } = this.props.auth;
     console.log(user);
     this.setState({
-      email: user.email
+      email: user.email,
+      avatar: user.avatar
     });
   }
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    const state = this.state;
+    switch (e.target.name) {
+      case "postHeader":
+        {
+          if (e.target.files && e.target.files[0]) {
+            let reader = new FileReader();
+            reader.onload = event => {
+              this.setState({
+                avatar: event.target.result
+              });
+            };
+            reader.readAsDataURL(e.target.files[0]);
+          }
+          state.avatarFile = e.target.files[0];
+        }
+        break;
+      default:
+        state[e.target.name] = e.target.value;
+    }
+    this.setState(state);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,6 +66,13 @@ class UserSettings extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
+    const { oldPassword, newPassword, newPassword2, avatarFile } = this.state;
+    // let formData = new FormData();
+
+    // formData.append("oldPassword", oldPassword);
+    // formData.append("newPassword", newPassword);
+    // formData.append("newPassword2", newPassword2);
+    //formData.append("postHeader", avatarFile);
 
     const userData = {
       oldPassword: this.state.oldPassword,
@@ -57,7 +86,6 @@ class UserSettings extends Component {
   render() {
     const { user } = this.props.auth;
     const { errors } = this.state;
-
     return (
       <div>
         <Subnav />
@@ -65,8 +93,7 @@ class UserSettings extends Component {
           <div className="ck-dashboard">
             <div className="edit-profile__container">
               <div className="edit-profile__header edit-profile__top-header">
-                <h1>Create profile</h1>
-                <p>Add some information about yourself.</p>
+                <h1>User settings</h1>
               </div>
               <form onSubmit={this.onSubmit}>
                 <div className="edit-profile__wrapper">

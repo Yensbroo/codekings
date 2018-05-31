@@ -9,14 +9,15 @@ import {
   GET_ERRORS
 } from './types';
 
-export const addPost = (postData, id, history) => dispatch => {
+export const addPost = (postData, history) => dispatch => {
   axios
     .post('/api/v1/posts', postData)
-    .then(res =>
-      dispatch({
+    .then(res => {
+        history.push(`/post/${res.data._id}`)
+        dispatch({
         type: ADD_POST,
         payload: res.data
-      })
+      })}
     )
     .catch(err => 
       dispatch({
@@ -124,6 +125,40 @@ export const deleteComment = (postId, commentId) => dispatch => {
         payload: err.response.data
     }))
 };
+
+export const likePost = id => dispatch => {
+  axios
+    .post(`/api/v1/post/like/${id}`)
+    .then(res => 
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    ) 
+}
+
+export const unlikePost = id => dispatch => {
+  axios
+    .delete(`/api/v1/post/unlike/${id}`)
+    .then(res => 
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    ) 
+}
 
 export const setPostLoading = () => {
   return {

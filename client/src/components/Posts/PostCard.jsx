@@ -9,17 +9,8 @@ const PostCard = ({ hit }) => {
     >
       <div className="ck-post__card">
         <div className="ck-post__image">
-          <div className="ck-post__actions">
-            <div className="ck-post__favorite">
-              <i className="far fa-heart" />
-            </div>
-            <div className="ck-post__likes">
-              <i className="fas fa-thumbs-up" />
-              <span>{hit.likes.length}</span>
-              <i className="fas fa-thumbs-down" />
-            </div>
-          </div>
           <Link to={`/post/${hit._id}`}>
+            <div className="overlay" />
             <img src={`/uploads/${hit.image}`} alt="test" />
           </Link>
         </div>

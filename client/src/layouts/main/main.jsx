@@ -19,6 +19,7 @@ import ProfileSettings from "../../components/Dashboard/ProfileSettings";
 import UserSettings from "../../components/Dashboard/UserSettings";
 import UserPosts from "../../components/Dashboard/UserPosts";
 import UserFavorites from "../../components/Favorites/Favorites";
+import SetAvatar from "../../components/Dashboard/SetAvatar";
 
 class Main extends Component {
   render() {
@@ -38,6 +39,9 @@ class Main extends Component {
         </Switch>
         <Switch>
           <PrivateRoute exact path="/user/settings" component={UserSettings} />
+        </Switch>
+        <Switch>
+          <PrivateRoute exact path="/user/avatar" component={SetAvatar} />
         </Switch>
         <Switch>
           <PrivateRoute

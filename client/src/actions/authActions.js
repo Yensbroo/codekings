@@ -71,6 +71,20 @@ export const changePassword = userData => dispatch => {
       }))
 }
 
+export const changeAvatar = userData => dispatch => {
+  axios
+    .post('/api/v1/user/avatar', userData)
+    .then(res => dispatch({
+      type: SET_CURRENT_USER,
+      payload: res.data
+    }))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      }))
+}
+
 export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,

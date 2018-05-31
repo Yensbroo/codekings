@@ -43,7 +43,6 @@ exports.get_posts_by_user = (req, res) => {
 
 exports.create_post = (req, res, next) => {
 
-  console.log(req.file);
   const { errors, isValid } = validatePostInput(req.body);
 
   if (!isValid) {
@@ -54,8 +53,8 @@ exports.create_post = (req, res, next) => {
     image: req.file.filename,
     title: req.body.title,
     body: JSON.parse(req.body.body),
-    name: req.body.name,
-    avatar: req.b-ody.avatar,
+    name: req.user.name,
+    avatar: req.user.avatar,
     category: req.body.category,
     user: req.user.id,
   });
@@ -91,6 +90,9 @@ exports.delete_post = (req, res) => {
         }
 
         post.remove().then(() => res.json({ success: true }));
+        index.deleteObject(post, (err, content) => {
+          if(err) console.log(err);
+        })
       })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
   });
@@ -152,9 +154,9 @@ exports.make_comment = (req, res) => {
   Post.findById(req.params.id)
     .then(post => {
       const newComment = {
-        image: req.file.filename,
         text: req.body.text,
-        body: JSON.parse(req.body.body),
+        name: req.body.name,
+        avatar: req.body.avatar,
         user: req.user.id
       };
 

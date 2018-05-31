@@ -9,20 +9,12 @@ module.exports = function validateUserInput(data) {
   data.newPassword2 = !isEmpty(data.newPassword2) ? data.newPassword2 : "";
 
 
-  if (Validator.isEmpty(data.oldPassword)) {
-    errors.oldPassword = "Password is required";
-  }
-
-  if (Validator.equals(data.oldPassword, data.newPassword)) {
-    errors.newPassword = "Your new password can not be the same as your old password";
-  }
+  // if (Validator.equals(data.oldPassword, data.newPassword)) {
+  //   errors.newPassword = "Your new password can not be the same as your old password";
+  // }
 
   if (!Validator.isLength(data.newPassword, { min: 6, max: 30 })) {
     errors.newPassword = "Password must be at least 6 characters long";
-  }
-
-  if (Validator.isEmpty(data.newPassword2)) {
-    errors.newPassword2 = "You have to confirm your password";
   }
 
   if (!Validator.equals(data.newPassword, data.newPassword2)) {

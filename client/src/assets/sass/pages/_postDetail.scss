@@ -78,6 +78,19 @@
       margin-top: 16px;
     }
   }
+  .ck-post__actions {
+    margin-top: 40px;
+    .ck-post__socials {
+      float: right;
+      margin-top: 30px;
+      i {
+        font-size: 30px;
+        margin-right: 20px;
+        color: $ck-orange;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .ck-comment__container {

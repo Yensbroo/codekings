@@ -9,9 +9,19 @@
   -moz-box-shadow: 4px 4px 5px -1px rgba(0, 0, 0, 0.08);
   box-shadow: 4px 4px 5px -1px rgba(0, 0, 0, 0.08);
   .ck-post__image {
+    max-height: 177px;
+    .overlay {
+      position: absolute;
+      width: 89.5%;
+      height: 177px;
+      background: black;
+      opacity: 0.38;
+      transition: opacity 0.4s
+    }
     img {
       width: 100%;
-      border-radius: 0 0 90px 90px;
+      height: 177px;
+      object-fit: cover;
     }
     .ck-post__actions {
       display: none;
@@ -37,8 +47,8 @@
       }
     }
   }
-  .ck-post__image:hover .ck-post__actions {
-    display: inline;
+  .ck-post__image:hover .overlay {
+    opacity: 0;
   }
   .ck-post__info {
     margin-top: 10px;

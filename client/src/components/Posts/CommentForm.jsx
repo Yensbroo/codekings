@@ -52,7 +52,7 @@ class CommentForm extends Component {
       <div className="ck-comment">
         <div className="ck-comment__wrapper">
           <div className="ck-comment__user">
-            <img src={user.avatar} alt="" />
+            <img src={`/uploads/${user.avatar}`} alt="" />
             <p>{user.name}</p>
           </div>
           <form onSubmit={this.onSubmit}>

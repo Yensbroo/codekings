@@ -14,9 +14,9 @@ module.exports = function validatePostInput(data) {
     errors.title = "title is required";
   }
 
-  if (Validator.isEmpty(data.image)) {
-    errors.image = "A header is required";
-  }
+  // if (Validator.isEmpty(data.image)) {
+  //   errors.image = "A header is required";
+  // }
 
   if (Validator.isEmpty(data.category)) {
     errors.category = "You have to choose a category";

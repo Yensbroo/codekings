@@ -1,9 +1,10 @@
 .ck-profile__header {
-  background: blue;
+  background: $ck-orange;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 6px 6px 0 0;
+  margin-top: 65px;
   .ck-profile__avatar {
     margin-top: 20px;
     img {
@@ -30,7 +31,7 @@
 }
 
 .ck-profile__bio-container,
-.ck-github {
+.ck-github__container {
   border-radius: 3px;
   border: 1px solid $ck-border;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
@@ -38,6 +39,7 @@
 
 .ck-profile__bio-container {
   background: white;
+  margin-top: -65px;
   .ck-profile__bio-wrapper {
     width: 90%;
     margin: auto;
@@ -70,31 +72,29 @@
   }
 }
 
-.ck-github {
+.ck-github__container {
   background: white;
-  min-height: 200px;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  .ck-profile__github-wrapper {
-    width: 90%;
-    margin: 30px;
+  margin-top: 30px;
+  h3 {
+    margin-left: 30px;
   }
-  h2 {
-    a {
-      color: $ck-orange;
-    }
-  }
-  .stats {
-    border: 1px solid $ck-border;
+  .ck-github {
     border-radius: 3px;
-    float: left;
-    margin-right: 20px;
-    span {
-      padding: 20px;
+    margin-bottom: 20px;
+    .ck-profile__github-wrapper {
+      width: 90%;
+      margin: 30px;
+      hr {
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
     }
-    i {
-      background: $ck-border;
-      padding: 10px;
+    h2 {
+      a {
+        color: $ck-orange;
+      }
     }
   }
 }

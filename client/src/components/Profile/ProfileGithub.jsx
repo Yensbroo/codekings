@@ -41,19 +41,7 @@ class ProfileGithub extends Component {
             </Link>
           </h2>
           <p>{repo.description}</p>
-          <div className="ck-github__stats">
-            <div className="stats">
-              <i className="fas fa-star" /> <span>{repo.stargazers_count}</span>
-            </div>
-            <div className="stats">
-              <i className="fas fa-eye" />
-              <span>{repo.watchers_count}</span>
-            </div>
-            <div className="stats">
-              <i className="fas fa-code-branch" />
-              <span> {repo.forks_count}</span>
-            </div>
-          </div>
+          <hr />
         </div>
       </div>
     ));

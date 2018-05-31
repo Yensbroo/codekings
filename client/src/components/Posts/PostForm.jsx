@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { EditorState, convertFromRaw, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -78,10 +79,8 @@ class PostForm extends Component {
     formData.append("body", parsedBody);
     formData.append("postHeader", postHeader);
     formData.append("category", category);
-    formData.append("avatar", user.avatar);
-    formData.append("name", user.name);
 
-    this.props.addPost(formData);
+    this.props.addPost(formData, this.props.history);
     this.setState({ body: "" });
   }
 
@@ -176,4 +175,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { addPost, getCategories })(PostForm);
+export default connect(mapStateToProps, { addPost, getCategories })(
+  withRouter(PostForm)
+);
