@@ -60,9 +60,10 @@ label {
 }
 
 .ais-SearchBox-input {
-  background: none;
+  background: white;
+  width: 30%;
   border: 1px solid $ck-border;
-  border-radius: 40px;
+  border-radius: 3px;
   font-size: 20px;
   padding-left: 10px;
   margin-bottom: 30px;

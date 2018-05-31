@@ -5,13 +5,10 @@ import { connect } from "react-redux";
 
 class PostCard extends Component {
   render() {
-    const { posts } = this.props;
+    const { post } = this.props;
 
-    const postsList = posts.map(post => {
-      <div
-        key={post._id}
-        className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12"
-      >
+    return (
+      <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
         <div className="ck-post__card">
           <div className="ck-post__image">
             <div className="ck-post__actions">
@@ -25,7 +22,7 @@ class PostCard extends Component {
               </div>
             </div>
             <Link to={`/post/${post._id}`}>
-              <img src={post.header} alt="test" />
+              <img src={`/uploads/${post.image}`} alt="test" />
             </Link>
           </div>
           <div className="ck-post__info">
@@ -37,18 +34,12 @@ class PostCard extends Component {
             </div>
           </div>
         </div>
-      </div>;
-    });
-
-    return (
-      <div className="container">
-        <div className="row">{postsList}</div>
       </div>
     );
   }
 }
 
 PostCard.propTypes = {
-  posts: PropTypes.array.isRequired
+  post: PropTypes.array.isRequired
 };
 export default PostCard;

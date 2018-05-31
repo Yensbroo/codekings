@@ -73,6 +73,9 @@ class Navbar extends Component {
                 alt=""
               />
             </Link>
+            <Link to="/create-tutorial" className="ck-tutorial">
+              Create a tutorial
+            </Link>
           </div>
           {isAuthenticated ? authLinks : guestLinks}
         </div>

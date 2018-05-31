@@ -7,21 +7,22 @@ import ProfileGithub from "./ProfileGithub";
 import ProfileBio from "./ProfileBio";
 import Loader from "../common/Loader";
 import { getProfileById } from "../../actions/profileActions";
+import { getProfilePosts } from "../../actions/postActions";
 import ProfileAbout from "./ProfileBio";
+import ProfilePosts from "./ProfilePosts";
 
 class Profile extends Component {
   componentDidMount() {
     this.props.getProfileById(this.props.match.params.id);
+    this.props.getProfilePosts(this.props.match.params.id);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.profile.profile === null && this.props.profile.loading) {
-      this.props.history.push("/not-found");
-    }
-  }
   render() {
     const { profile, loading } = this.props.profile;
+    const { posts } = this.props.post;
     let profileContent;
+
+    console.log(posts);
 
     if (profile === null || loading) {
       profileContent = <Loader />;
@@ -31,6 +32,7 @@ class Profile extends Component {
           <ProfileHeader profile={profile} />
           <div className="container">
             <ProfileAbout profile={profile} />
+            <ProfilePosts posts={posts} name={profile.user.name} />
             {profile.githubUsername ? (
               <div className="ck-github__container">
                 <ProfileGithub username={profile.githubUsername} />
@@ -46,11 +48,16 @@ class Profile extends Component {
 
 Profile.propTypes = {
   profile: PropTypes.object.isRequired,
-  getProfileById: PropTypes.func.isRequired
+  getProfileById: PropTypes.func.isRequired,
+  getProfilePosts: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  profile: state.profile,
+  post: state.post
 });
 
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default connect(mapStateToProps, { getProfileById, getProfilePosts })(
+  Profile
+);

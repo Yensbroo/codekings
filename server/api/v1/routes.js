@@ -61,12 +61,18 @@ router.post(
 
 router.get("/posts", postController.get_posts);
 router.get("/post/:id", postController.get_post_by_id);
-router.get("/posts/user", passport.authenticate('jwt', {session: false}), postController.get_posts_by_user  )
+router.get("/posts/user", passport.authenticate('jwt', {session: false}), postController.get_posts_by_user )
+router.get("/posts/profile/:id", postController.get_posts_by_profile)
 
 router.post(
   "/posts", upload,
   auth.authenticateJwt(),
   postController.create_post
+);
+router.post(
+  "/post/update/:id", upload,
+  auth.authenticateJwt(),
+  postController.update_post
 );
 
 router.delete(

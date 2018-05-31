@@ -1,30 +1,24 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import PostCard from "./PostCard";
-import { getPosts } from "../../actions/postActions";
+import PostList from "./PostList";
 
 class PostTable extends Component {
   render() {
-    const { posts, auth } = this.props;
+    const { posts } = this.props;
     const postsList = posts.map(post => {
-      return <PostCard key={post._id} />;
+      return <PostList key={post._id} post={post} />;
     });
     return (
-      <div>
-        <PostCard />
+      <div className="ck-user__posts-wrapper">
+        <h3>Your tutorials</h3>
+        {postsList}
       </div>
     );
   }
 }
 
 PostTable.propTypes = {
-  posts: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  posts: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(mapStateToProps)(PostTable);
+export default PostTable;

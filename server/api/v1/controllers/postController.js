@@ -40,6 +40,14 @@ exports.get_posts_by_user = (req, res) => {
     )
 }
 
+exports.get_posts_by_profile = (req, res) => {
+  Post.find({user: req.params.id})
+    .then(posts => res.json(posts))
+    .catch(err => 
+      res.status(404).json({nopostsfound: "You have no posts yet"})
+    )
+}
+
 
 exports.create_post = (req, res, next) => {
 
@@ -66,18 +74,58 @@ exports.create_post = (req, res, next) => {
       _id: post._id
     }, {
       $set: {
-        tutorialId: post._id
+        objectID: post._id
       }
     }, {
       new: true
     }
   ).then(post => {
-    tutorialsIndex.addObject(post, (err, content) => {
+    tutorialsIndex.addObject({
+      objectID: post._id,
+      title: post.title,
+      name: post.user.name,
+      likes: post.likes,
+      comments: post.comments,
+      image: post.image,
+      category: post.category
+    }, (err, content) => {
       if(err) console.log(err);
     });
     res.json(post)});
   });
 };
+
+exports.update_post = (req, res) => {
+  const { errors, isValid } = validatePostInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  const postFields = {}
+  postFields.user = req.user.id
+  if(req.body.title) postFields.title = req.body.title;
+  if(req.body.body) postFields.body = JSON.parse(req.body.body);
+  if(req.file.filename) postFields.image = req.file.filename;
+  if(req.body.category) postFields.category = req.body.category;
+
+  Post.findOneAndUpdate({
+    _id: req.params.id
+  },
+  {
+    $currentDate: {
+      updated_at: true
+    },
+    $set: postFields,
+  },
+  {
+    new: true
+  }
+).then(post => {
+  tutorialsIndex.saveObject(post, function(err, content) {
+    if (err) console.log(err);
+  })
+  res.json(post)});
+}
 
 exports.delete_post = (req, res) => {
   Profile.findOne({ user: req.user.id }).then(profile => {
@@ -88,11 +136,11 @@ exports.delete_post = (req, res) => {
             .status(401)
             .json({ notauthorized: "You are not authorized" });
         }
-
-        post.remove().then(() => res.json({ success: true }));
-        index.deleteObject(post, (err, content) => {
+        tutorialsIndex.deleteObject(post.objectID, (err, content) => {
           if(err) console.log(err);
         })
+        post.remove().then(() => res.json({ success: true }));
+        
       })
       .catch(err => res.status(404).json({ postnotfound: "No post found" }));
   });

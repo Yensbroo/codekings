@@ -59,6 +59,23 @@ export const getUserPosts = () => dispatch => {
           payload: null
         }))
 }
+
+export const getProfilePosts = (id) => dispatch => {
+  dispatch(setPostLoading());
+
+  axios.get(`/api/v1/posts/profile/${id}`)
+      .then(res => 
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data
+      }))
+      .catch(err => 
+        dispatch({
+          type: GET_POSTS,
+          payload: null
+        }))
+}
+
 export const getPost = (id) => dispatch => {
   dispatch(setPostLoading());
 
@@ -76,6 +93,24 @@ export const getPost = (id) => dispatch => {
         payload: null
     }))
 };
+
+export const updatePost = (id, postData, history) => dispatch => {
+  axios.post(`/api/v1/post/update/${id}`, postData)
+    .then(res => 
+      {
+        history.push(`/post/${res.data._id}`);
+        dispatch({
+        type: GET_POST,
+        payload: res.data
+      })}
+    )
+    .catch(err => 
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    )
+}
 
 export const deletePost = (id) => dispatch => {
   axios

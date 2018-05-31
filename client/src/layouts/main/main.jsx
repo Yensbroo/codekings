@@ -20,6 +20,7 @@ import UserSettings from "../../components/Dashboard/UserSettings";
 import UserPosts from "../../components/Dashboard/UserPosts";
 import UserFavorites from "../../components/Favorites/Favorites";
 import SetAvatar from "../../components/Dashboard/SetAvatar";
+import UpdatePost from "../../components/Posts/UpdatePost";
 
 class Main extends Component {
   render() {
@@ -36,6 +37,9 @@ class Main extends Component {
         <Route exact path="/profile/:id" component={Profile} />
         <Switch>
           <PrivateRoute exact path="/favorites" component={UserFavorites} />
+        </Switch>
+        <Switch>
+          <PrivateRoute exact path="/post/update/:id" component={UpdatePost} />
         </Switch>
         <Switch>
           <PrivateRoute exact path="/user/settings" component={UserSettings} />
