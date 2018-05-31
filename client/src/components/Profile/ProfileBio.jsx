@@ -17,17 +17,21 @@ class ProfileBio extends Component {
     ));
 
     return (
-      <div className="ck-profile__bio-container">
-        <div className="ck-profile__bio-wrapper">
-          <div className="ck-profile__bio">
-            <h3>About {firstName}</h3>
-            {isEmpty(profile.bio) ? (
-              <p>This user has no bio</p>
-            ) : (
-              <p>{profile.bio}</p>
-            )}
+      <div className="ck-profile__bio-skills">
+        <div className="ck-profile__bio-container">
+          <div className="ck-profile__bio-wrapper">
+            <div className="ck-profile__bio">
+              <h3>About {firstName}</h3>
+              {isEmpty(profile.bio) ? (
+                <p>This user has no bio</p>
+              ) : (
+                <p>{profile.bio}</p>
+              )}
+            </div>
           </div>
-          <div className="ck-profile__skills">
+        </div>
+        <div className="ck-profile__skills">
+          <div className="ck-profile__skills-wrapper">
             <h3>Skills</h3>
             <ul>{skills}</ul>
           </div>

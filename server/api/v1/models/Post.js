@@ -21,7 +21,7 @@ const PostSchema = new Schema({
   name: {
     type: String,
   },
-  tutorialId: {
+  objectID: {
     type: String,
   },
   category: {

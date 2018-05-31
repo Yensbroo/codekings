@@ -31,30 +31,42 @@
 }
 
 .ck-profile__bio-container,
+.ck-profile__skills,
 .ck-github__container {
   border-radius: 3px;
   border: 1px solid $ck-border;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
 }
 
-.ck-profile__bio-container {
-  background: white;
-  margin-top: -65px;
-  .ck-profile__bio-wrapper {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    .ck-profile__bio,
-    .ck-profile__skills {
-      margin-top: 20px;
-      margin-bottom: 30px;
+.ck-profile__bio-skills {
+  display: flex;
+  flex-direction: row;
+  .ck-profile__bio-container {
+    background: white;
+    margin-top: -65px;
+    width: 80%;
+    .ck-profile__bio-wrapper {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      .ck-profile__bio,
+      .ck-profile__skills {
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+      .ck-profile__bio {
+        width: 80%;
+      }
     }
-    .ck-profile__bio {
-      width: 80%;
-    }
-    .ck-profile__skills {
-      width: 20%;
-      margin-left: 40px;
+  }
+  .ck-profile__skills {
+    background: white;
+    margin-top: -65px;
+    width: 20%;
+    margin-left: 40px;
+    .ck-profile__skills-wrapper {
+      width: 90%;
+      margin: auto;
       ul {
         list-style: none;
         padding: 0

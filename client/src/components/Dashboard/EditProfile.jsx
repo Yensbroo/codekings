@@ -15,9 +15,6 @@ class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      handle: "",
-      company: "",
-      avatar: "",
       website: "",
       location: "",
       skills: "",
@@ -51,10 +48,7 @@ class EditProfile extends Component {
       const profile = nextProps.profile.profile;
 
       const skillsCSV = profile.skills.join(",");
-
-      profile.company = !isEmpty(profile.company) ? profile.company : "";
       profile.website = !isEmpty(profile.website) ? profile.website : "";
-      profile.avatar = !isEmpty(profile.avatar) ? profile.avatar : "";
       profile.location = !isEmpty(profile.location) ? profile.location : "";
       profile.githubUsername = !isEmpty(profile.githubUsername)
         ? profile.githubUsername
@@ -78,9 +72,6 @@ class EditProfile extends Component {
         : "";
 
       this.setState({
-        handle: profile.handle,
-        company: profile.company,
-        avatar: profile.avatar,
         website: profile.website,
         location: profile.location,
         skills: skillsCSV,
@@ -99,8 +90,6 @@ class EditProfile extends Component {
     e.preventDefault();
 
     const profileData = {
-      handle: this.state.handle,
-      company: this.state.company,
       avatar: this.state.avatar,
       website: this.state.website,
       location: this.state.location,
@@ -133,32 +122,6 @@ class EditProfile extends Component {
               <form onSubmit={this.onSubmit}>
                 <div className="edit-profile__wrapper">
                   <div className="edit-profile__form">
-                    <TextFieldGroup
-                      label="Handle*"
-                      placeholder=""
-                      name="handle"
-                      value={this.state.handle}
-                      onChange={this.onChange}
-                      error={errors.handle}
-                      info="A unique handle for your profile URL"
-                    />
-                    <TextFieldGroup
-                      label="Avatar"
-                      placeholder="Avatar"
-                      name="avatar"
-                      value={this.state.avatar}
-                      onChange={this.onChange}
-                      error={errors.avatar}
-                      info="You can upload your avatar to "
-                    />
-                    <TextFieldGroup
-                      label="Company"
-                      placeholder="Company"
-                      name="company"
-                      value={this.state.company}
-                      onChange={this.onChange}
-                      info="Tell us where you work!"
-                    />
                     <TextFieldGroup
                       label="Website"
                       placeholder="Website"

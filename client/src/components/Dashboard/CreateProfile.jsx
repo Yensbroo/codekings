@@ -15,8 +15,6 @@ class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      handle: "",
-      company: "",
       avatar: "",
       website: "",
       location: "",
@@ -49,8 +47,6 @@ class CreateProfile extends Component {
     e.preventDefault();
 
     const profileData = {
-      handle: this.state.handle,
-      company: this.state.company,
       avatar: this.state.avatar,
       website: this.state.website,
       location: this.state.location,
@@ -83,32 +79,6 @@ class CreateProfile extends Component {
               <form onSubmit={this.onSubmit}>
                 <div className="edit-profile__wrapper">
                   <div className="edit-profile__form">
-                    <TextFieldGroup
-                      label="Handle*"
-                      placeholder="Handle"
-                      name="handle"
-                      value={this.state.handle}
-                      onChange={this.onChange}
-                      error={errors.handle}
-                      info="A unique handle for your profile URL"
-                    />
-                    <TextFieldGroup
-                      label="Avatar"
-                      placeholder="Avatar"
-                      name="avatar"
-                      value={this.state.avatar}
-                      onChange={this.onChange}
-                      error={errors.avatar}
-                      info="You can upload your avatar to "
-                    />
-                    <TextFieldGroup
-                      label="Company"
-                      placeholder="Company"
-                      name="company"
-                      value={this.state.company}
-                      onChange={this.onChange}
-                      info="Tell us where you work!"
-                    />
                     <TextFieldGroup
                       label="Website"
                       placeholder="Website"

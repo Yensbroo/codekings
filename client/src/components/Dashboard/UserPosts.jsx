@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getUserPosts } from "../../actions/postActions";
-import PostCard from "./PostCard";
+import PostTable from "./PostTable";
 import Subnav from "../Navbar/SubNav";
 
 class UserPosts extends Component {
@@ -17,7 +17,11 @@ class UserPosts extends Component {
     return (
       <div>
         <Subnav />
-        <PostCard posts={posts} />
+        <div className="container">
+          <div className="ck-user__posts-container">
+            <PostTable posts={posts} />
+          </div>
+        </div>
       </div>
     );
   }

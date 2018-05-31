@@ -19,10 +19,19 @@ class Posts extends Component {
   render() {
     return (
       <InstantSearch appId={appId} apiKey={apiKey} indexName="tutorials">
+        <div className="ck-feed__header">
+          <div className="container">
+            <div className="ck-feed__header-content">
+              <h1>Expand your knowledge</h1>
+              <p>
+                Codekings is a community-based tutorial platform. <br />You are
+                able to create or find the tutorial that you want
+              </p>
+              <SearchBox />
+            </div>
+          </div>
+        </div>
         <div className="container">
-          <label className="search-label">
-            <SearchBox />
-          </label>
           <PostFeed />
         </div>
         <button className="ck-top" onClick={this.scrollToTop.bind(this)}>

@@ -78,9 +78,6 @@ exports.user_login = (req, res, next) => {
 exports.facebook_login = (req, res, next) => {
   //console.log(res);
   passport.authenticate('facebook-token', {session: false}, function(err, user, info){
-    console.log(user);
-    console.log(err);
-    console.log(info);
 
     if(err) {return next(err);}
     if(!user) {

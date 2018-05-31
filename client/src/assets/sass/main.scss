@@ -16,6 +16,7 @@
 @import './components/avatar';
 @import './components/pagination';
 @import './components/popover';
+@import './components/searchHeader';
 // layout
 @import "./layout/header";
 @import "./layout/footer";
@@ -51,6 +52,10 @@ a {
 
 .ck-logo-image-sm {
   width: 70%;
+}
+
+.clearer {
+  clear: both;
 }
 
 *,
