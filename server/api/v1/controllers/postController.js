@@ -81,9 +81,11 @@ exports.create_post = (req, res, next) => {
     }
   ).then(post => {
     tutorialsIndex.addObject({
+      created_at: post.created_at,
+      user: post.user,
       objectID: post._id,
       title: post.title,
-      name: post.user.name,
+      name: post.name,
       likes: post.likes,
       comments: post.comments,
       image: post.image,

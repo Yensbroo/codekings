@@ -5,7 +5,7 @@ const errorHandler = require('../utilities/errorHandler');
 
 exports.get_favorites = (req, res, next) => {
   Favorite.find({user: req.user.id})
-        .populate('post', ['title', 'name', 'user', 'category', 'likes'])
+        .populate('post', ['title', 'name', 'user', 'category', 'likes', 'image'])
         .then(favorites => res.json(favorites))
         .catch(err => 
           res.status(404).json({nofavorites: 'No favorites found'})
@@ -13,7 +13,7 @@ exports.get_favorites = (req, res, next) => {
 }
 
 exports.add_favorite = (req, res, next) => {
-  Favorite.findOne({post: req.body.postId})
+  Favorite.findOne({post: req.body.postId, user: req.user.id})
           .then(favorite => {
             if(favorite) {
               return res.status(400).json({alreadyFavorite: 'This post is already favorited'})
@@ -31,16 +31,23 @@ exports.add_favorite = (req, res, next) => {
 }
 
 exports.remove_favorite = (req, res) => {
-  Favorite.findOne({post: req.body.postId})
+  console.log(req.body);
+  console.log(res.body);
+  Favorite.findOne({post: req.params.id, user: req.user.id})
           .then(favorite => {
-            if(favorite.user.toString() !== req.user.id) {
+            console.log(favorite)
+            if(!favorite) {
               return res
-            .status(401)
-            .json({ notauthorized: "You are not authorized" });
+            .status(404)
+            .json({ nofavorite: "No favorite found" });
+            }
+
+            if(favorite.user.toString() !== req.user.id) {
+              return res.status(404).json({notauthorized: "You are not authorized"});
             }
 
             favorite.remove().then(() => {
-              res.json({succes: true});
+              res.json({success: true})
             })
           })
 }

@@ -182,7 +182,8 @@ export const unlikePost = id => dispatch => {
   axios
     .delete(`/api/v1/post/unlike/${id}`)
     .then(res => 
-      dispatch({
+      
+        dispatch({
         type: GET_POST,
         payload: res.data
       })

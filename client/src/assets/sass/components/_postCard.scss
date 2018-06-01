@@ -70,5 +70,14 @@
   }
   .ck-post__author {
     margin-bottom: 10px;
+    a {
+      color: $ck-black;
+      font-weight: bold;
+    }
   }
+}
+
+.ck-date {
+  font-size: 12px;
+  font-weight: lighter;
 }

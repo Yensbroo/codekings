@@ -41,12 +41,12 @@ class CommentForm extends Component {
     };
 
     this.props.addComment(postId, newComment);
-    this.setState({ text: "" });
+    this.setState({ text: "", errors: {} });
   }
 
   render() {
     const { user } = this.props.auth;
-    const { errors } = this.props.errors;
+    const { errors } = this.state;
     console.log(errors);
     return (
       <div className="ck-comment">
@@ -62,7 +62,7 @@ class CommentForm extends Component {
                 name="text"
                 value={this.state.text}
                 onChange={this.onChange}
-                error={errors}
+                error={errors.text}
               />
             </div>
             <div className="ck-comment__btn">

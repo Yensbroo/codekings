@@ -40,6 +40,9 @@ class Navbar extends Component {
                 <Link to="/user/settings">{user.name}</Link>
               </li>
               <li>
+                <Link to="/favorites">Favorites</Link>
+              </li>
+              <li>
                 <Link
                   to=""
                   onClick={this.onLogoutClick.bind(this)}

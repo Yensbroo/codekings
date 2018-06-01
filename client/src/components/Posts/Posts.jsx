@@ -25,7 +25,7 @@ class Posts extends Component {
               <h1>Expand your knowledge</h1>
               <p>
                 Codekings is a community-based tutorial platform. <br />You are
-                able to create or find the tutorial that you want
+                able to create or find the tutorial that you want!
               </p>
               <SearchBox />
             </div>

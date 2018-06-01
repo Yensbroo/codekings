@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Moment from "react-moment";
 
 const PostCard = ({ hit }) => {
   return (
@@ -9,17 +10,21 @@ const PostCard = ({ hit }) => {
     >
       <div className="ck-post__card">
         <div className="ck-post__image">
-          <Link to={`/post/${hit._id}`}>
+          <Link to={`/post/${hit.objectID}`}>
             <div className="overlay" />
             <img src={`/uploads/${hit.image}`} alt="test" />
           </Link>
         </div>
         <div className="ck-post__info">
           <div className="ck-post__title">
-            <Link to={`/post/${hit._id}`}>{hit.title}</Link>
+            <Link to={`/post/${hit.objectID}`}>{hit.title}</Link>
           </div>
           <div className="ck-post__author">
-            <span>{hit.name}</span>
+            <Link to={`/profile/${hit.user}`}>{hit.name}</Link>
+            <br />
+            <span className="ck-date">
+              <Moment fromNow>{hit.created_at}</Moment>
+            </span>
           </div>
         </div>
       </div>

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getFavorites } from "../../actions/favoriteActions";
-//import PostCard from "./PostCard";
-import Subnav from "../Navbar/SubNav";
+import { Divider } from "@material-ui/core";
+import FavoriteFeed from "./FavoriteFeed";
 
 class UserFavorites extends Component {
   componentDidMount() {
@@ -12,13 +12,15 @@ class UserFavorites extends Component {
   render() {
     const { favorites } = this.props.favorite;
     console.log(favorites);
-    let dashboardContent;
+    let favoritesContent;
 
-    return (
-      <div>
-        <Subnav />
-      </div>
-    );
+    if (Object.keys(favorites).length === 0) {
+      favoritesContent = <h1>You have no favorites yet</h1>;
+    } else {
+      favoritesContent = <FavoriteFeed favorites={favorites} />;
+    }
+
+    return <div className="ck-favorites__container">{favoritesContent}</div>;
   }
 }
 

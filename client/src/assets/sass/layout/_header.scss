@@ -101,10 +101,6 @@ header {
           display: block;
           padding-left: 16px;
         }
-        .logout {
-          background: #F5F5F5;
-          padding: 15px 0 15px 16px;
-        }
         a:hover {
           color: $ck-orange;
         }
@@ -137,6 +133,9 @@ header {
   height: 50px;
   border-bottom: 1px solid $ck-border;
   top: 65px;
+  .container {
+    min-height: 20vh;
+  }
   ul {
     display: flex;
     height: 50px;

@@ -6,6 +6,11 @@ import { convertToRaw } from "draft-js";
 import { Link } from "react-router-dom";
 import Loader from "../common/Loader";
 import { getPost, likePost, unlikePost } from "../../actions/postActions";
+import {
+  addFavorite,
+  getFavorites,
+  deleteFavorite
+} from "../../actions/favoriteActions";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import PostBody from "./PostBody";
 import Moment from "react-moment";
@@ -16,15 +21,18 @@ class Post extends Component {
   constructor() {
     super();
     this.state = {
-      isLiked: false
+      isLiked: false,
+      isFavorite: false
     };
   }
   componentDidMount() {
     this.props.getPost(this.props.match.params.id);
+    this.props.getFavorites();
   }
 
   componentWillReceiveProps(nextProps) {
     const { user } = this.props.auth;
+    const { post } = this.props.post;
     if (nextProps.post.post.likes) {
       const likes = nextProps.post.post.likes;
 
@@ -33,6 +41,46 @@ class Post extends Component {
           isLiked: true
         });
       }
+    }
+
+    if (nextProps.favorite.favorites) {
+      const favorites = nextProps.favorite.favorites;
+
+      if (
+        favorites.filter(favorite => favorite.user === user.id).length > 0 &&
+        favorites.filter(favorite => favorite.post === post._id)
+      ) {
+        console.log(true);
+        this.setState({
+          isFavorite: true
+        });
+      } else {
+        console.log(false);
+      }
+    }
+  }
+
+  favorite(postId) {
+    const { post } = this.props.post;
+    const { user } = this.props.auth;
+    const { favorites } = this.props.favorite;
+    console.log(post._id);
+
+    favorites.filter(favorite => console.log(favorite.post._id));
+
+    const favoriteData = {
+      postId: post._id
+    };
+    if (this.state.isFavorite) {
+      this.props.deleteFavorite(post._id);
+      this.setState({
+        isFavorite: false
+      });
+    } else {
+      this.props.addFavorite(favoriteData);
+      this.setState({
+        isFavorite: true
+      });
     }
   }
 
@@ -52,9 +100,9 @@ class Post extends Component {
 
   render() {
     const { user } = this.props.auth;
-    const { isLiked } = this.state.isLiked;
+    const { isLiked, isFavorite } = this.state;
+    const { favorites } = this.props.favorite;
     const { post, loading } = this.props.post;
-    console.log(post);
 
     let postContent;
 
@@ -76,6 +124,16 @@ class Post extends Component {
             <div className="container">
               <div className="ck-post-detail__title">
                 <h1>{post.title}</h1>
+                <div className="ck-post-detail__stats">
+                  <span>
+                    <i className="fas fa-comments" />
+                    {post.comments.length}
+                  </span>
+                  <span>
+                    <i className="fas fa-heart" />
+                    {post.likes.length}
+                  </span>
+                </div>
                 <div className="ck-post-detail__date">
                   <span>Posted: </span>
                   <Moment fromNow>{post.created_at}</Moment>
@@ -93,7 +151,9 @@ class Post extends Component {
                       alt={post.name}
                       className="ck-avatar"
                     />
-                    <h4>{post.name}</h4>
+                    <h4>
+                      <Link to={`/profile/${post.user}`}>{post.name}</Link>
+                    </h4>
                   </div>
                 </div>
               </div>
@@ -117,13 +177,36 @@ class Post extends Component {
                     </button>
                     <span>{post.likes.length}</span>
                     <div className="ck-post__socials">
-                      <i className="fab fa-twitter" />
-                      <FacebookShareButton
-                        url={`http://localhost:3000/post/${post._id}`}
+                      <TwitterShareButton
+                        url="www.google.be"
+                        title={post.title}
                       >
-                        <i className="fab fa-facebook-square" />
+                        <i
+                          className="fab fa-twitter"
+                          title="Share on twitter"
+                        />
+                      </TwitterShareButton>
+                      <FacebookShareButton
+                        url={`www.google.com`}
+                        title={post.title}
+                      >
+                        <i
+                          className="fab fa-facebook-square"
+                          title="Share on facebook"
+                        />
                       </FacebookShareButton>
-                      <i className="fab fa-twitter" />
+
+                      <button
+                        className="ck-favorite"
+                        onClick={this.favorite.bind(this, post._id)}
+                        title="Favorite"
+                      >
+                        <i
+                          className={
+                            isFavorite ? "fas fa-bookmark" : "far fa-bookmark"
+                          }
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -146,15 +229,25 @@ Post.propTypes = {
   post: PropTypes.object.isRequired,
   likePost: PropTypes.func.isRequired,
   unlikePost: PropTypes.func.isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  deleteFavorite: PropTypes.func.isRequired,
+  getFavorites: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  favorites: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  post: state.post
+  post: state.post,
+  favorite: state.favorite
 });
 
-export default connect(mapStateToProps, { getPost, likePost, unlikePost })(
-  Post
-);
+export default connect(mapStateToProps, {
+  getPost,
+  likePost,
+  unlikePost,
+  addFavorite,
+  getFavorites,
+  deleteFavorite
+})(Post);
