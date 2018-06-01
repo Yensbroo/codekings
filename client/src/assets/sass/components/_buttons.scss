@@ -101,3 +101,9 @@ button:focus {
   background: $ck-orange;
   border: 1px solid $ck-orange;
 }
+
+.ck-favorite,
+.ck-favorite:hover {
+  background: none;
+  border: none;
+}

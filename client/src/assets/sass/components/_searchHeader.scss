@@ -3,7 +3,17 @@
   height: 400px;
   width: 100%;
   background: $ck-orange;
+  background: $ck-orange;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom right, #FDB654, $ck-orange, #EB8800);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #FDB654, $ck-orange, #EB8800);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   .ck-feed__header-content {
-    padding-top: 60px;
+    padding-top: 90px;
+    h1,
+    p {
+      color: white;
+    }
   }
 }

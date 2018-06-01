@@ -20,13 +20,21 @@
   .ck-post-detail__title {
     height: 86px;
     color: white;
-    margin-top: 50px;
+    margin-top: 30px;
     position: absolute;
     top: 320px;
     h1 {
       overflow: hidden;
       margin-bottom: 5px;
       word-wrap: break-word;
+    }
+    .ck-post-detail__stats {
+      i {
+        margin-right: 5px;
+      }
+      .fa-heart {
+        margin-left: 10px;
+      }
     }
   }
   .ck-post-detail__date {
@@ -52,7 +60,6 @@
   }
   .ck-post-detail__body {
     background: white;
-    min-height: 100vh;
     width: 80%;
     .ck-post-detail__wrapper {
       width: 90%;
@@ -83,11 +90,19 @@
     .ck-post__socials {
       float: right;
       margin-top: 30px;
-      i {
+      display: flex;
+      .ck-favorite {
+        margin-top: -8px;
+      }
+      i,
+        {
         font-size: 30px;
         margin-right: 20px;
         color: $ck-orange;
         cursor: pointer;
+      }
+      .resp-sharing-button__icon--solid {
+        color: $ck-orange;
       }
     }
   }

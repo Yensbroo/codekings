@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import { deletePost } from "../../actions/postActions";
+import { deleteFavorite } from "../../actions/favoriteActions";
 import Popover from "@material-ui/core/Popover";
+import Tooltip from "@material-ui/core/Tooltip";
 
 class PostList extends Component {
   constructor() {
@@ -27,6 +29,7 @@ class PostList extends Component {
     });
   }
   delete(id) {
+    this.props.deleteFavorite(id);
     this.props.deletePost(id);
   }
   render() {
@@ -42,10 +45,14 @@ class PostList extends Component {
           <Moment fromNow>{post.created_at}</Moment>
         </p>
         <div className="ck-user__posts-actions">
-          <Link to={`/post/update/${post._id}`}>
-            <i className="fas fa-edit" />
-          </Link>
-          <i className="fas fa-trash" onClick={this.handleClick} />
+          <Tooltip title="Edit">
+            <Link to={`/post/update/${post._id}`}>
+              <i className="fas fa-edit" />
+            </Link>
+          </Tooltip>
+          <Tooltip title="Delete">
+            <i className="fas fa-trash" onClick={this.handleClick} />
+          </Tooltip>
           <Popover
             open={Boolean(isOpen)}
             anchorEl={isOpen}
@@ -76,10 +83,13 @@ class PostList extends Component {
 
 PostList.propTypes = {
   deletePost: PropTypes.func.isRequired,
-  post: PropTypes.array.isRequired
+  deleteFavorite: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth
 });
-export default connect(mapStateToProps, { deletePost })(PostList);
+export default connect(mapStateToProps, { deletePost, deleteFavorite })(
+  PostList
+);
