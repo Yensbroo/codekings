@@ -414,11 +414,9 @@ td .ck-action {
   height: 400px;
   width: 100%;
   background: #ff9f1c;
-  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom right, #FDB654, #ff9f1c, #EB8800);
-  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom right, #FDB654, #ff9f1c, #EB8800);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  border-bottom: 1px solid #e0e0e0; }
   .ck-feed__header .ck-feed__header-content {
     padding-top: 90px; }
     .ck-feed__header .ck-feed__header-content h1,
@@ -1000,6 +998,9 @@ footer {
 .ck-favorites__container h1 {
   text-align: center;
   margin-top: 150px; }
+
+.ck-feed {
+  margin-top: -40px; }
 
 .ck-404 {
   text-align: center; }

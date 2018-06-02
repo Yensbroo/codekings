@@ -76,14 +76,12 @@ class UpdatePost extends Component {
     if (nextProps.post.post) {
       const post = nextProps.post.post;
 
-      //const rawBody = convertToRaw(post.body);
-
       post.title = !isEmpty(post.title) ? post.title : "";
       post.category = !isEmpty(post.category) ? post.category : "";
 
       this.setState({
         title: post.title,
-        category: post.category,
+        category: post.category._id,
         body: post.body
       });
     }
@@ -94,7 +92,6 @@ class UpdatePost extends Component {
 
     const { user } = this.props.auth;
     const { title, body, postHeader, category } = this.state;
-    console.log(body);
     let formData = new FormData();
     const parsedBody = JSON.stringify(body);
     formData.append("title", title);
