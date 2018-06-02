@@ -1,5 +1,9 @@
 .ck-profile__header {
   background: $ck-orange;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom right, #FDB654, $ck-orange, #EB8800);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #FDB654, $ck-orange, #EB8800);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,9 +27,6 @@
       color: white;
       font-size: 30px;
       padding: 5px;
-    }
-    a:hover {
-      color: $ck-orange;
     }
   }
 }

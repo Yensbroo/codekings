@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import TextAreaGroup from "../common/TextAreaGroup";
 import InputGroup from "../common/InputGroup";
 import { changePassword } from "../../actions/authActions";
+import { deleteAccount } from "../../actions/profileActions";
+import { deleteAllFavorites } from "../../actions/favoriteActions";
 import Subnav from "../Navbar/SubNav";
+import Modal from "@material-ui/core/Modal";
 
 class UserSettings extends Component {
   constructor(props) {
@@ -18,11 +22,15 @@ class UserSettings extends Component {
       oldPassword: "",
       newPassword: "",
       newPassword2: "",
-      errors: {}
+      errors: {},
+      open: false
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +41,7 @@ class UserSettings extends Component {
       avatar: user.avatar
     });
   }
+
   onChange(e) {
     const state = this.state;
     switch (e.target.name) {
@@ -66,13 +75,6 @@ class UserSettings extends Component {
     e.preventDefault();
 
     const { user } = this.props.auth;
-    const { oldPassword, newPassword, newPassword2, avatarFile } = this.state;
-    // let formData = new FormData();
-
-    // formData.append("oldPassword", oldPassword);
-    // formData.append("newPassword", newPassword);
-    // formData.append("newPassword2", newPassword2);
-    //formData.append("postHeader", avatarFile);
 
     const userData = {
       oldPassword: this.state.oldPassword,
@@ -81,6 +83,23 @@ class UserSettings extends Component {
     };
 
     this.props.changePassword(userData);
+  }
+
+  openModal() {
+    this.setState({
+      open: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      open: false
+    });
+  }
+
+  delete() {
+    this.props.deleteAllFavorites();
+    this.props.deleteAccount(this.props.history);
   }
 
   render() {
@@ -143,6 +162,27 @@ class UserSettings extends Component {
                 </div>
               </form>
             </div>
+            <div className="ck-delete__account">
+              <button onClick={this.openModal}>Delete account</button>
+            </div>
+            <Modal
+              open={this.state.open}
+              onClose={this.closeModal}
+              onBackdropClick={this.closeModal}
+            >
+              <div className="ck-modal">
+                <div className="ck-modal__wrapper">
+                  <p>
+                    We are sad to see you go! <br /> Are you sure you want to
+                    delete your account?
+                  </p>
+                  <button onClick={this.delete} className="ck-delete__btn">
+                    Confirm
+                  </button>
+                  <button onClick={this.closeModal}>Cancel</button>
+                </div>
+              </div>
+            </Modal>
           </div>
         </div>
       </div>
@@ -152,6 +192,8 @@ class UserSettings extends Component {
 
 UserSettings.PropTypes = {
   changePassword: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
+  deleteAllFavorites: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -161,4 +203,8 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { changePassword })(UserSettings);
+export default connect(mapStateToProps, {
+  changePassword,
+  deleteAccount,
+  deleteAllFavorites
+})(withRouter(UserSettings));

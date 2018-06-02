@@ -12,6 +12,12 @@ import ProfileAbout from "./ProfileBio";
 import ProfilePosts from "./ProfilePosts";
 
 class Profile extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isProfile: false
+    };
+  }
   componentDidMount() {
     this.props.getProfileById(this.props.match.params.id);
     this.props.getProfilePosts(this.props.match.params.id);
@@ -21,7 +27,7 @@ class Profile extends Component {
     const { profile, loading } = this.props.profile;
     const { posts } = this.props.post;
     let profileContent;
-
+    console.log(this.state.isProfile);
     console.log(posts);
 
     if (profile === null || loading) {

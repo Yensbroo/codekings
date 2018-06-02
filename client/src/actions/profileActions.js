@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import setAuthToken from '../utils/setAuthToken';
 import {
   GET_PROFILE,
   PROFILE_LOADING,
@@ -78,21 +78,23 @@ export const createProfile = (profileData, history) => dispatch => {
     );
 };
 
-export const deleteAccount = () => dispatch => {
-  if (window.confirm("Are you sure? this can not be undone")) {
+export const deleteAccount = (history) => dispatch => {
     axios.delete("/api/v1/profile").then(res =>
-      dispatch({
-        type: SET_CURRENT_USER,
-        payload: {}
-      }).catch(err =>
+      {
+        history.push('/');
+        localStorage.removeItem('jwtToken');
+        setAuthToken(false);
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: {}
+        });}
+      ).catch(err =>
         dispatch({
           type: GET_ERRORS,
-          payload: {}
-        })
-      )
-    );
-  }
-};
+          payload: err.response.data
+        }))
+      };
+
 
 export const setProfileLoading = () => {
   return {

@@ -17,6 +17,7 @@
 @import './components/pagination';
 @import './components/popover';
 @import './components/searchHeader';
+@import './components/modal';
 // layout
 @import "./layout/header";
 @import "./layout/footer";
@@ -28,6 +29,7 @@
 @import './pages/postDetail';
 @import './pages/profile';
 @import './pages/posts';
+@import './pages/not-found';
 // Bootstrap
 html {
   box-sizing: border-box;

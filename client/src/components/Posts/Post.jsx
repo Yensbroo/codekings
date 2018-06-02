@@ -124,6 +124,7 @@ class Post extends Component {
             <div className="container">
               <div className="ck-post-detail__title">
                 <h1>{post.title}</h1>
+                <span class="ck-category">{post.category.name}</span>
                 <div className="ck-post-detail__stats">
                   <span>
                     <i className="fas fa-comments" />

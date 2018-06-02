@@ -31,8 +31,6 @@ exports.add_favorite = (req, res, next) => {
 }
 
 exports.remove_favorite = (req, res) => {
-  console.log(req.body);
-  console.log(res.body);
   Favorite.findOne({post: req.params.id, user: req.user.id})
           .then(favorite => {
             console.log(favorite)
@@ -50,5 +48,17 @@ exports.remove_favorite = (req, res) => {
               res.json({success: true})
             })
           })
+}
+
+exports.remove_all_favorites = (req, res) => {
+  Favorite.deleteMany({user: req.user.id})
+          .then(favorites => {
+            if(!favorites) {
+              return res.status(404).json({nofavorites: 'This user has no favorites'});
+            }
+
+            res.json({succes: true});
+          })
+          .catch(err => res.json(err));
 }
 

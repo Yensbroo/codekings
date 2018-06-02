@@ -414,7 +414,6 @@ td .ck-action {
   height: 400px;
   width: 100%;
   background: #ff9f1c;
-  background: #ff9f1c;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom right, #FDB654, #ff9f1c, #EB8800);
   /* Chrome 10-25, Safari 5.1-6 */
@@ -425,6 +424,38 @@ td .ck-action {
     .ck-feed__header .ck-feed__header-content h1,
     .ck-feed__header .ck-feed__header-content p {
       color: white; }
+
+.ck-modal {
+  background: white;
+  height: 300px;
+  width: 500px;
+  position: relative;
+  top: 30%;
+  left: 33%;
+  outline: 0;
+  border: 1px solid #e0e0e0; }
+  .ck-modal .ck-modal__wrapper {
+    width: 90%;
+    margin: auto;
+    text-align: center; }
+    .ck-modal .ck-modal__wrapper p {
+      margin-top: 80px;
+      margin-bottom: 40px; }
+    .ck-modal .ck-modal__wrapper button {
+      background: none;
+      border: 1px solid #ff9f1c;
+      color: #ff9f1c;
+      height: 40px; }
+    .ck-modal .ck-modal__wrapper .ck-delete__btn {
+      color: #e71d36;
+      border: 1px solid #e71d36;
+      margin-right: 10px; }
+    .ck-modal .ck-modal__wrapper button:hover {
+      background: #ff9f1c;
+      color: white; }
+    .ck-modal .ck-modal__wrapper .ck-delete__btn:hover {
+      color: white;
+      background: #e71d36; }
 
 header {
   width: 100%;
@@ -546,8 +577,6 @@ header {
         color: #ff9f1c; }
       .ck-subnav ul li a:hover {
         color: #ff9f1c; }
-      .ck-subnav ul li a:active {
-        color: #ff9f1c; }
     .ck-subnav ul li:last-child {
       border-right: 1px solid #e0e0e0; }
 
@@ -610,17 +639,21 @@ footer {
 
 .ck-dashboard {
   display: flex;
-  flex-direction: row; }
+  flex-direction: column; }
   @media (max-width: 550px) {
     .ck-dashboard {
       flex-direction: column; } }
+
+.edit-profile__container,
+.ck-delete__account {
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04); }
 
 .edit-profile__container {
   width: 100%;
   margin: auto;
   background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 0 5px 5px 0;
   margin-top: 60px; }
   .edit-profile__container .edit-profile__header,
   .edit-profile__container .edit-profile__submit {
@@ -644,6 +677,17 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
   .edit-profile__container form {
     margin-top: 40px; }
+
+.ck-delete__account {
+  width: 100%;
+  height: 50px;
+  background: white;
+  text-align: center;
+  margin-top: 20px; }
+  .ck-delete__account button {
+    color: #e71d36;
+    background: none;
+    border: none; }
 
 .ck-editor {
   background: white;
@@ -685,17 +729,27 @@ footer {
   .ck-post-detail__header .ck-post-detail__title {
     height: 86px;
     color: white;
-    margin-top: 30px;
+    margin-top: 10px;
     position: absolute;
     top: 320px; }
     .ck-post-detail__header .ck-post-detail__title h1 {
       overflow: hidden;
       margin-bottom: 5px;
       word-wrap: break-word; }
-    .ck-post-detail__header .ck-post-detail__title .ck-post-detail__stats i {
-      margin-right: 5px; }
-    .ck-post-detail__header .ck-post-detail__title .ck-post-detail__stats .fa-heart {
-      margin-left: 10px; }
+    .ck-post-detail__header .ck-post-detail__title .ck-category {
+      padding: 5px;
+      border-radius: 3px;
+      background: white;
+      color: #ff9f1c;
+      font-size: 12px;
+      margin-bottom: 5px;
+      font-weight: bold; }
+    .ck-post-detail__header .ck-post-detail__title .ck-post-detail__stats {
+      margin-top: 10px; }
+      .ck-post-detail__header .ck-post-detail__title .ck-post-detail__stats i {
+        margin-right: 5px; }
+      .ck-post-detail__header .ck-post-detail__title .ck-post-detail__stats .fa-heart {
+        margin-left: 10px; }
   .ck-post-detail__header .ck-post-detail__date {
     font-weight: lighter;
     font-size: 12px; }
@@ -835,6 +889,10 @@ footer {
 
 .ck-profile__header {
   background: #ff9f1c;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom right, #FDB654, #ff9f1c, #EB8800);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #FDB654, #ff9f1c, #EB8800);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -852,8 +910,6 @@ footer {
     color: white;
     font-size: 30px;
     padding: 5px; }
-  .ck-profile__header .ck-profile__socials a:hover {
-    color: #ff9f1c; }
 
 .ck-profile__bio-container,
 .ck-profile__skills,
@@ -920,13 +976,16 @@ footer {
 .ck-user__posts-container {
   background: white;
   margin-top: 150px;
-  padding: 20px; }
+  padding: 20px;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04); }
   .ck-user__posts-container .ck-user__posts-wrapper {
     width: 95%;
     margin: 20px auto; }
     .ck-user__posts-container .ck-user__posts-wrapper h3 {
       margin-top: 20px; }
-    .ck-user__posts-container .ck-user__posts-wrapper .ck-user__posts a {
+    .ck-user__posts-container .ck-user__posts-wrapper a {
       color: #ff9f1c; }
     .ck-user__posts-container .ck-user__posts-wrapper .ck-user__posts .ck-user__posts-actions {
       float: right;
@@ -937,6 +996,20 @@ footer {
         color: #ff9f1c;
         font-size: 18px;
         cursor: pointer; }
+
+.ck-favorites__container h1 {
+  text-align: center;
+  margin-top: 150px; }
+
+.ck-404 {
+  text-align: center; }
+  .ck-404 h1 {
+    font-size: 200px;
+    margin-bottom: 40px; }
+    .ck-404 h1 span {
+      color: #ff9f1c; }
+  .ck-404 h3 {
+    font-size: 25px; }
 
 html {
   box-sizing: border-box;

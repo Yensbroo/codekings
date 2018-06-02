@@ -116,6 +116,7 @@ router.get('/categories', categoryController.get_categories);
  */
 router.get('/favorites', passport.authenticate('jwt', {session: false}), favoriteController.get_favorites);
 router.post('/favorites', passport.authenticate('jwt', {session: false}), favoriteController.add_favorite);
+router.delete('/favorites', passport.authenticate('jwt', {session: false}), favoriteController.remove_all_favorites);
 router.delete('/favorites/:id', passport.authenticate('jwt', {session: false}), favoriteController.remove_favorite);
 
 

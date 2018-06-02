@@ -1,17 +1,22 @@
 .ck-dashboard {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   @media (max-width: 550px) {
     flex-direction: column;
   }
+}
+
+.edit-profile__container,
+.ck-delete__account {
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
 }
 
 .edit-profile__container {
   width: 100%;
   margin: auto;
   background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 0 5px 5px 0;
   margin-top: 60px;
   .edit-profile__header,
   .edit-profile__submit {
@@ -42,5 +47,18 @@
   }
   form {
     margin-top: 40px;
+  }
+}
+
+.ck-delete__account {
+  width: 100%;
+  height: 50px;
+  background: white;
+  text-align: center;
+  margin-top: 20px;
+  button {
+    color: $ck-errors;
+    background: none;
+    border: none;
   }
 }

@@ -2,16 +2,19 @@
   background: white;
   margin-top: 150px;
   padding: 20px;
+  border-radius: 3px;
+  border: 1px solid $ck-border;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
   .ck-user__posts-wrapper {
     width: 95%;
     margin: 20px auto;
     h3 {
       margin-top: 20px;
     }
+    a {
+      color: $ck-orange;
+    }
     .ck-user__posts {
-      a {
-        color: $ck-orange;
-      }
       .ck-user__posts-actions {
         float: right;
         position: relative;
@@ -24,5 +27,12 @@
         }
       }
     }
+  }
+}
+
+.ck-favorites__container {
+  h1 {
+    text-align: center;
+    margin-top: 150px;
   }
 }

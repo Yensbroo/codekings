@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
@@ -23,7 +23,7 @@ class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
     this.props.clearCurrentProfile();
-    this.props.logoutUser();
+    this.props.logoutUser(this.props.history);
   }
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -37,19 +37,24 @@ class Navbar extends Component {
           <div className="ck-header__dropdown-content">
             <ul>
               <li>
-                <Link to="/user/settings">{user.name}</Link>
+                <NavLink activeClassName="selected" to="/user/settings">
+                  {user.name}
+                </NavLink>
               </li>
               <li>
-                <Link to="/favorites">Favorites</Link>
+                <NavLink activeClassName="selected" to="/create-tutorial">
+                  Create a tutorial
+                </NavLink>
               </li>
               <li>
-                <Link
-                  to=""
-                  onClick={this.onLogoutClick.bind(this)}
-                  className="logout"
-                >
+                <NavLink activeClassName="selected" to="/favorites">
+                  Favorites
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="" onClick={this.onLogoutClick.bind(this)}>
                   Log out
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -76,9 +81,6 @@ class Navbar extends Component {
                 alt=""
               />
             </Link>
-            <Link to="/create-tutorial" className="ck-tutorial">
-              Create a tutorial
-            </Link>
           </div>
           {isAuthenticated ? authLinks : guestLinks}
         </div>
@@ -103,4 +105,4 @@ export default connect(mapStateToProps, {
   logoutUser,
   clearCurrentProfile,
   getCurrentProfile
-})(Navbar);
+})(withRouter(Navbar));

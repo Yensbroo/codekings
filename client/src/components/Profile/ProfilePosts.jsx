@@ -20,7 +20,7 @@ class ProfilePosts extends Component {
 }
 
 ProfilePosts.propTypes = {
-  posts: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
   auth: PropTypes.object.isRequired
 };
 

@@ -15,7 +15,11 @@ class UserFavorites extends Component {
     let favoritesContent;
 
     if (Object.keys(favorites).length === 0) {
-      favoritesContent = <h1>You have no favorites yet</h1>;
+      favoritesContent = (
+        <div className="container">
+          <h1>You have no favorites yet</h1>
+        </div>
+      );
     } else {
       favoritesContent = <FavoriteFeed favorites={favorites} />;
     }

@@ -20,7 +20,7 @@
   .ck-post-detail__title {
     height: 86px;
     color: white;
-    margin-top: 30px;
+    margin-top: 10px;
     position: absolute;
     top: 320px;
     h1 {
@@ -28,7 +28,17 @@
       margin-bottom: 5px;
       word-wrap: break-word;
     }
+    .ck-category {
+      padding: 5px;
+      border-radius: 3px;
+      background: white;
+      color: $ck-orange;
+      font-size: 12px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
     .ck-post-detail__stats {
+      margin-top: 10px;
       i {
         margin-right: 5px;
       }

@@ -8,12 +8,7 @@ class PostTable extends Component {
     const postsList = posts.map(post => {
       return <PostList key={post._id} post={post} />;
     });
-    return (
-      <div className="ck-user__posts-wrapper">
-        <h3>Your tutorials</h3>
-        {postsList}
-      </div>
-    );
+    return <div>{postsList}</div>;
   }
 }
 
