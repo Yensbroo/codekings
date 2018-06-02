@@ -23,7 +23,6 @@ class setAvatar extends Component {
 
   componentDidMount() {
     const { user } = this.props.auth;
-    console.log(user);
     this.setState({
       avatar: `/uploads/${user.avatar}`
     });

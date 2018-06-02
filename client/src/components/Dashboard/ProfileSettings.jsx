@@ -12,7 +12,6 @@ class ProfileSettings extends Component {
   }
   render() {
     const { profile } = this.props.profile;
-    console.log(profile);
 
     let profileSettings;
 

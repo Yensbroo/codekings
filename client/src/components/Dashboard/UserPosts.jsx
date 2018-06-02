@@ -12,7 +12,6 @@ class UserPosts extends Component {
   }
   render() {
     const { posts } = this.props.post;
-    console.log(posts);
     let userpostsContent;
 
     if (Object.keys(posts).length === 0) {

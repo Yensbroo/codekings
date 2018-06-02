@@ -47,7 +47,6 @@ class CommentForm extends Component {
   render() {
     const { user } = this.props.auth;
     const { errors } = this.state;
-    console.log(errors);
     return (
       <div className="ck-comment">
         <div className="ck-comment__wrapper">

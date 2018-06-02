@@ -26,7 +26,7 @@ exports.user_create = (req, res, next) => {
           newUser.password = hash;
           newUser.save()
             .then(user => res.json(user))
-            .catch(err => console.log(err));
+            .catch(err => res.json(err));
         })    
       })
     }
@@ -76,7 +76,7 @@ exports.user_login = (req, res, next) => {
 };
 
 exports.facebook_login = (req, res, next) => {
-  //console.log(res);
+ 
   passport.authenticate('facebook-token', {session: false}, function(err, user, info){
 
     if(err) {return next(err);}

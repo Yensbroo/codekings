@@ -33,7 +33,6 @@ exports.add_favorite = (req, res, next) => {
 exports.remove_favorite = (req, res) => {
   Favorite.findOne({post: req.params.id, user: req.user.id})
           .then(favorite => {
-            console.log(favorite)
             if(!favorite) {
               return res
             .status(404)

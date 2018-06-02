@@ -42,31 +42,13 @@ class Post extends Component {
         });
       }
     }
-
-    if (nextProps.favorite.favorites) {
-      const favorites = nextProps.favorite.favorites;
-
-      if (
-        favorites.filter(favorite => favorite.user === user.id).length > 0 &&
-        favorites.filter(favorite => favorite.post === post._id)
-      ) {
-        console.log(true);
-        this.setState({
-          isFavorite: true
-        });
-      } else {
-        console.log(false);
-      }
-    }
   }
 
   favorite(postId) {
     const { post } = this.props.post;
     const { user } = this.props.auth;
     const { favorites } = this.props.favorite;
-    console.log(post._id);
 
-    favorites.filter(favorite => console.log(favorite.post._id));
 
     const favoriteData = {
       postId: post._id

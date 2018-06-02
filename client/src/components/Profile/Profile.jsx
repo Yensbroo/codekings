@@ -27,8 +27,6 @@ class Profile extends Component {
     const { profile, loading } = this.props.profile;
     const { posts } = this.props.post;
     let profileContent;
-    console.log(this.state.isProfile);
-    console.log(posts);
 
     if (profile === null || loading) {
       profileContent = <Loader />;

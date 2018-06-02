@@ -35,7 +35,6 @@ class UserSettings extends Component {
 
   componentDidMount() {
     const { user } = this.props.auth;
-    console.log(user);
     this.setState({
       email: user.email,
       avatar: user.avatar

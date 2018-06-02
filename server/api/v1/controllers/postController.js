@@ -67,7 +67,6 @@ exports.create_post = (req, res, next) => {
     user: req.user.id,
   });
 
-  console.log(newPost);
   newPost.save((err, post) => {
     if(err) return errorHandler.handleAPIError(500, 'Could not save the new post', next);
     Post.findOneAndUpdate({

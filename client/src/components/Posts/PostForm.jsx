@@ -72,7 +72,6 @@ class PostForm extends Component {
 
     const { user } = this.props.auth;
     const { title, body, postHeader, category } = this.state;
-    console.log(body);
     let formData = new FormData();
     const parsedBody = JSON.stringify(body);
     formData.append("title", title);

@@ -11,7 +11,6 @@ class UserFavorites extends Component {
   }
   render() {
     const { favorites } = this.props.favorite;
-    console.log(favorites);
     let favoritesContent;
 
     if (Object.keys(favorites).length === 0) {
