@@ -31,8 +31,10 @@ class Posts extends Component {
             </div>
           </div>
         </div>
-        <div className="container">
-          <PostFeed />
+        <div className="ck-feed">
+          <div className="container">
+            <PostFeed />
+          </div>
         </div>
         <button className="ck-top" onClick={this.scrollToTop.bind(this)}>
           <i className="fas fa-chevron-up" />

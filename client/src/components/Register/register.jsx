@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
-
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-import { addFlashMessage } from "../../actions/flashMessages";
 import TextFieldGroup from "../common/TextFieldGroup";
 
 class SignUp extends Component {
@@ -47,10 +45,6 @@ class SignUp extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    this.props.addFlashMessage({
-      type: "success",
-      text: "You signed up successfully, welcome!"
-    });
     this.props.registerUser(newUser, this.props.history);
   }
 
@@ -119,7 +113,6 @@ class SignUp extends Component {
 
 SignUp.PropTypes = {
   registerUser: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -129,6 +122,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser, addFlashMessage })(
-  withRouter(SignUp)
-);
+export default connect(mapStateToProps, { registerUser })(withRouter(SignUp));
