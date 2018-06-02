@@ -69,7 +69,7 @@ export const getProfileById = id => dispatch => {
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post("/api/v1/profile", profileData)
-    .then(res => history.push("/"))
+    .then(res => history.push(`/profile/${res.data._id}`))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

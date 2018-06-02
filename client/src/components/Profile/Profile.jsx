@@ -23,11 +23,28 @@ class Profile extends Component {
     this.props.getProfilePosts(this.props.match.params.id);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
+
+      if (nextProps.profile.profile !== null) {
+        this.setState({
+          isProfile: true
+        });
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.profile.profile === null && !this.props.profile.loading) {
+      this.props.history.push("/not-found");
+    }
+  }
+
   render() {
     const { profile, loading } = this.props.profile;
     const { posts } = this.props.post;
     let profileContent;
-
     if (profile === null || loading) {
       profileContent = <Loader />;
     } else {
