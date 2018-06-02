@@ -557,7 +557,7 @@ header {
   border-bottom: 1px solid #e0e0e0;
   top: 65px; }
   .ck-subnav .container {
-    min-height: 20vh; }
+    min-height: 0vh; }
   .ck-subnav ul {
     display: flex;
     height: 50px;
