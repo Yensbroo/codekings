@@ -101,6 +101,9 @@ button:focus {
   background: none;
   border: none; }
 
+.SocialMediaShareButton:focus {
+  outline: 0; }
+
 .spinner {
   display: flex;
   justify-content: center;
@@ -1190,7 +1193,7 @@ body {
 
 .container {
   margin-top: 80px;
-  min-height: 70vh; }
+  min-height: 90vh; }
 
 a {
   text-decoration: none; }

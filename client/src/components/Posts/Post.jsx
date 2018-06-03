@@ -67,22 +67,6 @@ class Post extends Component {
           isFavorite: true
         });
       }
-
-      // if (favorites.post.id === this.props.match.params.id) {
-      //   console.log(true);
-      // }
-      // favorites.filter(favorite => {
-      //   console.log(favorite.post.id);
-      //   if (
-      //     favorite.post.id === this.props.match.params.id //&&
-      //     //favorite.user === user.id
-      //   ) {
-      //     console.log(favorite);
-      //     // this.setState({
-      //     //   isFavorite: true
-      //     // });
-      //   }
-      // });
     }
   }
 
@@ -203,7 +187,7 @@ class Post extends Component {
                     <span>{post.likes.length}</span>
                     <div className="ck-post__socials">
                       <TwitterShareButton
-                        url="www.google.be"
+                        url={`https://codekings.herokuapp.com/post/${post._id}`}
                         title={post.title}
                       >
                         <i
@@ -212,7 +196,7 @@ class Post extends Component {
                         />
                       </TwitterShareButton>
                       <FacebookShareButton
-                        url={`www.google.com`}
+                        url={`https://codekings.herokuapp.com/post/${post._id}`}
                         quote={post.title}
                       >
                         <i
