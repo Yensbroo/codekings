@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const mongoose = require("mongoose");
-const auth = require('../../config/passport')();
+const auth = require('../../../config/passport')();
 const multer = require('multer');
 const upload = require('./utilities/multerMiddleware');
 

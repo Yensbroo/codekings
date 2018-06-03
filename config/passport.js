@@ -8,7 +8,7 @@ const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const FBTokenStrategy = require('passport-facebook-token');
 const mongoose = require("mongoose");
-const User = require("../api/v1/models/User");
+const User = require("../server/api/v1/models/User");
 const keys = require("../config/keys");
 
 const opts = {};

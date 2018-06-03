@@ -41,7 +41,6 @@ class Post extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { user } = this.props.auth;
-    const { post } = this.props.post;
     if (nextProps.post.post.likes) {
       const likes = nextProps.post.post.likes;
 

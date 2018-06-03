@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const acl = require('acl');
 const bodyParser = require("body-parser");
-const auth = require('./server/config/passport')();
+const auth = require('./config/passport')();
 const multer = require('multer');
 const path = require('path');
 
@@ -27,7 +27,7 @@ var corsOption = {
 app.use(cors(corsOption));
 
 //DB config
-const db = require("./server/config/keys").mongoURI;
+const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose.connect(db)
