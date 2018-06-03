@@ -23,10 +23,15 @@
     margin-top: 10px;
     position: absolute;
     top: 320px;
+    @media (max-width: 567px) {
+      max-width: 350px;
+    }
     h1 {
+      white-space: nowrap;
+      display: block;
       overflow: hidden;
       margin-bottom: 5px;
-      word-wrap: break-word;
+      text-overflow: ellipsis;
     }
     .ck-category {
       padding: 5px;
@@ -90,9 +95,14 @@
     margin-left: 30px;
     width: 20%;
     height: 20%;
+    text-align: center;
     .ck-avatar {
       width: 100px;
       margin-top: 16px;
+    }
+    a {
+      font-weight: bold;
+      color: $ck-orange;
     }
   }
   .ck-post__actions {

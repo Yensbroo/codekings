@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
 import CreateProfile from "./CreateProfile";
@@ -33,4 +33,6 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(ProfileSettings);
+export default connect(mapStateToProps, { getCurrentProfile })(
+  withRouter(ProfileSettings)
+);

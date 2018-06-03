@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import TextFieldGroup from "../common/TextFieldGroup";
-import SelectListGroup from "../common/SelectListGroup";
-import TextAreaGroup from "../common/TextAreaGroup";
-import InputGroup from "../common/InputGroup";
+import { withRouter } from "react-router-dom";
 import { changeAvatar } from "../../actions/authActions";
 import Subnav from "../Navbar/SubNav";
 
@@ -31,18 +28,16 @@ class setAvatar extends Component {
     const state = this.state;
     switch (e.target.name) {
       case "postHeader":
-        {
-          if (e.target.files && e.target.files[0]) {
-            let reader = new FileReader();
-            reader.onload = event => {
-              this.setState({
-                avatar: event.target.result
-              });
-            };
-            reader.readAsDataURL(e.target.files[0]);
-          }
-          state.avatarFile = e.target.files[0];
+        if (e.target.files && e.target.files[0]) {
+          let reader = new FileReader();
+          reader.onload = event => {
+            this.setState({
+              avatar: event.target.result
+            });
+          };
+          reader.readAsDataURL(e.target.files[0]);
         }
+        state.avatarFile = e.target.files[0];
         break;
       default:
         state[e.target.name] = e.target.value;
@@ -59,7 +54,6 @@ class setAvatar extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const { user } = this.props.auth;
     const { avatarFile } = this.state;
     let formData = new FormData();
 
@@ -69,8 +63,6 @@ class setAvatar extends Component {
   }
 
   render() {
-    const { user } = this.props.auth;
-    const { errors } = this.state;
     return (
       <div>
         <Subnav />
@@ -84,7 +76,7 @@ class setAvatar extends Component {
                 <div className="edit-profile__wrapper">
                   <div className="edit-profile__form">
                     <div className="edit-profile__avatar">
-                      <img src={this.state.avatar} />
+                      <img src={this.state.avatar} alt="" />
                       <input
                         type="file"
                         name="postHeader"
@@ -119,4 +111,6 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { changeAvatar })(setAvatar);
+export default connect(mapStateToProps, { changeAvatar })(
+  withRouter(setAvatar)
+);

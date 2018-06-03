@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getFavorites } from "../../actions/favoriteActions";
-import { Divider } from "@material-ui/core";
 import FavoriteFeed from "./FavoriteFeed";
 
 class UserFavorites extends Component {
@@ -12,6 +11,7 @@ class UserFavorites extends Component {
   render() {
     const { favorites } = this.props.favorite;
     let favoritesContent;
+    console.log(favorites);
 
     if (Object.keys(favorites).length === 0) {
       favoritesContent = (

@@ -4,8 +4,13 @@
     font-size: 200px;
     margin-bottom: 40px;
     span {
-      color: $ck-orange;
+      margin-top: 10px;
+      font-family: 'Raleway', sans-serif;
     }
+  }
+  span,
+  a {
+    color: $ck-orange;
   }
   h3 {
     font-size: 25px;

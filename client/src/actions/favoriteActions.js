@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { GET_FAVORITES, ADD_FAVORITE, DELETE_FAVORITE, GET_ERRORS } from './types';
+import { GET_FAVORITES, ADD_FAVORITE, DELETE_FAVORITE, GET_ERRORS, FAVORITES_LOADING } from './types';
 
 export const getFavorites = () => dispatch => {
+  dispatch(setFavoritesLoading());
   axios
     .get('/api/v1/favorites')
     .then(res => 
@@ -42,11 +43,12 @@ export const deleteFavorite = (postId) => dispatch => {
   axios
     .delete(`/api/v1/favorites/${postId}`)
     .then(res =>
-     
-      dispatch({
+      {
+        console.log(res);
+        dispatch({
         type: DELETE_FAVORITE,
-        payload: res.data.id
-      })
+        payload: res.data._id
+      })}
     )
     .catch(err => 
       dispatch({
@@ -71,3 +73,9 @@ export const deleteAllFavorites = () => dispatch => {
         })
       )
 }
+
+export const setFavoritesLoading = () => {
+  return {
+    type: FAVORITES_LOADING
+  };
+};

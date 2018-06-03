@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getCategories } from "../../actions/categoryActions";
 
 class CategoriesList extends Component {
   render() {

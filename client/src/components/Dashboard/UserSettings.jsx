@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
-import SelectListGroup from "../common/SelectListGroup";
-import TextAreaGroup from "../common/TextAreaGroup";
-import InputGroup from "../common/InputGroup";
 import { changePassword } from "../../actions/authActions";
 import { deleteAccount } from "../../actions/profileActions";
 import { deleteAllFavorites } from "../../actions/favoriteActions";
@@ -16,8 +13,6 @@ class UserSettings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      avatar: "",
-      avatarFile: "",
       email: "",
       oldPassword: "",
       newPassword: "",
@@ -36,32 +31,12 @@ class UserSettings extends Component {
   componentDidMount() {
     const { user } = this.props.auth;
     this.setState({
-      email: user.email,
-      avatar: user.avatar
+      email: user.email
     });
   }
 
   onChange(e) {
-    const state = this.state;
-    switch (e.target.name) {
-      case "postHeader":
-        {
-          if (e.target.files && e.target.files[0]) {
-            let reader = new FileReader();
-            reader.onload = event => {
-              this.setState({
-                avatar: event.target.result
-              });
-            };
-            reader.readAsDataURL(e.target.files[0]);
-          }
-          state.avatarFile = e.target.files[0];
-        }
-        break;
-      default:
-        state[e.target.name] = e.target.value;
-    }
-    this.setState(state);
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -72,8 +47,6 @@ class UserSettings extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
-    const { user } = this.props.auth;
 
     const userData = {
       oldPassword: this.state.oldPassword,
@@ -102,7 +75,6 @@ class UserSettings extends Component {
   }
 
   render() {
-    const { user } = this.props.auth;
     const { errors } = this.state;
     return (
       <div>
@@ -189,7 +161,7 @@ class UserSettings extends Component {
   }
 }
 
-UserSettings.PropTypes = {
+UserSettings.propTypes = {
   changePassword: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   deleteAllFavorites: PropTypes.func.isRequired,

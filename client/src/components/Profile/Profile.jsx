@@ -1,44 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import ProfileHeader from "./ProfileHeader";
 import ProfileGithub from "./ProfileGithub";
 import ProfileBio from "./ProfileBio";
 import Loader from "../common/Loader";
 import { getProfileById } from "../../actions/profileActions";
 import { getProfilePosts } from "../../actions/postActions";
-import ProfileAbout from "./ProfileBio";
 import ProfilePosts from "./ProfilePosts";
 
 class Profile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isProfile: false
-    };
-  }
   componentDidMount() {
-    this.props.getProfileById(this.props.match.params.id);
+    this.props.getProfileById(this.props.match.params.id, this.props.history);
     this.props.getProfilePosts(this.props.match.params.id);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile;
-
-      if (nextProps.profile.profile !== null) {
-        this.setState({
-          isProfile: true
-        });
-      }
-    }
-  }
-
-  componentDidUpdate() {
-    if (this.props.profile.profile === null && !this.props.profile.loading) {
-      this.props.history.push("/not-found");
-    }
   }
 
   render() {
@@ -52,7 +27,7 @@ class Profile extends Component {
         <div>
           <ProfileHeader profile={profile} />
           <div className="container">
-            <ProfileAbout profile={profile} />
+            <ProfileBio profile={profile} />
             <ProfilePosts posts={posts} name={profile.user.name} />
             {profile.githubUsername ? (
               <div className="ck-github__container">
@@ -80,5 +55,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { getProfileById, getProfilePosts })(
-  Profile
+  withRouter(Profile)
 );

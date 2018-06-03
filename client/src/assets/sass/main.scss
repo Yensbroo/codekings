@@ -38,6 +38,8 @@ html {
 
 body {
   background: #f0f2ef;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {

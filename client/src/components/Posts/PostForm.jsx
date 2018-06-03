@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { EditorState, convertFromRaw, ContentState } from "draft-js";
+import { convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import TextFieldGroup from "../common/TextFieldGroup";
 import { addPost } from "../../actions/postActions";
 import { getCategories } from "../../actions/categoryActions";
 import CategoriesList from "../common/CategoriesList";
-import qs from "qs";
 
 const content = {
   entityMap: {},
@@ -55,6 +54,7 @@ class PostForm extends Component {
         break;
       case "categories":
         state.category = e.target.value;
+        break;
       default:
         state[e.target.name] = e.target.value;
     }
@@ -70,7 +70,6 @@ class PostForm extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const { user } = this.props.auth;
     const { title, body, postHeader, category } = this.state;
     let formData = new FormData();
     const parsedBody = JSON.stringify(body);
@@ -90,7 +89,7 @@ class PostForm extends Component {
   }
 
   render() {
-    const { errors, body } = this.state;
+    const { errors } = this.state;
     const { categories } = this.props.category;
     return (
       <div className="container">

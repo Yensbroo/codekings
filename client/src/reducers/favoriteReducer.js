@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
     case DELETE_FAVORITE:
       return {
         ...state,
-        favorites: state.favorites.filter(favorite => favorite.post._id !== action.payload)
+        favorites: state.favorites.filter(favorite => favorite._id !== action.payload)
       }
     default:
       return state;

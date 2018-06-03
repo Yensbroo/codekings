@@ -11,8 +11,8 @@ const PostCard = ({ hit }) => {
       <div className="ck-post__card">
         <div className="ck-post__image">
           <Link to={`/post/${hit.objectID}`}>
-            <div className="overlay" />
             <img src={`/uploads/${hit.image}`} alt="test" />
+            <div className="overlay" />
           </Link>
         </div>
         <div className="ck-post__info">
@@ -24,6 +24,17 @@ const PostCard = ({ hit }) => {
             <br />
             <span className="ck-date">
               <Moment fromNow>{hit.created_at}</Moment>
+            </span>
+          </div>
+          <hr />
+          <div className="ck-post__stats">
+            <span>
+              <i className="fas fa-comment" />
+              {hit.comments.length}
+            </span>
+            <span>
+              <i className="fas fa-heart" />
+              {hit.likes.length}
             </span>
           </div>
         </div>

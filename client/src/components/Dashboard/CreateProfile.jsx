@@ -3,12 +3,10 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
-import SelectListGroup from "../common/SelectListGroup";
 import TextAreaGroup from "../common/TextAreaGroup";
 import InputGroup from "../common/InputGroup";
 import { createProfile } from "../../actions/profileActions";
 import { getCurrentProfile } from "../../actions/profileActions";
-import isEmpty from "../../validation/is-empty";
 import Subnav from "../Navbar/SubNav";
 
 class CreateProfile extends Component {

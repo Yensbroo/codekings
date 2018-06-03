@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import classnames from "classnames";
-import { convertToRaw } from "draft-js";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Loader from "../common/Loader";
 import { getPost, likePost, unlikePost } from "../../actions/postActions";
 import {
@@ -28,6 +26,17 @@ class Post extends Component {
   componentDidMount() {
     this.props.getPost(this.props.match.params.id);
     this.props.getFavorites();
+    // const { user } = this.props.auth;
+    // const { favorites } = this.props.favorite;
+    // if (
+    //   favorites.filter(favorite => favorite.user === user.id).length > 0 &&
+    //   favorites.filter(favorite => favorite.post === this.props.match.params.id)
+    //     .length > 0
+    // ) {
+    //   this.setState({
+    //     isFavorite: true
+    //   });
+    // }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,13 +51,44 @@ class Post extends Component {
         });
       }
     }
+    //console.log(this.props.match.params.id);
+    if (nextProps.favorite.favorites) {
+      const favorites = nextProps.favorite.favorites;
+      //console.log(favorites);
+
+      const favoritePost = favorites.filter(favorite => {
+        return (
+          favorite.user === user.id &&
+          favorite.post._id === this.props.match.params.id
+        );
+      });
+      console.log(favoritePost);
+      if (Object.keys(favoritePost).length > 0) {
+        this.setState({
+          isFavorite: true
+        });
+      }
+
+      // if (favorites.post.id === this.props.match.params.id) {
+      //   console.log(true);
+      // }
+      // favorites.filter(favorite => {
+      //   console.log(favorite.post.id);
+      //   if (
+      //     favorite.post.id === this.props.match.params.id //&&
+      //     //favorite.user === user.id
+      //   ) {
+      //     console.log(favorite);
+      //     // this.setState({
+      //     //   isFavorite: true
+      //     // });
+      //   }
+      // });
+    }
   }
 
   favorite(postId) {
     const { post } = this.props.post;
-    const { user } = this.props.auth;
-    const { favorites } = this.props.favorite;
-
 
     const favoriteData = {
       postId: post._id
@@ -81,10 +121,10 @@ class Post extends Component {
   }
 
   render() {
-    const { user } = this.props.auth;
     const { isLiked, isFavorite } = this.state;
-    const { favorites } = this.props.favorite;
     const { post, loading } = this.props.post;
+
+    console.log(isFavorite);
 
     let postContent;
 
@@ -99,6 +139,7 @@ class Post extends Component {
                 <img
                   src={`/uploads/${post.image}`}
                   className="ck-post__image"
+                  alt=""
                 />
               </figure>
             )}
@@ -106,7 +147,10 @@ class Post extends Component {
             <div className="container">
               <div className="ck-post-detail__title">
                 <h1>{post.title}</h1>
-                <span class="ck-category">{post.category.name}</span>
+                {!post.category ? null : (
+                  <span className="ck-category">{post.category.name}</span>
+                )}
+
                 <div className="ck-post-detail__stats">
                   <span>
                     <i className="fas fa-comments" />
@@ -130,7 +174,7 @@ class Post extends Component {
                 <div className="ck-post-detail__user-wrapper">
                   <div className="ck-post-detail__user-info">
                     <img
-                      src={`/uploads/${user.avatar}`}
+                      src={`/uploads/${post.avatar}`}
                       alt={post.name}
                       className="ck-avatar"
                     />
@@ -151,8 +195,7 @@ class Post extends Component {
                     </h3>
                     <button
                       className={
-                        "ck-like " +
-                        (!this.state.isLiked ? "ck-isNotLiked" : "ck-isLiked")
+                        "ck-like " + (!isLiked ? "ck-isNotLiked" : "ck-isLiked")
                       }
                       onClick={this.like.bind(this, post._id)}
                     >
@@ -171,7 +214,7 @@ class Post extends Component {
                       </TwitterShareButton>
                       <FacebookShareButton
                         url={`www.google.com`}
-                        title={post.title}
+                        quote={post.title}
                       >
                         <i
                           className="fab fa-facebook-square"
@@ -217,7 +260,7 @@ Post.propTypes = {
   getFavorites: PropTypes.func.isRequired,
   getPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  favorites: PropTypes.object.isRequired
+  favorite: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -233,4 +276,4 @@ export default connect(mapStateToProps, {
   addFavorite,
   getFavorites,
   deleteFavorite
-})(Post);
+})(withRouter(Post));

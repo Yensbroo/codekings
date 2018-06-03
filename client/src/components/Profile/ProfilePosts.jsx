@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import PostCard from "../common/PostCard";
-import { getPosts } from "../../actions/postActions";
 
 class ProfilePosts extends Component {
   render() {
-    const { posts, auth, name } = this.props;
+    const { posts, name } = this.props;
     const postsList = posts.map(post => {
       return <PostCard key={post._id} post={post} />;
     });

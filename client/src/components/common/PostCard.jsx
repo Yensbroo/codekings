@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import Moment from "react-moment";
 
 class PostCard extends Component {
   render() {
@@ -11,16 +11,6 @@ class PostCard extends Component {
       <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
         <div className="ck-post__card">
           <div className="ck-post__image">
-            <div className="ck-post__actions">
-              <div className="ck-post__favorite">
-                <i className="far fa-heart" />
-              </div>
-              <div className="ck-post__likes">
-                <i className="fas fa-thumbs-up" />
-                <span>{post.likes.length}</span>
-                <i className="fas fa-thumbs-down" />
-              </div>
-            </div>
             <Link to={`/post/${post._id}`}>
               <img src={`/uploads/${post.image}`} alt="test" />
             </Link>
@@ -30,7 +20,22 @@ class PostCard extends Component {
               <Link to={`/post/${post._id}`}>{post.title}</Link>
             </div>
             <div className="ck-post__author">
-              <span>{post.name}</span>
+              <Link to={`/profile/${post.user}`}>{post.name}</Link>
+              <br />
+              <span className="ck-date">
+                <Moment fromNow>{post.created_at}</Moment>
+              </span>
+            </div>
+            <hr />
+            <div className="ck-post__stats">
+              <span>
+                <i className="fas fa-comment" />
+                {post.comments.length}
+              </span>
+              <span>
+                <i className="fas fa-heart" />
+                {post.likes.length}
+              </span>
             </div>
           </div>
         </div>

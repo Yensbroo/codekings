@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import Moment from "react-moment";
 
 class FavoriteCard extends Component {
   render() {
@@ -13,6 +13,7 @@ class FavoriteCard extends Component {
           <div className="ck-post__image">
             <Link to={`/post/${favorite.post._id}`}>
               <img src={`/uploads/${favorite.post.image}`} alt="test" />
+              <div className="overlay" />
             </Link>
           </div>
           <div className="ck-post__info">
@@ -22,7 +23,24 @@ class FavoriteCard extends Component {
               </Link>
             </div>
             <div className="ck-post__author">
-              <span>{favorite.post.name}</span>
+              <Link to={`/profile/${favorite.post.user}`}>
+                {favorite.post.name}
+              </Link>
+              <br />
+              <span className="ck-date">
+                <Moment fromNow>{favorite.post.created_at}</Moment>
+              </span>
+            </div>
+            <hr />
+            <div className="ck-post__stats">
+              <span>
+                <i className="fas fa-comment" />
+                {favorite.post.comments ? favorite.post.comments.length : 0}
+              </span>
+              <span>
+                <i className="fas fa-heart" />
+                {favorite.post.likes ? favorite.post.likes.length : 0}
+              </span>
             </div>
           </div>
         </div>

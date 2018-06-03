@@ -5,7 +5,7 @@ const errorHandler = require('../utilities/errorHandler');
 
 exports.get_favorites = (req, res, next) => {
   Favorite.find({user: req.user.id})
-        .populate('post', ['title', 'name', 'user', 'category', 'likes', 'image'])
+        .populate('post', ['title', 'name', 'user', 'category', 'likes', 'comments', 'image'])
         .then(favorites => res.json(favorites))
         .catch(err => 
           res.status(404).json({nofavorites: 'No favorites found'})
@@ -43,8 +43,8 @@ exports.remove_favorite = (req, res) => {
               return res.status(404).json({notauthorized: "You are not authorized"});
             }
 
-            favorite.remove().then(() => {
-              res.json({success: true})
+            favorite.remove().then((favorite) => {
+              res.json(favorite)
             })
           })
 }

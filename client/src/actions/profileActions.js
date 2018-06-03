@@ -6,7 +6,6 @@ import {
   GET_ERRORS,
   CLEAR_CURRENT_PROFILE,
   SET_CURRENT_USER,
-  GET_GITHUB
 } from "./types";
 
 export const getCurrentProfile = () => dispatch => {
@@ -47,7 +46,7 @@ export const getProfileByHandle = handle => dispatch => {
     );
 };
 
-export const getProfileById = id => dispatch => {
+export const getProfileById = (id, history) => dispatch => {
   dispatch(setProfileLoading());
 
   axios
@@ -59,17 +58,21 @@ export const getProfileById = id => dispatch => {
       })
     )
     .catch(err =>
-      dispatch({
+      {
+        history.push('/not-found');
+        dispatch({
         type: GET_PROFILE,
         payload: null
-      })
+      })}
     );
 };
 
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post("/api/v1/profile", profileData)
-    .then(res => history.push(`/profile/${res.data._id}`))
+    .then(res => {
+     
+      history.push(`/profile/${res.data.user}`)})
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

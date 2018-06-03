@@ -82,11 +82,6 @@ const options = {
   }
 };
 
-const isEmptybody = body =>
-  !body ||
-  !body.blocks ||
-  (body.blocks.length === 1 && body.blocks[0].text === "");
-
 export default class PostBody extends Component {
   renderWarning() {
     return <div>Nothing to render</div>;

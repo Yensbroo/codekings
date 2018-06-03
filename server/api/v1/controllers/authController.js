@@ -1,5 +1,6 @@
 const passport = require('passport');
 const User = require("../models/User");
+const Profile = require("../models/Profile");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../../config/keys");
@@ -25,7 +26,18 @@ exports.user_create = (req, res, next) => {
           if(err) throw err;
           newUser.password = hash;
           newUser.save()
-            .then(user => res.json(user))
+            .then(user => {
+              const newProfile = new Profile({
+                user: user.id,
+                skills: 'No skills yet'
+              })
+
+              newProfile.save()
+                        .then(profile => {
+                          console.log(profile);
+                          res.json(profile)})
+                        .catch(err => res.json(err));  
+              res.json(user)})
             .catch(err => res.json(err));
         })    
       })

@@ -17,9 +17,11 @@
     }
     .ck-editor__body-editor {
       height: 500px;
-      border-bottom: 1px solid black;
       padding-left: 10px;
       font-family: 'Open Sans', sans-serif;
+      @media(max-width: 767px) {
+        height: 400px;
+      }
     }
   }
 }

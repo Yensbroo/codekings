@@ -10,7 +10,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import SignUp from "../../components/Register/register";
 import Login from "../../components/Login/login";
-import Home from "../../components/Home/Home";
 import Profile from "../../components/Profile/Profile";
 import Posts from "../../components/Posts/Posts";
 import PostForm from "../../components/Posts/PostForm";

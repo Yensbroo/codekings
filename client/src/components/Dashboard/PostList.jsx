@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import { deletePost } from "../../actions/postActions";
@@ -34,7 +34,7 @@ class PostList extends Component {
     this.props.deletePost(id);
   }
   render() {
-    const { post, addFlashMessage } = this.props;
+    const { post } = this.props;
     const { isOpen } = this.state;
 
     return (
@@ -94,4 +94,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   deletePost,
   deleteFavorite
-})(PostList);
+})(withRouter(PostList));
