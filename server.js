@@ -12,6 +12,7 @@ const routes = require("./server/routes");
 const app = express();
 
 // express middleware
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(express.static(path.join(__dirname, 'client/public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
