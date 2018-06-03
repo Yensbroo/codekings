@@ -1,0 +1,27 @@
+.ck-editor {
+  background: white;
+  min-height: 100vh;
+  border: 1px solid #e0e0e0;
+  padding-top: 20px;
+  .ck-editor__wrapper {
+    width: 90%;
+    margin: auto;
+    .ck-editor__body-wrapper {
+      border: 1px solid $ck-black;
+      height: 588px;
+      margin-bottom: 20px;
+    }
+    .ck-editor__body-toolbar {
+      border-bottom: 1px solid $ck-black;
+      z-index: 1;
+    }
+    .ck-editor__body-editor {
+      height: 500px;
+      padding-left: 10px;
+      font-family: 'Open Sans', sans-serif;
+      @media(max-width: 767px) {
+        height: 400px;
+      }
+    }
+  }
+}

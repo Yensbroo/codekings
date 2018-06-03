@@ -1,0 +1,24 @@
+.ck-dashboard__links {
+  background: white;
+  width: 300px;
+  border: 1px solid #e0e0e0;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  @media (max-width: 550px) {
+    width: 100%;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+}
+
+.ck-dashboard__links-header {
+  text-align: center;
+
+  img {
+    width: 135px;
+    border-radius: 65px;
+    margin-top: 20px;
+  }
+}

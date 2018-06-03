@@ -1,0 +1,109 @@
+button {
+  height: 50px;
+  margin-bottom: 15px;
+  color: white;
+  background: $ck-orange;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid #f08c12;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.4s
+}
+
+button:hover {
+  background: #f08c12;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.ck-header__search {
+  button {
+    margin-bottom: 0;
+    border: none;
+  }
+}
+
+.ck-user-form__container {
+  button {
+    width: 100%;
+  }
+}
+
+.edit-profile__submit {
+  button {
+    margin-top: 15px;
+    width: 30%;
+  }
+}
+
+.ck-action {
+  float: left;
+  font-size: 20px;
+  cursor: pointer;
+  a,
+  i {
+    color: $ck-black;
+  }
+  a {
+    padding: 0 20px;
+  }
+  a:hover,
+  i:hover {
+    color: $ck-orange;
+  }
+}
+
+.ck-facebook {
+  background: #3B5998;
+  border: 1px solid rgb(47, 70, 121);
+  transition: background 0.4s;
+  i {
+    padding: 10px;
+    font-size: 20px;
+  }
+}
+
+.ck-facebook:hover {
+  background: rgb(47, 70, 121);
+}
+
+.ck-top {
+  width: 50px;
+  border-radius: 100px;
+  position: fixed;
+  bottom: 0;
+  right: 40px;
+}
+
+.ck-like {
+  width: 80px;
+  height: 80px;
+  border-radius: 300px;
+  border: 1px solid $ck-orange;
+  margin-right: 20px;
+  i {
+    font-size: 30px;
+  }
+}
+
+.ck-isNotLiked {
+  background: none;
+  border: 1px solid $ck-orange;
+  i {
+    color: $ck-orange;
+  }
+}
+
+.ck-isLiked {
+  background: $ck-orange;
+  border: 1px solid $ck-orange;
+}
+
+.ck-favorite,
+.ck-favorite:hover {
+  background: none;
+  border: none;
+}

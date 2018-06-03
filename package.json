@@ -1,0 +1,51 @@
+{
+  "name": "codekings",
+  "version": "1.0.0",
+  "description": "Community-based tutorial platform",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm run start-all --prefix client",
+    "dev": "concurrently \"npm run server \" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yensbroo/codekings.git"
+  },
+  "author": "Yens Broothaers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yensbroo/codekings/issues"
+  },
+  "homepage": "https://github.com/Yensbroo/codekings#readme",
+  "dependencies": {
+    "@material-ui/core": "^1.0.0",
+    "acl": "^0.4.11",
+    "algoliasearch": "^3.27.1",
+    "babel-core": "^6.26.3",
+    "babel-watch": "^2.0.7",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "gravatar": "^1.6.0",
+    "jsonwebtoken": "^8.2.1",
+    "mongoolia": "^1.0.3",
+    "mongoose": "^5.0.17",
+    "multer": "^1.3.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-facebook-token": "^3.3.0",
+    "passport-jwt": "^4.0.0",
+    "path": "^0.12.7",
+    "qs": "^6.5.2",
+    "react-medium-editor": "^1.8.1",
+    "validator": "^10.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  }
+}

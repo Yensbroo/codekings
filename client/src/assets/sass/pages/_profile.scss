@@ -1,0 +1,124 @@
+.ck-profile__header {
+  background: $ck-orange;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom right, #FDB654, $ck-orange, #EB8800);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #FDB654, $ck-orange, #EB8800);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px 6px 0 0;
+  margin-top: 65px;
+  .ck-profile__avatar {
+    margin-top: 20px;
+    img {
+      border-radius: 100px;
+      width: 150px;
+    }
+  }
+  .ck-profile__name {
+    h2 {
+      color: white;
+    }
+  }
+  .ck-profile__socials {
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 30px;
+      padding: 5px;
+    }
+  }
+}
+
+.ck-profile__bio-container,
+.ck-profile__skills,
+.ck-github__container {
+  border-radius: 3px;
+  border: 1px solid $ck-border;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+}
+
+.ck-profile__bio-skills {
+  display: flex;
+  flex-direction: row;
+  .ck-profile__bio-container {
+    background: white;
+    margin-top: -65px;
+    width: 80%;
+    .ck-profile__bio-wrapper {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      .ck-profile__bio,
+      .ck-profile__skills {
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .ck-profile__skills {
+    background: white;
+    margin-top: -65px;
+    width: 20%;
+    margin-left: 40px;
+    .ck-profile__skills-wrapper {
+      width: 90%;
+      margin: auto;
+      ul {
+        list-style: none;
+        padding: 0
+      }
+      li {
+        font-size: 20px;
+        padding: 10px 0 10px 10px;
+        border-bottom: 1px solid $ck-border;
+        i {
+          margin-right: 20px;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .ck-profile__bio-skills {
+    flex-direction: column;
+    .ck-profile__bio-container {
+      width: 100%;
+    }
+    .ck-profile__skills {
+      margin-top: 20px;
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+
+.ck-github__container {
+  background: white;
+  margin-top: 30px;
+  h3 {
+    margin-left: 30px;
+  }
+  .ck-github {
+    border-radius: 3px;
+    margin-bottom: 20px;
+    .ck-profile__github-wrapper {
+      width: 90%;
+      margin: 30px;
+      hr {
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+    }
+    h2 {
+      a {
+        color: $ck-orange;
+      }
+    }
+  }
+}

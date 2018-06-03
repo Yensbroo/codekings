@@ -1,0 +1,16 @@
+.ck-feed__header {
+  margin-top: -15px;
+  height: 400px;
+  width: 100%;
+  background: $ck-orange;
+  background: -webkit-linear-gradient(to bottom right, #FDB654, $ck-orange, #EB8800);
+  background: linear-gradient(to bottom right, #FDB654, $ck-orange, #EB8800);
+  border-bottom: 1px solid $ck-border;
+  .ck-feed__header-content {
+    padding-top: 90px;
+    h1,
+    p {
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.page-numbers {
+  padding: 0;
+  border: 1px solid $ck-border;
+  display: inline-block;
+}
+
+.pagination {
+  list-style: none;
+  display: inline;
+  padding: 10px;
+  background: white;
+  width: 28px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pagination:hover,
+.pagination:active {
+  background: $ck-orange;
+  color: white;
+}

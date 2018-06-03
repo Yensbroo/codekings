@@ -1,0 +1,39 @@
+.ck-dashboard__welcome {
+  width: 100%;
+}
+
+table {
+  background: white;
+  width: 100%;
+  border: 1px solid $ck-border;
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 1px solid $ck-border;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  padding: 16px 20px;
+}
+
+th:last-child {
+  padding-left: 36px;
+  text-align: center;
+}
+
+td {
+  padding: 28px 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td {
+  .ck-action {
+    width: 100%;
+    text-align: center;
+  }
+}
