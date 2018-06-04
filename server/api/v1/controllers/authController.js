@@ -20,7 +20,12 @@ exports.user_create = (req, res, next) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
     } else {
-      const newUser = new User(req.body);
+      const newUser = new User({
+        name: req.body.name,
+        email: req.body.email.toLowerCase(),
+        password: req.body.password,
+        password2: req.body.password2
+      });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if(err) throw err;
@@ -52,7 +57,7 @@ exports.user_login = (req, res, next) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
-  const email = req.body.email;
+  const email = req.body.email.toLowerCase();
   const password = req.body.password;
 
   User.findOne({ email })
