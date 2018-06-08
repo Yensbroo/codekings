@@ -23,7 +23,7 @@ class ProfileHeader extends Component {
                 className="ck-profile__social-icon"
                 target="_blank"
               >
-                <i className="fab fa-globe" />
+                <i className="fas fa-globe" />
               </a>
             )}
             {isEmpty(profile.social && profile.social.facebook) ? null : (
