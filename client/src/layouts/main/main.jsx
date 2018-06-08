@@ -21,6 +21,9 @@ import UserFavorites from "../../components/Favorites/Favorites";
 import SetAvatar from "../../components/Dashboard/SetAvatar";
 import UpdatePost from "../../components/Posts/UpdatePost";
 import notFound from "../../components/Not-found/Not-found";
+import Request from "../../components/PassReset/Request";
+import Reset from "../../components/PassReset/Reset";
+import Deny from "../../components/PassReset/Deny";
 
 class Main extends Component {
   render() {
@@ -29,7 +32,8 @@ class Main extends Component {
       <div className="App">
         {!currentPath.includes("signup") &&
         !currentPath.includes("login") &&
-        !currentPath.includes("not-found") ? (
+        !currentPath.includes("not-found") &&
+        !currentPath.includes("reset") ? (
           <Navbar />
         ) : null}
         <Switch>
@@ -38,6 +42,9 @@ class Main extends Component {
           <Route exact path="/" component={Posts} />
           <Route exact path="/post/:id" component={Post} />
           <Route exact path="/profile/:id" component={Profile} />
+          <Route exact path="/request_reset" component={Request} />
+          <Route exact path="/reset_password/:token" component={Reset} />
+          <Route exact path="/deny_reset/:token" component={Deny} />
           <PrivateRoute exact path="/favorites" component={UserFavorites} />
           <PrivateRoute exact path="/post/update/:id" component={UpdatePost} />
           <PrivateRoute exact path="/user/settings" component={UserSettings} />

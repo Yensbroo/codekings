@@ -100,6 +100,11 @@ class Login extends Component {
               Sign Up
             </Link>
           </span>
+          <span>
+            <Link to="/request_reset" className="reset">
+              Forgot your password?
+            </Link>
+          </span>
         </div>
       </div>
     );
@@ -118,4 +123,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { loginUser, fbLoginUser })(Login);
+export default connect(
+  mapStateToProps,
+  { loginUser, fbLoginUser }
+)(Login);

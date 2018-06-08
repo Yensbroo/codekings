@@ -14,6 +14,7 @@ const profileController = require("./controllers/profileController");
 const postController = require("./controllers/postController");
 const categoryController = require('./controllers/categoryController');
 const favoriteController = require('./controllers/favoriteController');
+const passResetController = require('./controllers/passResetController');
 /**
  * routes
  */
@@ -23,13 +24,17 @@ router.post("/signup", authController.user_create);
 router.post("/login", authController.user_login);
 router.post(
   "/user",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", {
+    session: false
+  }),
   authController.update_user
 );
 router.post(
   "/user/avatar",
   upload,
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", {
+    session: false
+  }),
   authController.update_avatar
 );
 router.post("/facebook", authController.facebook_login);
@@ -61,7 +66,9 @@ router.post(
 
 router.get("/posts", postController.get_posts);
 router.get("/post/:id", postController.get_post_by_id);
-router.get("/posts/user", passport.authenticate('jwt', {session: false}), postController.get_posts_by_user )
+router.get("/posts/user", passport.authenticate('jwt', {
+  session: false
+}), postController.get_posts_by_user)
 router.get("/posts/profile/:id", postController.get_posts_by_profile)
 
 router.post(
@@ -114,10 +121,24 @@ router.get('/categories', categoryController.get_categories);
 /**
  * Favorites
  */
-router.get('/favorites', passport.authenticate('jwt', {session: false}), favoriteController.get_favorites);
-router.post('/favorites', passport.authenticate('jwt', {session: false}), favoriteController.add_favorite);
-router.delete('/favorites', passport.authenticate('jwt', {session: false}), favoriteController.remove_all_favorites);
-router.delete('/favorites/:id', passport.authenticate('jwt', {session: false}), favoriteController.remove_favorite);
+router.get('/favorites', passport.authenticate('jwt', {
+  session: false
+}), favoriteController.get_favorites);
+router.post('/favorites', passport.authenticate('jwt', {
+  session: false
+}), favoriteController.add_favorite);
+router.delete('/favorites', passport.authenticate('jwt', {
+  session: false
+}), favoriteController.remove_all_favorites);
+router.delete('/favorites/:id', passport.authenticate('jwt', {
+  session: false
+}), favoriteController.remove_favorite);
 
+/**
+ * Password resets
+ */
+router.post('/reset_request', passResetController.send_request);
+router.post('/reset_password/:token', passResetController.reset_password);
+router.delete('/deny_request/:token', passResetController.deny_reset);
 
 module.exports = router;

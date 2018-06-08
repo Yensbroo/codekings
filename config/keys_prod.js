@@ -8,5 +8,9 @@ module.exports = {
   facebook: {
     appId: process.env.FACEBOOK_APP_ID,
     appSecret: process.env.FACEBOOK_APP_SECRET,
+  },
+  mail: {
+    email: process.env.EMAIL_ADRESS,
+    password: process.env.EMAIL_PASS
   }
 };

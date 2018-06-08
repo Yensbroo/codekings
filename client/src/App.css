@@ -777,6 +777,8 @@ footer {
   .ck-user-form__container span a {
     font-weight: bolder;
     color: #ff9f1c; }
+  .ck-user-form__container .reset {
+    float: right; }
 
 .ck-dashboard {
   display: flex;
